@@ -1,0 +1,13 @@
+{
+  "name": "js-starter-kit",
+  "version": "1.0.0",
+  "description": "JavaScript development environment starter kit",
+  "scripts": {
+  },
+  "author": "Zach Posten",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
