@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "JavaScript development environment starter kit",
   "scripts": {
+    "share": "lt --port 3000"
   },
   "author": "Zach Posten",
   "license": "MIT",
   "dependencies": {
   },
   "devDependencies": {
-    "express": "4.14.0"
+    "express": "4.14.0",
+    "localtunnel": "1.8.1"
   }
 }
