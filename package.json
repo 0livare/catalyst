@@ -4,7 +4,9 @@
   "description": "JavaScript development environment starter kit",
   "scripts": {
     "prestart": "node bld/startMessage",
-    "start": "node bld/server",
+    "start": "npm-run-all --parallel security-check open:src",
+    "open:src": "node bld/srcServer",
+    "security-check": "nsp check",
     "share": "lt --port 3000"
   },
   "author": "Zach Posten",
@@ -14,6 +16,9 @@
   "devDependencies": {
     "chalk": "1.1.3",
     "express": "4.14.0",
-    "localtunnel": "1.8.1"
+    "localtunnel": "1.8.1",
+    "npm-run-all": "3.1.1",
+    "nsp": "2.6.2",
+    "open": "0.0.5"
   }
 }
