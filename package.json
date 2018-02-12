@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "JavaScript development environment starter kit",
   "scripts": {
-    "share": "lt --port 3000",
-    "start": "node bld/server"
+    "prestart": "node bld/startMessage",
+    "start": "node bld/server",
+    "share": "lt --port 3000"
   },
   "author": "Zach Posten",
   "license": "MIT",
   "dependencies": {
   },
   "devDependencies": {
+    "chalk": "1.1.3",
     "express": "4.14.0",
     "localtunnel": "1.8.1"
   }
