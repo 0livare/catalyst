@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "JavaScript development environment starter kit",
   "scripts": {
-    "prestart": "node bld/startMessage",
+    "prestart": "babel-node bld/startMessage",
     "start": "npm-run-all --parallel security-check open:src",
-    "open:src": "node bld/srcServer",
+    "open:src": "babel-node bld/srcServer",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000 --subdomain posten",
     "share": "npm-run-all --parallel open:src localtunnel"
