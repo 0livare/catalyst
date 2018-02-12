@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "JavaScript development environment starter kit",
   "scripts": {
-    "share": "lt --port 3000"
+    "share": "lt --port 3000",
+    "start": "node bld/server"
   },
   "author": "Zach Posten",
   "license": "MIT",
