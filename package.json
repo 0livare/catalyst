@@ -4,14 +4,15 @@
   "description": "JavaScript development environment starter kit",
   "scripts": {
     "prestart": "babel-node bld/startMessage",
-    "start": "npm-run-all --parallel security-check open:src lint:watch",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
     "open:src": "babel-node bld/srcServer",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000 --subdomain posten",
     "share": "npm-run-all --parallel open:src localtunnel",
-    "test": "mocha --reporter progress bld/testSetup.js \"src/js/**/*.test.js\""
+    "test": "mocha --reporter progress bld/testSetup.js \"src/js/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "author": "Zach Posten",
   "license": "MIT",
