@@ -1,2 +1,5 @@
 node_modules/
 .vscode/
+
+# A generated mock file
+src/api/db.json
