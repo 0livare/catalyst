@@ -4,19 +4,23 @@
   "description": "JavaScript development environment starter kit",
   "scripts": {
     "prestart": "babel-node bld/startMessage",
-    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch start-mockapi",
     "open:src": "babel-node bld/srcServer",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000 --subdomain posten",
     "share": "npm-run-all --parallel open:src localtunnel",
-    "test": "mocha --reporter progress bld/testSetup.js \"src/js/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test": "mocha --reporter progress bld/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch",
+    "generate-mock-data": "babel-node bld/generateMockData",
+    "prestart-mockapi": "npm run generate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
   },
   "author": "Zach Posten",
   "license": "MIT",
   "dependencies": {
+    "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.16.0",
@@ -34,6 +38,9 @@
     "express": "4.14.0",
     "extract-text-webpack-plugin": "1.0.1",
     "html-webpack-plugin": "2.22.0",
+    "jsdom": "9.8.0",
+    "json-schema-faker": "0.3.6",
+    "json-server": "0.8.22",
     "localtunnel": "1.8.1",
     "mocha": "3.1.2",
     "npm-run-all": "3.1.1",
