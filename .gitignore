@@ -1,4 +1,8 @@
 node_modules/
+
+# Generated production files
+dist/
+
 .vscode/
 
 # A generated mock file

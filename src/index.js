@@ -21,8 +21,6 @@ getUsers().then(result => {
 
   let deleteLinks = global.document.getElementsByClassName('deleteUser')
 
-  console.log('deleteLinks', deleteLinks)
-
   // Must use Array.from to generate a real array from a DOM collection
   // getElementsByClassName only returns an "array like" object
   Array.from(deleteLinks, link => {
@@ -36,7 +34,6 @@ getUsers().then(result => {
 
       // Remove the row from the page
       const row = element.parentNode.parentNode
-      console.log('row', row)
       row.parentNode.removeChild(row)
     }
   })
