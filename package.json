@@ -15,7 +15,11 @@
     "test:watch": "npm run test -- --watch",
     "generate-mock-data": "babel-node bld/generateMockData",
     "prestart-mockapi": "npm run generate-mock-data",
-    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001",
+    "clean-dist": "rimraf ./dist && mkdir dist",
+    "prebuild": "npm-run-all clean-dist test lint",
+    "build": "babel-node bld/build.js",
+    "postbuild": "babel-node bld/distServer.js"
   },
   "author": "Zach Posten",
   "license": "MIT",
@@ -48,6 +52,7 @@
     "nsp": "2.6.2",
     "numeral": "1.5.3",
     "open": "0.0.5",
+    "rimraf": "2.5.4",
     "style-loader": "0.13.1",
     "webpack": "1.13.2",
     "webpack-dev-middleware": "1.8.4",
