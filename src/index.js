@@ -1,5 +1,5 @@
 import './index.css'
-import {getUsers} from './api/userApi'
+import { getUsers, deleteUser } from './api/userApi'
 
 // Populate table of users via API call
 getUsers().then(result => {
@@ -18,5 +18,26 @@ getUsers().then(result => {
   })
 
   global.document.getElementById('users').innerHTML = usersBody
-})
 
+  let deleteLinks = global.document.getElementsByClassName('deleteUser')
+
+  console.log('deleteLinks', deleteLinks)
+
+  // Must use Array.from to generate a real array from a DOM collection
+  // getElementsByClassName only returns an "array like" object
+  Array.from(deleteLinks, link => {
+    link.onclick = function(event) {
+      // Prevent the link from actually changing the url
+      event.preventDefault()
+
+      // Delete the entry from the "database"
+      const element = event.target
+      deleteUser(element.attributes["data-id"].value)
+
+      // Remove the row from the page
+      const row = element.parentNode.parentNode
+      console.log('row', row)
+      row.parentNode.removeChild(row)
+    }
+  })
+})
