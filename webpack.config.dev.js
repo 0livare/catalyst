@@ -3,9 +3,33 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 
 export default {
-  debug: true,
   devtool: 'inline-source-map',
-  noInfo: false,
+  stats: {
+    assets: false,
+    cached: false,
+    cachedAssets: false,
+    children: false,
+    chunks: false,
+    chunkModules: false,
+    chunkOrigins: false,
+    colors: false,
+    depth: false,
+    entrypoints: false,
+    errors: true,
+    errorDetails: true,
+    hash: false,
+    maxModules: 0,
+    modules: false,
+    performance: false,
+    providedExports: false,
+    publicPath: false,
+    reasons: false,
+    source: false,
+    timings: false,
+    usedExports: false,
+    version: false,
+    warnings: false
+  },
   entry: [
     path.resolve(__dirname, 'src/index')
   ],
@@ -23,9 +47,9 @@ export default {
     }),
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loaders: ['style','css']}
+    rules: [
+      {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+      {test: /\.css$/, use: ['style-loader','css-loader']}
     ]
   }
 }
