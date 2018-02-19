@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 
 export default {
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   stats: {
     assets: false,
     cached: false,
