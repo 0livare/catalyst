@@ -1,5 +1,6 @@
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import webpack from 'webpack'
 
 
 export default {
@@ -31,7 +32,9 @@ export default {
     warnings: false
   },
   entry: [
-    path.resolve(__dirname, 'src/index')
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client',
+    path.resolve(__dirname, 'src/index'),
   ],
   target: 'web',
   output: {
@@ -40,6 +43,8 @@ export default {
     filename: 'bundle.js'
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+
     // Create HTML file that includes reference to bundled JS
     new HtmlWebpackPlugin({
       template: 'src/index.html',

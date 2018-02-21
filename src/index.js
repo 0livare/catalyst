@@ -1,13 +1,22 @@
 /*eslint-disable import/default */
 import React from 'react'
 import { render } from 'react-dom'
-import { HashRouter as Router, Route } from 'react-router-dom'
+import { AppContainer } from 'react-hot-loader'
+import Root from './components/Root'
 
-import App from './components/App'
+const htmlRoot = document.getElementById('app')
 
-render(
-  <Router>
-    <Route path="/" component={App} />
-  </Router>,
-  document.getElementById('app')
-)
+render(<Root/>, htmlRoot)
+
+// Hot Module Replacement API
+if (module.hot) {
+  module.hot.accept('./components/Root', () => {
+    const NewRoot = require('./components/Root').default;
+    render(
+      <AppContainer>
+        <NewRoot />
+      </AppContainer>,
+      document.getElementById('app')
+    );
+  });
+}
