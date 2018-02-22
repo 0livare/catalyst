@@ -1,5 +1,6 @@
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import webpack from 'webpack'
 
 
 export default {
@@ -31,7 +32,9 @@ export default {
     warnings: false
   },
   entry: [
-    path.resolve(__dirname, 'src/index')
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client',
+    path.resolve(__dirname, 'src/index'),
   ],
   target: 'web',
   output: {
@@ -40,6 +43,8 @@ export default {
     filename: 'bundle.js'
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+
     // Create HTML file that includes reference to bundled JS
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -49,7 +54,19 @@ export default {
   module: {
     rules: [
       {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-      {test: /\.css$/, use: ['style-loader','css-loader']}
+      {test: /\.css$/, use: [
+        'style-loader',
+        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader',
+        'postcss-loader',
+      ]},
+      {test: /\.scss$/, use: [ // Note that these loaders are applied in reverse order, the last one first
+        'style-loader', // 5. Add CSS to DOM by injecting style tag
+        // 4. Use CSS modules, generating class names in the specified format
+        // 3. Load the CSS file, resolve imports and resolves
+        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        'postcss-loader', // 2. Perform any transformations specified in postcss.config.js
+        'sass-loader',    // 1. Compile SASS into CSS
+      ]},
     ]
   }
 }

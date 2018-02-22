@@ -61,7 +61,23 @@ export default {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: "css-loader",
+          use: [ // Note that these loaders are applied in reverse order, the last one first
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            'postcss-loader',
+          ],
+        }),
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [ // Note that these loaders are applied in reverse order, the last one first
+            // 4. Use CSS modules, generating class names in the specified format
+            // 3. Load the CSS file contents
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            'postcss-loader', // 2. Perform any transformations specified in postcss.config.js
+            'sass-loader',    // 1. Compile SASS into CSS
+          ],
         }),
       },
     ]
