@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import s from './HomePage.css'
+import s from './HomePage.scss'
 import cs from 'classnames'
 
 class HomePage extends React.Component {
