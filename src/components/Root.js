@@ -1,20 +1,24 @@
 import React from 'react'
-import { AppContainer } from 'react-hot-loader'
+import PropTypes from 'prop-types'
+import { Provider } from 'react-redux'
 import { HashRouter as Router, Route } from 'react-router-dom'
 
 import App from './App';
 
-export default class Root extends React.Component {
+class Root extends React.Component {
   render() {
     return (
-      // All children of <AppContainer> will be hot reloaded when a change occurs
-      // When in production, AppContainer is automatically disabled, and simply
-      // returns its children.
-      <AppContainer>
+      <Provider store={this.props.store}>
         <Router>
           <Route path="/" component={App} />
         </Router>
-      </AppContainer>
+      </Provider>
     )
   }
 }
+
+Root.propTypes = {
+  store: PropTypes.object.isRequired,
+}
+
+export default Root

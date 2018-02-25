@@ -1,5 +1,5 @@
 export default function getBaseUrl() {
-  return getQueryStringParameterByName('useMockApi')
+  return getQueryStringParameterByName('useMockApi') || true
     ? 'http://localhost:3001/'
     : '/'
 }

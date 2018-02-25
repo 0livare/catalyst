@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
+import Nav from './common/Nav'
 import HomePage  from './home/HomePage'
 import AboutPage from './about/AboutPage'
+import CoursesPage from './courses/CoursesPage'
 
-class App extends React.Component {
+/* eslint-disable react/jsx-no-bind */
+
+class App extends Component {
   render() {
     return (
-      <div style={{background: "yellow"}}>
-        { this.props.children }
+      <div>
+        <Nav />
 
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/about" component={AboutPage} />
+          <Route path="/courses" component={CoursesPage} />
           <Route component={() => <h3>404 page not found</h3>} />
         </Switch>
       </div>
@@ -20,4 +25,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default App
