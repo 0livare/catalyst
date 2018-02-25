@@ -2,7 +2,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import configureStore from './store/configureStore'
 import Root from './components/Root'
 import { loadCourses } from './actions/courseActions'

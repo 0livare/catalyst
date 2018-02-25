@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
-import Nav from './common/Nav'
+import Nav from './common/Navigation'
 import HomePage  from './home/HomePage'
 import AboutPage from './about/AboutPage'
 import CoursesPage from './courses/CoursesPage'

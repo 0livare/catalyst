@@ -12,6 +12,10 @@
   }
 }
 
-a.active {
-  color: orange;
+.active {
+  background: #b8b8b8;
+
+  * {
+    color: white !important;
+  }
 }
