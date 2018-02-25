@@ -1,10 +1,11 @@
-# JS Starter Kit
+# React Starter Kit
 
-Linux: [![Build Status](https://travis-ci.org/zposten/js-starter-kit.svg?branch=master)](https://travis-ci.org/zposten/js-starter-kit)<br>
-Windows: [![Build status](https://ci.appveyor.com/api/projects/status/nyjy0bbfnb09e7my/branch/master?svg=true)](https://ci.appveyor.com/project/Zach31771/js-starter-kit/branch/master)
+Linux: [![Build Status](https://travis-ci.org/zposten/react-starter-kit.svg?branch=master)](https://travis-ci.org/zposten/react-starter-kit) <br>
+Windows: [![Build status](https://ci.appveyor.com/api/projects/status/7x1yl9r4r98y42l6/branch/master?svg=true)](https://ci.appveyor.com/project/Zach31771/react-starter-kit/branch/master)
 
 
-A jumping off point for any javascript project.  It has best practices built in, making doing the right thing the easy thing!
+
+A jumping off point for any react project.  It has best practices built in, making doing the right thing the easy thing!
 
 There are many choices to make when establishing a JS project, this is one of the reasons that doing so is so difficult and time consuming.  I have made the following decisions for this project:
 
@@ -24,3 +25,10 @@ There are many choices to make when establishing a JS project, this is one of th
 - CI Servers: Travis and AppVeyor
 - HTTP Requests: Fetch
 - Mocking an API: json-server, JSON Schema Faker
+- Styles
+  - CSS modules
+  - SCSS
+  - PostCSS
+    - Autoprefixer
+- Data flow architecture: Redux
+  - Asynchronous calls: Redux thunk
