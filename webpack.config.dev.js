@@ -56,13 +56,13 @@ export default {
       {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
       {test: /\.css$/, use: [
         'style-loader',
-        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader',
+        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
         'postcss-loader',
       ]},
       {test: /\.scss$/, use: [ // Note that these loaders are applied in reverse order, the last one first
         'style-loader', // 5. Add CSS to DOM by injecting style tag
         // 4. Use CSS modules, generating class names in the specified format
-        // 3. Load the CSS file, resolve imports and resolves
+        // 3. Load the CSS file, resolve imports and urls
         'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
         'postcss-loader', // 2. Perform any transformations specified in postcss.config.js
         'sass-loader',    // 1. Compile SASS into CSS
