@@ -14,6 +14,21 @@ class ManageCoursePage extends Component {
       course: Object.assign({}, props.initialCourse),
       errors: {},
     }
+
+    this.updateCourseState = this.updateCourseState.bind(this)
+    this.saveCourse = this.saveCourse.bind(this)
+  }
+
+  updateCourseState(event) {
+    const field = event.target.name
+    let course = Object.assign({}, this.state.course)
+    course[field] = event.target.value
+    return this.setState({course})
+  }
+
+  saveCourse(event) {
+    event.preventDefault()
+    this.props.actions.saveCourse(this.state.course)
   }
 
   render() {
@@ -22,6 +37,8 @@ class ManageCoursePage extends Component {
         course={this.state.course}
         errors={this.state.errors}
         allAuthors={this.props.authors}
+        onChange={this.updateCourseState}
+        onSave={this.saveCourse}
         />
     )
   }
@@ -30,6 +47,7 @@ class ManageCoursePage extends Component {
 ManageCoursePage.propTypes = {
   initialCourse: PropTypes.object.isRequired,
   authors: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state, ownProps) {
