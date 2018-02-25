@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Route, Switch } from 'react-router-dom'
 
 import * as courseActions from '../../actions/courseActions'
 import CourseList from './CourseList'
+import ManageCoursePage from './ManageCoursePage'
 
 class CoursesPage extends Component {
   constructor(props) {
@@ -12,17 +14,25 @@ class CoursesPage extends Component {
   }
 
   render() {
-    const { courses } = this.props
+    const { courses, match } = this.props
 
     return (
-      <CourseList courses={courses} />
+      <Switch>
+        <Route
+          exact path={match.path}
+          render={() => <CourseList courses={courses} />} />
+        <Route
+          exact path={`${match.path}/:courseId`}
+          component={ManageCoursePage} />
+      </Switch>
+
      )
   }
 }
 
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired, // Supplied by react router
 }
 
 function mapStateToProps(state) {
