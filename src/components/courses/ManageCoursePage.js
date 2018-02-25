@@ -21,7 +21,7 @@ class ManageCoursePage extends Component {
       <CourseForm
         course={this.state.course}
         errors={this.state.errors}
-        allAuthors={['zach', 'posten']}
+        allAuthors={this.props.authors}
         />
     )
   }
@@ -29,12 +29,24 @@ class ManageCoursePage extends Component {
 
 ManageCoursePage.propTypes = {
   initialCourse: PropTypes.object.isRequired,
+  authors: PropTypes.array.isRequired,
 }
 
 function mapStateToProps(state, ownProps) {
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''}
 
-  return { initialCourse: course }
+  // Change authors from the format supplied by the reducer
+  // (initlally from the API) into the format expected by the
+  // CoarseForm.
+  const authorsFormattedForDropdown = state.authors.map(author => ({
+    id: author.id,
+    name: author.id,
+  }))
+
+  return {
+    initialCourse: course,
+    authors: authorsFormattedForDropdown,
+  }
 }
 
 function mapDispatchToProps(dispatch) {

@@ -5,9 +5,11 @@ import { AppContainer } from 'react-hot-loader'
 import configureStore from './store/configureStore'
 import Root from './components/Root'
 import { loadCourses } from './actions/courseActions'
+import { loadAuthors } from './actions/authorActions'
 
 const store = configureStore()
 store.dispatch(loadCourses())
+store.dispatch(loadAuthors())
 
 const htmlRoot = document.getElementById('app')
 

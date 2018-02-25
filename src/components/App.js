@@ -21,7 +21,7 @@ class App extends Component {
 
           <Grid>
             <Row>
-              <Col xs={12} md={8}>
+              <Col xs={12}>
                 <Switch>
                   <Route exact path="/"  component={HomePage} />
                   <Route path="/about"   component={AboutPage} />

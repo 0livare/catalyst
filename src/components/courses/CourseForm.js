@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import cs from 'classnames'
+
+import s from './CourseForm.scss'
 
 function getErrorField(errors, param) {
   if (!errors) return
@@ -34,9 +37,9 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
 
         {allAuthors.map((author, index) =>
           <MenuItem
-            key={author}
-            value={index}
-            primaryText={author} />
+            key={author.id}
+            value={author.id}
+            primaryText={author.name} />
         )}
 
       </SelectField>
@@ -63,7 +66,7 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
         type="submit"
         disabled={saving}
         value={saving ? 'Saving...' : 'Save'}
-        className="btn btn-primary"
+        className={cs('btn', 'btn-primary', s.submit)}
         onClick={onSave}/>
     </form>
   )
