@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import Nav from './common/Navigation'
 import HomePage  from './home/HomePage'
@@ -11,16 +14,16 @@ import CoursesPage from './courses/CoursesPage'
 class App extends Component {
   render() {
     return (
-      <div>
+      <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
         <Nav />
 
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/about" component={AboutPage} />
+          <Route exact path="/"  component={HomePage} />
+          <Route path="/about"   component={AboutPage} />
           <Route path="/courses" component={CoursesPage} />
           <Route component={() => <h3>404 page not found</h3>} />
         </Switch>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }
