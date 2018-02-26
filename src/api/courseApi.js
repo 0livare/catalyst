@@ -1,10 +1,12 @@
-import { get } from './fetchHttp'
-
-
-function getAllCourses() {
-  return get('courses')
-}
+import { get, post } from './fetchHttp'
 
 export default {
-  getAllCourses
+  getAllCourses: function() {
+    return get('courses')
+  },
+
+  saveCourse: function(course) {
+    console.log("Saved course: ", course)
+    return post('courses', course)
+  }
 }

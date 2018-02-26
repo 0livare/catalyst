@@ -10,12 +10,17 @@ class ManageCoursePage extends Component {
   constructor(props, context) {
     super(props, context)
 
+    let initialCourse = props.initialCourse || {
+      id: props.courseId, title: '', watchUrl: '', authorId: '', length: '', category: ''
+    }
+
     this.state = {
       course: Object.assign({}, props.initialCourse),
       errors: {},
     }
 
     this.updateCourseState = this.updateCourseState.bind(this)
+    this.updateCourseAuthor = this.updateCourseAuthor.bind(this)
     this.saveCourse = this.saveCourse.bind(this)
   }
 
@@ -23,12 +28,20 @@ class ManageCoursePage extends Component {
     const field = event.target.name
     let course = Object.assign({}, this.state.course)
     course[field] = event.target.value
+
+    return this.setState({course})
+  }
+
+  updateCourseAuthor(event, key, payload) {
+    let course = Object.assign({}, this.state.course)
+    course.authorId = payload
     return this.setState({course})
   }
 
   saveCourse(event) {
     event.preventDefault()
     this.props.actions.saveCourse(this.state.course)
+    this.props.history.goBack()
   }
 
   render() {
@@ -37,7 +50,8 @@ class ManageCoursePage extends Component {
         course={this.state.course}
         errors={this.state.errors}
         allAuthors={this.props.authors}
-        onChange={this.updateCourseState}
+        onChangeText={this.updateCourseState}
+        onChangeAuthor={this.updateCourseAuthor}
         onSave={this.saveCourse}
         />
     )
@@ -45,13 +59,21 @@ class ManageCoursePage extends Component {
 }
 
 ManageCoursePage.propTypes = {
-  initialCourse: PropTypes.object.isRequired,
+  initialCourse: PropTypes.object, // Not required when adding a new course
   authors: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state, ownProps) {
-  let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''}
+  const courseId = ownProps.match.params.courseId
+
+  let course = null
+  for(let c of state.courses) {
+    if (c.id === courseId) {
+      course = c
+      break
+    }
+  }
 
   // Change authors from the format supplied by the reducer
   // (initlally from the API) into the format expected by the
@@ -64,6 +86,7 @@ function mapStateToProps(state, ownProps) {
   return {
     initialCourse: course,
     authors: authorsFormattedForDropdown,
+    courseId: courseId,
   }
 }
 

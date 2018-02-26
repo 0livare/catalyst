@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import cs from 'classnames'
+import chalk from 'chalk'
 
 import s from './CourseForm.scss'
 
@@ -12,7 +13,9 @@ function getErrorField(errors, param) {
   return errors[param]
 }
 
-const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
+const CourseForm = ({
+  course, allAuthors, onSave,
+  onChangeText, onChangeAuthor, saving, errors}) => {
   return (
     <form>
       <h1>Manage Course</h1>
@@ -20,7 +23,7 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
         name="title"
         floatingLabelText="Title"
         value={course.title}
-        onChange={onChange}
+        onChange={onChangeText}
         errorText={getErrorField(errors, 'title')}
         fullWidth={true}
         />
@@ -30,10 +33,14 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
         floatingLabelText="Author"
         value={course.authorId}
         options={allAuthors}
-        onChange={onChange}
+        onChange={onChangeAuthor}
         errorText={getErrorField(errors, 'authorId')}
         fullWidth={true}
         >
+
+        <MenuItem
+          value={0}
+          primaryText="Select an author" />
 
         {allAuthors.map((author, index) =>
           <MenuItem
@@ -48,7 +55,7 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
         name="category"
         floatingLabelText="Category"
         value={course.category}
-        onChange={onChange}
+        onChange={onChangeText}
         errorText={getErrorField(errors, 'category')}
         fullWidth={true}
         />
@@ -57,7 +64,7 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
         name="length"
         floatingLabelText="Length"
         value={course.length}
-        onChange={onChange}
+        onChange={onChangeText}
         errorText={getErrorField(errors, 'length')}
         fullWidth={true}
         />
@@ -73,12 +80,13 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
 }
 
 CourseForm.propTypes = {
-  course:     PropTypes.object.isRequired,
-  allAuthors: PropTypes.array,
-  onSave:     PropTypes.func.isRequired,
-  onChange:   PropTypes.func.isRequired,
-  saving:     PropTypes.bool,
-  errors:     PropTypes.object
+  course:         PropTypes.object.isRequired,
+  allAuthors:     PropTypes.array,
+  onSave:         PropTypes.func.isRequired,
+  onChangeText:   PropTypes.func.isRequired,
+  onChangeAuthor: PropTypes.func.isRequired,
+  saving:         PropTypes.bool,
+  errors:         PropTypes.object,
 }
 
 export default CourseForm
