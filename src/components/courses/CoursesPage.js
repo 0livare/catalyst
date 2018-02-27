@@ -55,9 +55,10 @@ CoursesPage.propTypes = {
 }
 
 function mapStateToProps(state) {
-  return {
-    courses: state.courses,
-  }
+  let courses = [...state.courses]
+  courses.sort((a, b) => a.title.localeCompare(b.title))
+
+  return { courses }
 }
 
 function mapDispatchToProps(dispatch) {
