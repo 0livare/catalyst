@@ -1,13 +1,23 @@
 import React from 'react'
-import s from './HomePage.scss'
 import cs from 'classnames'
+import { Jumbotron, Button } from 'react-bootstrap'
+import s from './HomePage.scss'
 
 class HomePage extends React.Component {
   render() {
     return (
-      <div className={cs(s.zach, s.posten)}>
-        <h1 className={s.title}>Home</h1>
-      </div>
+      <Jumbotron>
+        <h1>This is your home page!</h1>
+        <p>
+          Ready to learn React and Redux?  Run 'git log' to read
+          through this repo and understand how it was built!
+        </p>
+        <p>
+          <a href="https://github.com/zposten/react-starter-kit/commits/master">
+            <Button bsStyle="primary">Learn more</Button>
+          </a>
+        </p>
+      </Jumbotron>
     )
   }
 }
