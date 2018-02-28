@@ -24,6 +24,8 @@
   "author": "Zach Posten",
   "license": "MIT",
   "dependencies": {
+    "@types/react": "^16.0.38",
+    "@types/react-dom": "^16.0.4",
     "history": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -36,6 +38,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^8.0.0",
+    "awesome-typescript-loader": "^3.5.0",
     "babel-cli": "6.16.0",
     "babel-core": "6.17.0",
     "babel-loader": "^7.1.2",
@@ -73,7 +76,9 @@
     "redux-immutable-state-invariant": "^2.1.0",
     "rimraf": "2.5.4",
     "sass-loader": "^6.0.6",
+    "source-map-loader": "^0.2.3",
     "style-loader": "0.13.1",
+    "typescript": "^2.7.2",
     "webpack": "^3.0.0",
     "webpack-dev-middleware": "1.11.0",
     "webpack-hot-middleware": "2.18.2",
