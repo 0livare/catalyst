@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import { bindActionCreators } from 'redux'
 
-import * as courseActions from '../../actions/courseActions'
+import * as courseActions from '../../redux'
 import CourseForm from './CourseForm'
 
 class ManageCoursePage extends Component {

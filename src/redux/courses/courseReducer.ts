@@ -1,5 +1,9 @@
-import * as types from '../actions/actionTypes'
-import initialState from './initialState'
+import * as types from './types'
+import { ICourse, CourseAction } from '../'
+import initialState from '../initialState'
+import { LoadCoursesSuccessAction,
+         CreateCourseSuccessAction,
+         UpdateCourseSuccessAction } from './courseActions'
 
 /*
  * It's important to note that each reducer only handles
@@ -9,8 +13,7 @@ import initialState from './initialState'
  * below is initialized to the 'courses' portion of the
  * initial state.
  */
-
-export default function courseReducer(state=initialState.courses, action) {
+export function courseReducer(state=initialState.courses, action: CourseAction) {
   switch(action.type) {
     case types.LOAD_COURSES_SUCCESS:
       return action.courses

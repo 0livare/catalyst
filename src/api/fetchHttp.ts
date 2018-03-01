@@ -14,17 +14,17 @@ import getBaseUrl from './baseUrl'
 
 const baseUrl = getBaseUrl()
 
-export function get(url) {
+export function get(url: string) {
   return fetch(baseUrl + url).then(onSuccess, onError);
 }
 
-export function del(url) {
+export function del(url: string) {
   return fetch(baseUrl + url, {
     method: 'DELETE',
   }).then(onSuccess, onError)
 }
 
-export function post(url, body) {
+export function post(url: string, body: any) {
   // Default options are marked with *
   return fetch(baseUrl + url, {
     body: JSON.stringify(body),  // must match 'Content-Type' header
@@ -41,10 +41,10 @@ export function post(url, body) {
   .then(onSuccess, onError)
 }
 
-function onSuccess(response) {
+function onSuccess(response: Response) {
   return response.json();
 }
 
-function onError(error) {
+function onError(error: any) {
   console.log(chalk.red(error), error); // eslint-disable-line no-console
 }

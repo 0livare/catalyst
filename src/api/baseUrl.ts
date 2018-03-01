@@ -1,4 +1,4 @@
-export default function getBaseUrl() {
+export default function getBaseUrl(): string {
   return 'http://localhost:3001/'
   // return getQueryStringParameterByName('useMockApi')
   //   ? 'http://localhost:3001/'
@@ -6,7 +6,7 @@ export default function getBaseUrl() {
 }
 
 // This should really be done with a tested and maintained framework
-// function getQueryStringParameterByName(name, url) {
+// function getQueryStringParameterByName(name: string, url: string): string {
 //   if (!url) url = window.location.href
 
 //   name = name.replace(/[\[\]]/g, "\\$&")

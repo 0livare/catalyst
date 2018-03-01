@@ -4,7 +4,6 @@ import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import cs from 'classnames'
-import chalk from 'chalk'
 
 import s from './CourseForm.scss'
 
@@ -25,7 +24,7 @@ const CourseForm = ({
         value={course.title}
         onChange={onChangeText}
         errorText={getErrorField(errors, 'title')}
-        fullWidth={true}
+        fullWidth
         />
 
       <SelectField
@@ -35,14 +34,14 @@ const CourseForm = ({
         options={allAuthors}
         onChange={onChangeAuthor}
         errorText={getErrorField(errors, 'authorId')}
-        fullWidth={true}
+        fullWidth
         >
 
         <MenuItem
           value={0}
           primaryText="Select an author" />
 
-        {allAuthors.map((author, index) =>
+        {allAuthors.map(author =>
           <MenuItem
             key={author.id}
             value={author.id}
@@ -57,7 +56,7 @@ const CourseForm = ({
         value={course.category}
         onChange={onChangeText}
         errorText={getErrorField(errors, 'category')}
-        fullWidth={true}
+        fullWidth
         />
 
       <TextField
@@ -66,7 +65,7 @@ const CourseForm = ({
         value={course.length}
         onChange={onChangeText}
         errorText={getErrorField(errors, 'length')}
-        fullWidth={true}
+        fullWidth
         />
 
       <input
