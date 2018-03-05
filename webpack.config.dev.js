@@ -7,6 +7,7 @@ export default {
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
+    'babel-polyfill',
     path.resolve(__dirname, 'src/index.tsx'),
   ],
   devtool: 'eval-source-map',

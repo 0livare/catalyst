@@ -9,6 +9,9 @@ import { ThunkAction } from 'redux-thunk'
 //@ts-ignore
 import { Root } from './components/Root'
 
+import 'babel-core/register'
+import 'babel-polyfill'
+
 const store = configureStore()
 store.dispatch(loadCourses())
 store.dispatch(loadAuthors())
