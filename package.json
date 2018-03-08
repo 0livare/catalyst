@@ -4,7 +4,7 @@
   "description": "JavaScript development environment starter kit",
   "scripts": {
     "prestart": "babel-node bld/startMessage",
-    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch start-mockapi",
+    "start": "npm-run-all --parallel open:src lint:watch test:watch start-mockapi",
     "open:src": "babel-node bld/srcServer",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
@@ -17,7 +17,7 @@
     "prestart-mockapi": "npm run generate-mock-data",
     "start-mockapi": "json-server --watch src/api/db.json --port 3001",
     "clean-dist": "rimraf ./dist && mkdir dist",
-    "prebuild": "npm-run-all clean-dist test lint",
+    "prebuild": "npm-run-all clean-dist test lint secutity-check",
     "build": "babel-node bld/build.js",
     "postbuild": "babel-node bld/distServer.js"
   },
