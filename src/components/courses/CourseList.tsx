@@ -1,10 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import { Button } from 'react-bootstrap'
 
-import CourseListRow from './CourseListRow'
+import { ICourse } from '../../redux'
+import { CourseListRow } from './CourseListRow'
 
-const CourseList = ({courses, redirectToAddCoursePage}) => {
+export interface CourseListProps {
+  courses: ICourse[],
+  redirectToAddCoursePage: () => void,
+}
+
+export const CourseList: React.SFC<CourseListProps> = ({ courses, redirectToAddCoursePage }) => {
   return (
     <div>
       <h1>Courses</h1>
@@ -34,10 +39,3 @@ const CourseList = ({courses, redirectToAddCoursePage}) => {
     </div>
   )
 }
-
-CourseList.propTypes = {
-  courses: PropTypes.array.isRequired,
-  redirectToAddCoursePage: PropTypes.func.isRequired,
-}
-
-export default CourseList

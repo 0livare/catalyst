@@ -1,29 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import cs from 'classnames'
+import { ICourse, IAuthor } from '../../redux'
 
-import s from './CourseForm.scss'
+const s = require('./CourseForm.scss')
+import * as cs from "classnames"
 
-function getErrorField(errors, param) {
-  if (!errors) return
-  return errors[param]
+export interface CourseFormProps {
+  course: ICourse,
+  allAuthors: IAuthor[],
+  onSave: (e: React.FormEvent<HTMLButtonElement>) => void,
+  onChangeText: (e: any) => void,
+  onChangeAuthor: (
+    e: React.FormEvent<HTMLSelectElement>,
+    index: number,
+    payload: string) => void,
+  saving: boolean,
 }
 
-const CourseForm = ({
+export const CourseForm: React.SFC<CourseFormProps> = ({
   course, allAuthors, onSave,
-  onChangeText, onChangeAuthor, saving, errors}) => {
+  onChangeText, onChangeAuthor, saving}) => {
   return (
     <form>
       <h1>Manage Course</h1>
       <TextField
         name="title"
         floatingLabelText="Title"
-        value={course.title}
         onChange={onChangeText}
-        errorText={getErrorField(errors, 'title')}
+        value={course.title}
         fullWidth
         />
 
@@ -31,9 +37,7 @@ const CourseForm = ({
         name="authorId"
         floatingLabelText="Author"
         value={course.authorId}
-        options={allAuthors}
         onChange={onChangeAuthor}
-        errorText={getErrorField(errors, 'authorId')}
         fullWidth
         >
 
@@ -45,7 +49,7 @@ const CourseForm = ({
           <MenuItem
             key={author.id}
             value={author.id}
-            primaryText={author.name} />
+            primaryText={author.id} />
         )}
 
       </SelectField>
@@ -55,7 +59,6 @@ const CourseForm = ({
         floatingLabelText="Category"
         value={course.category}
         onChange={onChangeText}
-        errorText={getErrorField(errors, 'category')}
         fullWidth
         />
 
@@ -64,7 +67,6 @@ const CourseForm = ({
         floatingLabelText="Length"
         value={course.length}
         onChange={onChangeText}
-        errorText={getErrorField(errors, 'length')}
         fullWidth
         />
 
@@ -77,15 +79,3 @@ const CourseForm = ({
     </form>
   )
 }
-
-CourseForm.propTypes = {
-  course:         PropTypes.object.isRequired,
-  allAuthors:     PropTypes.array,
-  onSave:         PropTypes.func.isRequired,
-  onChangeText:   PropTypes.func.isRequired,
-  onChangeAuthor: PropTypes.func.isRequired,
-  saving:         PropTypes.bool,
-  errors:         PropTypes.object,
-}
-
-export default CourseForm

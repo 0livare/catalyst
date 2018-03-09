@@ -5,14 +5,13 @@ import { AppContainer } from 'react-hot-loader'
 import { configureStore } from './redux'
 import { loadCourses, loadAuthors } from './redux'
 import { ThunkAction } from 'redux-thunk'
-
-//@ts-ignore
-import { Root } from './components/Root'
-
 import 'babel-core/register'
 import 'babel-polyfill'
 
+import { Root } from './components/Root'
+
 const store = configureStore()
+
 store.dispatch(loadCourses())
 store.dispatch(loadAuthors())
 
@@ -32,7 +31,7 @@ ReactDOM.render(
 // Must be placed directly below the call to react-dom#render
 if (module.hot) {
   module.hot.accept('./components/Root', () => {
-    const NewRoot = require('./components/Root').default;
+    const NewRoot = require('./components/Root').Root;
     ReactDOM.render(
       <AppContainer>
         <NewRoot store={store} />

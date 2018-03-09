@@ -1,9 +1,7 @@
-import React from 'react'
-import cs from 'classnames'
+import * as React from 'react'
 import { Jumbotron, Button } from 'react-bootstrap'
-import s from './HomePage.scss'
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
   render() {
     return (
       <Jumbotron>
@@ -21,5 +19,3 @@ class HomePage extends React.Component {
     )
   }
 }
-
-export default HomePage

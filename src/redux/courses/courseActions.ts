@@ -72,3 +72,12 @@ export function saveCourse(course: ICourse) : ThunkResult<void> {
     dispatch(action)
   }
 }
+
+let courseActions = {
+  loadCoursesSuccess,
+  createCourseSuccess,
+  updateCourseSuccess,
+  loadCourses,
+  saveCourse,
+}
+export { courseActions }
