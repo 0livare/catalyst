@@ -2,10 +2,10 @@ import * as React from 'react'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import { ICourse, IAuthor } from '../../redux'
 
-const s = require('./CourseForm.scss')
+import { ICourse, IAuthor } from '../../redux'
 import * as cs from "classnames"
+import * as s from './CourseForm.scss'
 
 export interface CourseFormProps {
   course: ICourse,

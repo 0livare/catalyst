@@ -72,6 +72,7 @@
     "source-map-loader": "^0.2.3",
     "style-loader": "0.13.1",
     "typescript": "^2.7.2",
+    "typings-for-css-modules-loader": "^1.7.0",
     "webpack": "^3.0.0",
     "webpack-md5-hash": "^0.0.6"
   },

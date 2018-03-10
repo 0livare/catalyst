@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Navbar, NavItem, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const s = require('./Nav.scss')
+import * as s from './Nav.scss'
 
 export const Navigation : React.SFC<{}> = () => {
   return (

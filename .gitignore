@@ -7,3 +7,6 @@ dist/
 
 # A generated mock file
 src/api/db.json
+
+# Generated typescript definition files
+*.d.ts
