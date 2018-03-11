@@ -1,11 +1,7 @@
-import { ICourse } from './courses'
-import { IAuthor } from './authors'
 import { RootState } from './RootState'
 
-// Note that this class is an instance of type RootState
-let initialState : RootState = {
+export const InitialState : RootState = {
   authors: [],
   courses: [],
+  ajaxCallsInProgress: 0,
 }
-
-export default initialState

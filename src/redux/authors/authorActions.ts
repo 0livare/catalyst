@@ -1,7 +1,7 @@
 import { ThunkResult } from '../'
 import authorApi from '../../api/authorApi'
 import { IAuthor, LOAD_AUTHORS_SUCCESS } from './types'
-import { OtherAction } from '../'
+import { OtherAction, beginAjaxCall } from '../'
 
 /*************************
  * ACTION TYPES/CREATORS
@@ -10,7 +10,7 @@ import { OtherAction } from '../'
 export type LoadAuthorsSuccessAction = {
   type: LOAD_AUTHORS_SUCCESS,
   authors: IAuthor[],
-};
+}
 export function loadAuthorsSuccess(authors: IAuthor[]): AuthorAction {
   return {type: LOAD_AUTHORS_SUCCESS, authors}
 }
@@ -23,7 +23,7 @@ export function loadAuthorsSuccess(authors: IAuthor[]): AuthorAction {
 export type AuthorAction =
   | LoadAuthorsSuccessAction
   | OtherAction
-  ;
+
 
 
 /*************************
@@ -32,6 +32,7 @@ export type AuthorAction =
 
 export function loadAuthors() : ThunkResult<void> {
   return async (dispatch, getState) => {
+    dispatch(beginAjaxCall())
     const authors = await authorApi.getAllAuthors()
     dispatch(loadAuthorsSuccess(authors))
   }

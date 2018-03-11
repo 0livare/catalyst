@@ -7,7 +7,12 @@ import {
   CREATE_COURSE_SUCCESS,
   UPDATE_COURSE_SUCCESS,
 } from './types'
-import { OtherAction, ThunkResult } from '../'
+import {
+  OtherAction,
+  ThunkResult,
+  beginAjaxCall,
+  ajaxCallError,
+} from '../'
 
 /*************************
  * ACTION TYPES/CREATORS
@@ -55,6 +60,7 @@ export type CourseAction =
 
 export function loadCourses() : ThunkResult<ICourse[]> {
   return async (dispatch, getState) => {
+    dispatch(beginAjaxCall())
     const allCourses = await courseApi.getAllCourses()
     console.log('loaded courses', allCourses)
     dispatch(loadCoursesSuccess(allCourses))
@@ -64,12 +70,18 @@ export function loadCourses() : ThunkResult<ICourse[]> {
 
 export function saveCourse(course: ICourse) : ThunkResult<void> {
   return async (dispatch, getState) => {
-    const savedCourse = await courseApi.saveCourse(course)
-    const action = course.id
-      ? updateCourseSuccess(savedCourse)
-      : createCourseSuccess(savedCourse)
+    try {
+      dispatch(beginAjaxCall())
+      const savedCourse = await courseApi.saveCourse(course)
+      const action = course.id
+        ? updateCourseSuccess(savedCourse)
+        : createCourseSuccess(savedCourse)
 
-    dispatch(action)
+      dispatch(action)
+    } catch(error) {
+      dispatch(ajaxCallError())
+      throw error
+    }
   }
 }
 

@@ -6,8 +6,7 @@ class CourseApi {
     return get('courses')
   }
 
-  saveCourse(course: ICourse): Promise<any> {
-    console.log("Saved course: ", course)
+  async saveCourse(course: ICourse): Promise<any> {
     return post('courses', course)
   }
 }

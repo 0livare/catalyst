@@ -1,6 +1,6 @@
 import * as types from './types'
+import { InitialState } from '../initialState'
 import { ICourse, CourseAction } from '../'
-import initialState from '../initialState'
 import { LoadCoursesSuccessAction,
          CreateCourseSuccessAction,
          UpdateCourseSuccessAction } from './courseActions'
@@ -13,7 +13,10 @@ import { LoadCoursesSuccessAction,
  * below is initialized to the 'courses' portion of the
  * initial state.
  */
-export function courseReducer(state=initialState.courses, action: CourseAction) {
+export function courseReducer(
+  state=InitialState.courses,
+  action: CourseAction)
+{
   switch(action.type) {
     case types.LOAD_COURSES_SUCCESS:
       return action.courses

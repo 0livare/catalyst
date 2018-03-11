@@ -1,9 +1,11 @@
 export * from './authors'
 export * from './courses'
+export * from './ajaxStatus'
 export * from './store/configureStore'
 
 export * from './rootReducer'
 export * from './rootState'
+export * from './initialState'
 export * from './rootAction'
 
 export type OtherAction = { type: '' };

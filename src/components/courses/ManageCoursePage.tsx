@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import * as H from 'history'
 import { match } from 'react-router'
+import * as toastr from 'toastr'
 
 import { ICourse, IAuthor, courseActions, RootState } from '../../redux'
 import { CourseForm } from './CourseForm'
@@ -22,6 +23,7 @@ export interface ManageCoursePageProps extends StateProps, DispatchProps { }
 export interface ManageCoursePageState {
   course: ICourse,
   errors: object,
+  saving: boolean,
 }
 
 type NamedTarget = {target: {name: string, value: any}}
@@ -30,18 +32,29 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
   constructor(props: ManageCoursePageProps) {
     super(props)
 
-    let initialCourse = props.initialCourse || {
-      id: props.courseId, title: '', watchUrl: '', authorId: '', length: '', category: ''
-    }
+    let initialCourse = props.initialCourse || this.getEmptyCourse();
 
     this.state = {
       course: Object.assign({}, props.initialCourse),
       errors: {},
+      saving: false,
     }
 
     this.updateCourseState = this.updateCourseState.bind(this)
     this.updateCourseAuthor = this.updateCourseAuthor.bind(this)
     this.saveCourse = this.saveCourse.bind(this)
+  }
+
+  getEmptyCourse() {
+    return {
+      id: this.props.courseId, title: '', watchUrl: '', authorId: '', length: '', category: ''
+    }
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.courseId != this.state.course.id) {
+      this.setState({course: this.props.initialCourse});
+    }
   }
 
   updateCourseState(event: NamedTarget) {
@@ -64,10 +77,19 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     return this.setState({course})
   }
 
-  saveCourse(event: React.FormEvent<HTMLButtonElement>) {
+  async saveCourse(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault()
-    this.props.actions.saveCourse(this.state.course)
-    this.props.history.goBack()
+
+    try {
+      this.setState({saving: true})
+      await this.props.actions.saveCourse(this.state.course)
+      toastr.success('Course saved!')
+    } catch(error) {
+      toastr.error(error)
+    } finally {
+      this.setState({saving: false})
+      this.props.history.goBack()
+    }
   }
 
   render() {
@@ -78,7 +100,7 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
         onSave={this.saveCourse}
         onChangeText={this.updateCourseState}
         onChangeAuthor={this.updateCourseAuthor}
-        saving={false}
+        saving={this.state.saving}
         />
     )
   }
