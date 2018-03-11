@@ -74,9 +74,9 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     return this.setState({course})
   }
 
-  saveCourse(event: React.FormEvent<HTMLButtonElement>) {
+  async saveCourse(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault()
-    this.props.actions.saveCourse(this.state.course)
+    await this.props.actions.saveCourse(this.state.course)
     this.props.history.goBack()
   }
 
