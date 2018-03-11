@@ -15,7 +15,7 @@
     "test:watch": "npm run test -- --watch",
     "generate-mock-data": "babel-node bld/generateMockData",
     "prestart-mockapi": "npm run generate-mock-data",
-    "start-mockapi": "json-server --watch src/api/db.json --port 3001",
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001 --delay 1000",
     "clean-dist": "rimraf ./dist && mkdir dist",
     "prebuild": "npm-run-all clean-dist test lint secutity-check",
     "build": "babel-node bld/build.js",

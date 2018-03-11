@@ -2,10 +2,10 @@ import { createStore, applyMiddleware } from 'redux'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import thunk, { ThunkAction, ThunkMiddleware } from 'redux-thunk'
 
+import { InitialState } from '../initialState'
 import { RootState, rootReducer, RootAction } from '../'
-import initialState from '../initialState'
 
-export function configureStore(state: RootState = initialState) {
+export function configureStore(state: RootState = InitialState) {
   const middleware = applyMiddleware(
     thunk as ThunkMiddleware<RootState, RootAction>,
     reduxImmutableStateInvariant()

@@ -1,9 +1,8 @@
 import * as types from './types'
+import { InitialState } from '../initialState'
 import { RootState, AuthorAction } from '../'
-import initialState from '../initialState'
 
-
-export function authorReducer(state = initialState.authors, action: AuthorAction) {
+export function authorReducer(state = InitialState.authors, action: AuthorAction) {
   switch (action.type) {
     case types.LOAD_AUTHORS_SUCCESS:
       return action.authors

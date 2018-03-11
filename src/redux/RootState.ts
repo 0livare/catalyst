@@ -9,4 +9,5 @@ import { IAuthor } from './authors'
 export type RootState = {
   authors: IAuthor[],
   courses: ICourse[],
+  ajaxCallsInProgress: number,
 }

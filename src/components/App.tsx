@@ -4,20 +4,24 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { Grid, Row, Col } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
+import { RootState } from '../redux'
 import { Navigation } from './common/Navigation'
 import { HomePage }  from './home/HomePage'
 import { AboutPage } from './about/AboutPage'
 import { CoursesPage } from './courses/CoursesPage'
 
-/* eslint-disable react/jsx-no-bind */
+export interface AppProps {
+  loading: boolean,
+}
 
-export class App extends React.Component<{}, {}> {
+class App extends React.Component<AppProps, {}> {
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
        <div>
-          <Navigation />
+          <Navigation loading={this.props.loading} />
 
           <Grid>
             <Row>
@@ -36,3 +40,9 @@ export class App extends React.Component<{}, {}> {
     )
   }
 }
+
+function mapStateToProps(state: RootState) {
+  return { loading: state.ajaxCallsInProgress > 0 }
+}
+const container = connect(mapStateToProps, null)(App)
+export { container as App }
