@@ -1,14 +1,34 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import { connect } from 'react-redux'
-import { PropTypes } from 'prop-types'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
+import * as H from 'history'
+import { match } from 'react-router'
 
-import * as courseActions from '../../actions/courseActions'
-import CourseForm from './CourseForm'
+import { ICourse, IAuthor, courseActions, RootState } from '../../redux'
+import { CourseForm } from './CourseForm'
 
-class ManageCoursePage extends Component {
-  constructor(props, context) {
-    super(props, context)
+
+interface StateProps {
+  initialCourse: ICourse,         // Not required when adding a new course
+  authors: IAuthor[],
+  courseId: string,
+  history: H.History,            // Supplied by react router
+}
+interface DispatchProps {
+  actions: typeof courseActions,
+}
+export interface ManageCoursePageProps extends StateProps, DispatchProps { }
+
+export interface ManageCoursePageState {
+  course: ICourse,
+  errors: object,
+}
+
+type NamedTarget = {target: {name: string, value: any}}
+
+class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCoursePageState> {
+  constructor(props: ManageCoursePageProps) {
+    super(props)
 
     let initialCourse = props.initialCourse || {
       id: props.courseId, title: '', watchUrl: '', authorId: '', length: '', category: ''
@@ -24,21 +44,27 @@ class ManageCoursePage extends Component {
     this.saveCourse = this.saveCourse.bind(this)
   }
 
-  updateCourseState(event) {
+  updateCourseState(event: NamedTarget) {
     const field = event.target.name
     let course = Object.assign({}, this.state.course)
+
+    // @ts-ignore
     course[field] = event.target.value
 
     return this.setState({course})
   }
 
-  updateCourseAuthor(event, key, payload) {
+  updateCourseAuthor(
+    event: React.FormEvent<HTMLSelectElement>,
+    index: number,
+    payload: string)
+  {
     let course = Object.assign({}, this.state.course)
     course.authorId = payload
     return this.setState({course})
   }
 
-  saveCourse(event) {
+  saveCourse(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault()
     this.props.actions.saveCourse(this.state.course)
     this.props.history.goBack()
@@ -48,23 +74,22 @@ class ManageCoursePage extends Component {
     return (
       <CourseForm
         course={this.state.course}
-        errors={this.state.errors}
         allAuthors={this.props.authors}
+        onSave={this.saveCourse}
         onChangeText={this.updateCourseState}
         onChangeAuthor={this.updateCourseAuthor}
-        onSave={this.saveCourse}
+        saving={false}
         />
     )
   }
 }
 
-ManageCoursePage.propTypes = {
-  initialCourse: PropTypes.object, // Not required when adding a new course
-  authors: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired,
+export interface ManageCoursePageConnected {
+  match: match<ManageCoursePageProps>, // Supplied by react router
+
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state: RootState, ownProps: ManageCoursePageConnected) {
   const courseId = ownProps.match.params.courseId
 
   let course = null
@@ -80,7 +105,6 @@ function mapStateToProps(state, ownProps) {
   // CoarseForm.
   const authorsFormattedForDropdown = state.authors.map(author => ({
     id: author.id,
-    name: author.id,
   }))
 
   return {
@@ -90,10 +114,11 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     actions: bindActionCreators(courseActions, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)
+const container = connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)
+export { container as ManageCoursePage }
