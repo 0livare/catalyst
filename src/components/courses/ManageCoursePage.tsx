@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import * as H from 'history'
 import { match } from 'react-router'
+import * as toastr from 'toastr'
 
 import { ICourse, IAuthor, courseActions, RootState } from '../../redux'
 import { CourseForm } from './CourseForm'
@@ -78,10 +79,17 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
 
   async saveCourse(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault()
-    this.setState({saving: true})
-    await this.props.actions.saveCourse(this.state.course)
-    this.setState({saving: false})
-    this.props.history.goBack()
+
+    try {
+      this.setState({saving: true})
+      await this.props.actions.saveCourse(this.state.course)
+      toastr.success('Course saved!')
+    } catch(error) {
+      toastr.error(error)
+    } finally {
+      this.setState({saving: false})
+      this.props.history.goBack()
+    }
   }
 
   render() {

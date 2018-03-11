@@ -28,7 +28,7 @@ export function ajaxStatusReducer(
 {
   if (action.type == types.BEGIN_AJAX_CALL) {
     return state + 1
-  } else if (isSuccessAction(action.type)) {
+  } else if (isSuccessAction(action.type) || action.type == types.AJAX_CALL_ERROR) {
     return state - 1
   } else {
     return state

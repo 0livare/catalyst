@@ -11,6 +11,7 @@ import {
   OtherAction,
   ThunkResult,
   beginAjaxCall,
+  ajaxCallError,
 } from '../'
 
 /*************************
@@ -69,13 +70,18 @@ export function loadCourses() : ThunkResult<ICourse[]> {
 
 export function saveCourse(course: ICourse) : ThunkResult<void> {
   return async (dispatch, getState) => {
-    dispatch(beginAjaxCall())
-    const savedCourse = await courseApi.saveCourse(course)
-    const action = course.id
-      ? updateCourseSuccess(savedCourse)
-      : createCourseSuccess(savedCourse)
+    try {
+      dispatch(beginAjaxCall())
+      const savedCourse = await courseApi.saveCourse(course)
+      const action = course.id
+        ? updateCourseSuccess(savedCourse)
+        : createCourseSuccess(savedCourse)
 
-    dispatch(action)
+      dispatch(action)
+    } catch(error) {
+      dispatch(ajaxCallError())
+      throw error
+    }
   }
 }
 
