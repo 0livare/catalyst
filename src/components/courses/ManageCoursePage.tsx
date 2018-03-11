@@ -22,6 +22,7 @@ export interface ManageCoursePageProps extends StateProps, DispatchProps { }
 export interface ManageCoursePageState {
   course: ICourse,
   errors: object,
+  saving: boolean,
 }
 
 type NamedTarget = {target: {name: string, value: any}}
@@ -35,6 +36,7 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     this.state = {
       course: Object.assign({}, props.initialCourse),
       errors: {},
+      saving: false,
     }
 
     this.updateCourseState = this.updateCourseState.bind(this)
@@ -76,7 +78,9 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
 
   async saveCourse(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault()
+    this.setState({saving: true})
     await this.props.actions.saveCourse(this.state.course)
+    this.setState({saving: false})
     this.props.history.goBack()
   }
 
@@ -88,7 +92,7 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
         onSave={this.saveCourse}
         onChangeText={this.updateCourseState}
         onChangeAuthor={this.updateCourseAuthor}
-        saving={false}
+        saving={this.state.saving}
         />
     )
   }
