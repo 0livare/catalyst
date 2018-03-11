@@ -30,9 +30,7 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
   constructor(props: ManageCoursePageProps) {
     super(props)
 
-    let initialCourse = props.initialCourse || {
-      id: props.courseId, title: '', watchUrl: '', authorId: '', length: '', category: ''
-    }
+    let initialCourse = props.initialCourse || this.getEmptyCourse();
 
     this.state = {
       course: Object.assign({}, props.initialCourse),
@@ -42,6 +40,18 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     this.updateCourseState = this.updateCourseState.bind(this)
     this.updateCourseAuthor = this.updateCourseAuthor.bind(this)
     this.saveCourse = this.saveCourse.bind(this)
+  }
+
+  getEmptyCourse() {
+    return {
+      id: this.props.courseId, title: '', watchUrl: '', authorId: '', length: '', category: ''
+    }
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.courseId != this.state.course.id) {
+      this.setState({course: this.props.initialCourse});
+    }
   }
 
   updateCourseState(event: NamedTarget) {
