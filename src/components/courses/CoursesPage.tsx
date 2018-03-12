@@ -6,7 +6,8 @@ import { Route, Switch } from 'react-router-dom'
 import * as H from 'history'
 import { match } from 'react-router'
 
-import { ICourse, CourseAction, RootState, courseActions } from '../../redux'
+import { ICourse } from '../../models'
+import { CourseAction, RootState, courseActions } from '../../redux'
 import { CourseList } from './CourseList'
 import { ManageCoursePage } from './ManageCoursePage'
 

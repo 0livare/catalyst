@@ -1,8 +1,8 @@
 import * as types from './types'
+import { ICourse } from '../../models'
 import courseApi from '../../api/courseApi'
 
 import {
-  ICourse,
   LOAD_COURSES_SUCCESS,
   CREATE_COURSE_SUCCESS,
   UPDATE_COURSE_SUCCESS,

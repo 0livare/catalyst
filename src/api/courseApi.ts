@@ -1,5 +1,5 @@
 import { get, post } from './fetchHttp'
-import { ICourse } from '../redux'
+import { ICourse } from '../models'
 
 class CourseApi {
   getAllCourses(): Promise<ICourse[]> {

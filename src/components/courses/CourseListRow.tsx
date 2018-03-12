@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
-import { ICourse } from '../../redux'
+import { ICourse } from '../../models'
 
 export interface CourseListRowProps {
   course: ICourse,

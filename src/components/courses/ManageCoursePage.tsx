@@ -5,7 +5,8 @@ import * as H from 'history'
 import { match } from 'react-router'
 import * as toastr from 'toastr'
 
-import { ICourse, IAuthor, courseActions, RootState } from '../../redux'
+import { ICourse, IAuthor } from '../../models'
+import { courseActions, RootState } from '../../redux'
 import { CourseForm } from './CourseForm'
 
 
