@@ -9,7 +9,7 @@ import { match } from 'react-router'
 import { ICourse } from '../../models'
 import { CourseAction, RootState, courseActions } from '../../redux'
 import { CourseList } from './CourseList'
-import { ManageCoursePage } from './ManageCoursePage'
+import ManageCoursePage from './ManageCoursePage'
 
 interface StateProps {
   courses: ICourse[],
@@ -22,7 +22,7 @@ interface DispatchProps {
 export interface CoursePageProps extends StateProps, DispatchProps { }
 
 
-class CoursesPage extends React.Component<CoursePageProps> {
+export class CoursesPage extends React.Component<CoursePageProps> {
   constructor(props: CoursePageProps) {
     super(props);
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this)
@@ -80,4 +80,4 @@ function mapDispatchToProps(dispatch: Dispatch<CourseAction>) {
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
-export { container as CoursesPage }
+export { container as default }

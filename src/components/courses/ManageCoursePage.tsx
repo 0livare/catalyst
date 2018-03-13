@@ -14,7 +14,7 @@ interface StateProps {
   initialCourse: ICourse,         // Not required when adding a new course
   authors: IAuthor[],
   courseId: string,
-  history: H.History,            // Supplied by react router
+  history?: H.History,            // Supplied by react router
 }
 interface DispatchProps {
   actions: typeof courseActions,
@@ -29,7 +29,7 @@ export interface ManageCoursePageState {
 
 type NamedTarget = {target: {name: string, value: any}}
 
-class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCoursePageState> {
+export class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCoursePageState> {
   constructor(props: ManageCoursePageProps) {
     super(props)
 
@@ -144,4 +144,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)
-export { container as ManageCoursePage }
+export { container as default }

@@ -1,11 +1,8 @@
 import * as React from 'react'
 import { shallow, mount, render } from 'enzyme'
-import { should } from 'chai'
 
 import { CourseForm, CourseFormProps } from './CourseForm'
 import { Course } from '../../models'
-
-should()
 
 let authors = ['zach', 'kalidin', 'kvothe']
 

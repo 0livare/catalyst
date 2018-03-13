@@ -7,11 +7,15 @@ export type ICourse = {
   category: string,
 }
 
-export const Course: ICourse = {
-  id: '',
-  title: '',
-  watchUrl: '',
-  authorId: '',
-  length: 4444,
-  category: '',
+export const Course: ICourse = createCourseWithId('')
+
+export function createCourseWithId(id: string): ICourse {
+  return {
+    id,
+    title: '',
+    watchUrl: '',
+    authorId: '',
+    length: 4444,
+    category: '',
+  }
 }

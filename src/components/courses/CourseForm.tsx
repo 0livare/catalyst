@@ -1,9 +1,8 @@
 import * as React from 'react'
 import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 import * as cs from 'classnames'
-
 import { ICourse, IAuthor } from '../../models'
 import * as s from './CourseForm.scss'
 

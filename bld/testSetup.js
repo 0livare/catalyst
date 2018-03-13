@@ -11,9 +11,16 @@
 // hot module reloading code) doesn't apply for tests.
 process.env.NODE_ENV = 'test';
 
-// Register babel so that it will transpile ES6 to ES5
+// Make the babel pollyfill available to the test scripts
+require('babel-polyfill');
+
+// Register babel so that it will transpile the source ES6 to ES5
 // before our tests run.
-require('babel-register')();
+require("babel-register")({
+  // Setting this will remove the currently hooked extensions of `.es6`, `.es`, `.jsx`
+  // and `.js` so you'll have to add them back if you want them to be used again.
+  extensions: ['.ts', '.tsx'],
+});
 
 // Disable webpack-specific features for tests since
 // Mocha doesn't know what to do with them.
@@ -41,10 +48,13 @@ global.navigator = {
   userAgent: 'node.js'
 };
 
-documentRef = document;  //eslint-disable-line no-undef
+// documentRef = document;  //eslint-disable-line no-undef
 
 
 // Configure the adapter required by enzyme
 var enzyme = require('enzyme');
 var Adapter = require('enzyme-adapter-react-16');
 enzyme.configure({ adapter: new Adapter() });
+
+// Add chai's .should() to Object.prototype so that it's available in tests
+require('chai').should()
