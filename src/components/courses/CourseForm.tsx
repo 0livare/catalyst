@@ -38,20 +38,17 @@ export const CourseForm: React.SFC<CourseFormProps> = ({
         floatingLabelText="Author"
         value={course.authorId}
         onChange={onChangeAuthor}
-        fullWidth
-        >
-
+        fullWidth>
         <MenuItem
           value={0}
+          id="course-form-authors"
           primaryText="Select an author" />
-
         {allAuthors.map(author =>
           <MenuItem
             key={author.id}
             value={author.id}
             primaryText={author.id} />
         )}
-
       </SelectField>
 
       <TextField
