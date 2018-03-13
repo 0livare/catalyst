@@ -62,7 +62,8 @@ export default
         "properties": {
           "id": {
             "type": "string",
-            "chance": "guid"
+            "chance": "guid",
+            "unique": true
           },
           "title": {
             "type": "string",
