@@ -1,21 +1,16 @@
 import * as React from 'react'
 import { shallow, mount, render } from 'enzyme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import { ManageCoursePage, ManageCoursePageProps } from './ManageCoursePage'
 import { createCourseWithId } from '../../models'
 import { courseActions } from '../../redux'
+import { mountWithThemeProvider } from '../../utils'
 
 let authors = ['zach', 'kelsier', 'vin']
 let course = createCourseWithId('1234')
 
 let mockCourseActions: typeof courseActions = Object.assign({}, courseActions)
 mockCourseActions.saveCourse = (c) => (d, g) =>  Promise.resolve()
-
-function mountWithThemeProvider(component: React.ReactElement<any>) {
-  let wrapped = <MuiThemeProvider>{component}</MuiThemeProvider>
-  return mount(wrapped)
-}
 
 // let mockCourseActions: typeof courseActions = {
 //   ...courseActions,

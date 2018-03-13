@@ -14,7 +14,7 @@ process.env.NODE_ENV = 'test';
 // Make the babel pollyfill available to the test scripts
 require('babel-polyfill');
 
-// Register babel so that it will transpile the source ES6 to ES5
+// Register babel so that it will transpile the source ES-Next to ES5
 // before our tests run.
 require("babel-register")({
   // Setting this will remove the currently hooked extensions of `.es6`, `.es`, `.jsx`
@@ -53,6 +53,7 @@ global.navigator = {
 
 // Configure the adapter required by enzyme
 var enzyme = require('enzyme');
+// enzyme-adapter-react-16 because we're using v16 of react
 var Adapter = require('enzyme-adapter-react-16');
 enzyme.configure({ adapter: new Adapter() });
 
