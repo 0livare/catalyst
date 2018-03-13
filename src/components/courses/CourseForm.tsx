@@ -2,7 +2,7 @@ import * as React from 'react'
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-import classNames from 'classnames'
+import * as cs from 'classnames'
 import { ICourse, IAuthor } from '../../models'
 import * as s from './CourseForm.scss'
 
@@ -70,7 +70,7 @@ export const CourseForm: React.SFC<CourseFormProps> = ({
         type="submit"
         disabled={saving}
         value={saving ? 'Saving...' : 'Save'}
-        className={classNames('btn', 'btn-primary', s.submit)}
+        className={cs('btn', 'btn-primary', s.submit)}
         onClick={onSave}/>
     </form>
   )
