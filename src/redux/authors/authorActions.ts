@@ -1,6 +1,7 @@
 import { ThunkResult } from '../'
 import authorApi from '../../api/authorApi'
-import { IAuthor, LOAD_AUTHORS_SUCCESS } from './types'
+import { LOAD_AUTHORS_SUCCESS } from './types'
+import { IAuthor } from '../../models'
 import { OtherAction, beginAjaxCall } from '../'
 
 /*************************

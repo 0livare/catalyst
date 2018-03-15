@@ -1,21 +1,12 @@
 export default function getBaseUrl(): string {
-  return 'http://localhost:3001/'
-  // return getQueryStringParameterByName('useMockApi')
-  //   ? 'http://localhost:3001/'
-  //   : '/'
+  let useMockApi = false
+
+  /// These # directives are processed by the ifdef-loader of webpack.
+  /// The dev webpack config will set DEBUG to be true, the prod config
+  /// will set it of course to false. 
+  /// #if DEBUG
+  useMockApi = true
+  /// #endif
+
+  return useMockApi ? 'http://localhost:3001/' : '/'
 }
-
-// This should really be done with a tested and maintained framework
-// function getQueryStringParameterByName(name: string, url: string): string {
-//   if (!url) url = window.location.href
-
-//   name = name.replace(/[\[\]]/g, "\\$&")
-
-//   let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
-//   let results = regex.exec(url)
-
-//   if (!results)    return null
-//   if (!results[2]) return ''
-
-//   return decodeURIComponent(results[2].replace(/\+/g, " "))
-// }

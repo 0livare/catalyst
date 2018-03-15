@@ -1,10 +1,9 @@
 import * as React from 'react'
 import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 import * as cs from 'classnames'
-
-import { ICourse, IAuthor } from '../../redux'
+import { ICourse, IAuthor } from '../../models'
 import * as s from './CourseForm.scss'
 
 export interface CourseFormProps {
@@ -38,20 +37,17 @@ export const CourseForm: React.SFC<CourseFormProps> = ({
         floatingLabelText="Author"
         value={course.authorId}
         onChange={onChangeAuthor}
-        fullWidth
-        >
-
+        fullWidth>
         <MenuItem
           value={0}
+          id="course-form-authors"
           primaryText="Select an author" />
-
         {allAuthors.map(author =>
           <MenuItem
             key={author.id}
             value={author.id}
             primaryText={author.id} />
         )}
-
       </SelectField>
 
       <TextField

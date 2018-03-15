@@ -6,9 +6,10 @@ import { Route, Switch } from 'react-router-dom'
 import * as H from 'history'
 import { match } from 'react-router'
 
-import { ICourse, CourseAction, RootState, courseActions } from '../../redux'
+import { ICourse } from '../../models'
+import { CourseAction, RootState, courseActions } from '../../redux'
 import { CourseList } from './CourseList'
-import { ManageCoursePage } from './ManageCoursePage'
+import ManageCoursePage from './ManageCoursePage'
 
 interface StateProps {
   courses: ICourse[],
@@ -21,7 +22,7 @@ interface DispatchProps {
 export interface CoursePageProps extends StateProps, DispatchProps { }
 
 
-class CoursesPage extends React.Component<CoursePageProps> {
+export class CoursesPage extends React.Component<CoursePageProps> {
   constructor(props: CoursePageProps) {
     super(props);
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this)
@@ -32,13 +33,13 @@ class CoursesPage extends React.Component<CoursePageProps> {
     // course should be a guid. But I don't want to add another
     // dependency just for that when we're working with mock
     // data here anyway.
-    var crappyId = Math.floor(Math.random() * 999999999)
+    let crappyId = Math.floor(Math.random() * 999999999)
 
     // 'history' is supplied through the react context
     // by react-router, which basically means that it
     // will automatically be in the props of every
     // component
-    this.props.history.push(`/courses/${crappyId}`)
+    this.props.history.push(`/courses/a${crappyId}`)
   }
 
   render() {
@@ -79,4 +80,4 @@ function mapDispatchToProps(dispatch: Dispatch<CourseAction>) {
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
-export { container as CoursesPage }
+export { container as default }

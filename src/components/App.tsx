@@ -6,11 +6,11 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-import { RootState } from '../redux'
+import { RootState }  from '../redux'
 import { Navigation } from './common/Navigation'
-import { HomePage }  from './home/HomePage'
-import { AboutPage } from './about/AboutPage'
-import { CoursesPage } from './courses/CoursesPage'
+import { HomePage }   from './home/HomePage'
+import { AboutPage }  from './about/AboutPage'
+import CoursesPage    from './courses/CoursesPage'
 
 export interface AppProps {
   loading: boolean,

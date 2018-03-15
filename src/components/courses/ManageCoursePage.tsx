@@ -5,15 +5,16 @@ import * as H from 'history'
 import { match } from 'react-router'
 import * as toastr from 'toastr'
 
-import { ICourse, IAuthor, courseActions, RootState } from '../../redux'
+import { ICourse, IAuthor, createCourseWithId } from '../../models'
+import { courseActions, RootState } from '../../redux'
 import { CourseForm } from './CourseForm'
 
 
 interface StateProps {
-  initialCourse: ICourse,         // Not required when adding a new course
+  initialCourse: ICourse,  // Not required when adding a new course
   authors: IAuthor[],
-  courseId: string,
-  history: H.History,            // Supplied by react router
+  courseId: string,        // Supplied by react router when adding a new course
+  history?: H.History,     // Supplied by react router
 }
 interface DispatchProps {
   actions: typeof courseActions,
@@ -28,14 +29,14 @@ export interface ManageCoursePageState {
 
 type NamedTarget = {target: {name: string, value: any}}
 
-class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCoursePageState> {
+export class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCoursePageState> {
   constructor(props: ManageCoursePageProps) {
     super(props)
 
-    let initialCourse = props.initialCourse || this.getEmptyCourse();
+    let initialCourse = props.initialCourse || createCourseWithId(this.props.courseId);
 
     this.state = {
-      course: Object.assign({}, props.initialCourse),
+      course: Object.assign({}, initialCourse),
       errors: {},
       saving: false,
     }
@@ -43,12 +44,6 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     this.updateCourseState = this.updateCourseState.bind(this)
     this.updateCourseAuthor = this.updateCourseAuthor.bind(this)
     this.saveCourse = this.saveCourse.bind(this)
-  }
-
-  getEmptyCourse() {
-    return {
-      id: this.props.courseId, title: '', watchUrl: '', authorId: '', length: '', category: ''
-    }
   }
 
   componentWillReceiveProps() {
@@ -73,6 +68,8 @@ class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCour
     payload: string)
   {
     let course = Object.assign({}, this.state.course)
+
+
     course.authorId = payload
     return this.setState({course})
   }
@@ -122,16 +119,9 @@ function mapStateToProps(state: RootState, ownProps: ManageCoursePageConnected) 
     }
   }
 
-  // Change authors from the format supplied by the reducer
-  // (initlally from the API) into the format expected by the
-  // CoarseForm.
-  const authorsFormattedForDropdown = state.authors.map(author => ({
-    id: author.id,
-  }))
-
   return {
     initialCourse: course,
-    authors: authorsFormattedForDropdown,
+    authors: state.authors,
     courseId: courseId,
   }
 }
@@ -143,4 +133,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)
-export { container as ManageCoursePage }
+export { container as default }

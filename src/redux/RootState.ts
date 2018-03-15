@@ -1,5 +1,4 @@
-import { ICourse } from './courses'
-import { IAuthor } from './authors'
+import { ICourse, IAuthor } from '../models'
 
 /*
  * The interface exported from this file depicts the overall structure

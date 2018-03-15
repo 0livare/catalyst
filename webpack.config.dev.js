@@ -32,11 +32,16 @@ export default {
   ],
   module: {
     rules: [
-      {test: /\.tsx?$/, exclude: /node_modules/, use: ['babel-loader', 'awesome-typescript-loader']},
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      { test: /\.tsx?$/, exclude: /node_modules/, 
+        use: [
+          'babel-loader', 
+          'awesome-typescript-loader',
+          {loader: 'ifdef-loader', options: {DEBUG: true}},
+        ]
+      },
+      // All output '.ts' files will have any sourcemaps re-processed by 'source-map-loader'.
+      { enforce: "pre", test: /\.ts$/, loader: "source-map-loader" },
 
-      {test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'},
       {test: /\.css$/, use: [
         'style-loader',
         {

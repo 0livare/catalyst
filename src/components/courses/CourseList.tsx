@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Button } from 'react-bootstrap'
 
-import { ICourse } from '../../redux'
+import { ICourse } from '../../models'
 import { CourseListRow } from './CourseListRow'
 
 export interface CourseListProps {

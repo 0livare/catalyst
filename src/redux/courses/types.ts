@@ -1,12 +1,3 @@
-export type ICourse = {
-  id: string,
-  title: string,
-  watchUrl: string,
-  authorId: string,
-  length: number,
-  category: string,
-}
-
 export type LOAD_COURSES_SUCCESS = 'App/LOAD_COURSES_SUCCESS';
 export const LOAD_COURSES_SUCCESS : LOAD_COURSES_SUCCESS = 'App/LOAD_COURSES_SUCCESS';
 
