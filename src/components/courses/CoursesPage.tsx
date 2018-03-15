@@ -33,13 +33,13 @@ export class CoursesPage extends React.Component<CoursePageProps> {
     // course should be a guid. But I don't want to add another
     // dependency just for that when we're working with mock
     // data here anyway.
-    var crappyId = Math.floor(Math.random() * 999999999)
+    let crappyId = Math.floor(Math.random() * 999999999)
 
     // 'history' is supplied through the react context
     // by react-router, which basically means that it
     // will automatically be in the props of every
     // component
-    this.props.history.push(`/courses/${crappyId}`)
+    this.props.history.push(`/courses/a${crappyId}`)
   }
 
   render() {
