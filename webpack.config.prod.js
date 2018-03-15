@@ -60,7 +60,13 @@ export default {
   ],
   module: {
     rules: [
-      {test: /\.tsx?$/, exclude: /node_modules/, use: ['babel-loader', 'awesome-typescript-loader']},
+      { test: /\.tsx?$/, exclude: /node_modules/, 
+        use: [
+          'babel-loader', 
+          'awesome-typescript-loader',
+          {loader: 'ifdef-loader', options: {DEBUG: false}},
+        ]
+      },
       {test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
