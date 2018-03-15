@@ -11,6 +11,10 @@ export default {
     main: path.resolve(__dirname, 'src/index'),
   },
   target: 'web',
+  resolve: {
+    // Add '.ts' and '.tsx' as resolvable extensions.
+    extensions: [".ts", ".tsx", ".js", ".json"],
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
@@ -56,25 +60,40 @@ export default {
   ],
   module: {
     rules: [
-      {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-      {
-        test: /\.css$/,
+      {test: /\.tsx?$/, exclude: /node_modules/, use: ['babel-loader', 'awesome-typescript-loader']},
+      {test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [ // Note that these loaders are applied in reverse order, the last one first
-            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            {
+              loader: 'typings-for-css-modules-loader',
+              options: {
+                modules: true,
+                namedExport: true,
+                camelCase: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
             'postcss-loader',
           ],
         }),
       },
-      {
-        test: /\.scss$/,
+      {test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [ // Note that these loaders are applied in reverse order, the last one first
             // 4. Use CSS modules, generating class names in the specified format
             // 3. Load the CSS file contents
-            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            {
+              loader: 'typings-for-css-modules-loader',
+              options: {
+                modules: true,
+                namedExport: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
             'postcss-loader', // 2. Perform any transformations specified in postcss.config.js
             'sass-loader',    // 1. Compile SASS into CSS
           ],
