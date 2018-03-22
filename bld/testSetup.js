@@ -16,7 +16,7 @@ require('babel-polyfill');
 
 // Register babel so that it will transpile the source ES-Next to ES5
 // before our tests run.
-require("babel-register")({
+require('babel-register')({
   // Setting this will remove the currently hooked extensions of `.es6`, `.es`, `.jsx`
   // and `.js` so you'll have to add them back if you want them to be used again.
   extensions: ['.ts', '.tsx'],
@@ -24,10 +24,10 @@ require("babel-register")({
 
 // Disable webpack-specific features for tests since
 // Mocha doesn't know what to do with them.
-require.extensions['.scss'] = function () {return null;};
-require.extensions['.css']  = function () {return null;};
-require.extensions['.png']  = function () {return null;};
-require.extensions['.jpg']  = function () {return null;};
+require.extensions['.scss'] = function() { return null; };
+require.extensions['.css']  = function() { return null; };
+require.extensions['.png']  = function() { return null; };
+require.extensions['.jpg']  = function() { return null; };
 
 // Configure JSDOM and set global variables
 // to simulate a browser environment for tests.
@@ -45,11 +45,10 @@ Object.keys(document.defaultView).forEach((property) => {
 });
 
 global.navigator = {
-  userAgent: 'node.js'
+  userAgent: 'node.js',
 };
 
 // documentRef = document;  //eslint-disable-line no-undef
-
 
 // Configure the adapter required by enzyme
 var enzyme = require('enzyme');

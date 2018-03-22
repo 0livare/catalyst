@@ -6,10 +6,10 @@ import { createCourseWithId } from '../../models'
 import { courseActions } from '../../redux'
 import { mountWithThemeProvider } from '../../utils'
 
-let authors = ['zach', 'kelsier', 'vin']
-let course = createCourseWithId('1234')
+const authors = ['zach', 'kelsier', 'vin']
+const course = createCourseWithId('1234')
 
-let mockCourseActions: typeof courseActions = Object.assign({}, courseActions)
+const mockCourseActions: typeof courseActions = Object.assign({}, courseActions)
 mockCourseActions.saveCourse = (c) => (d, g) =>  Promise.resolve()
 
 // let mockCourseActions: typeof courseActions = {
@@ -32,6 +32,6 @@ describe ('Manage Course Page', () => {
     saveButton.prop('type').should.equal('submit')
 
     saveButton.simulate('click')
-    //wrapper.state().errors.title.should.be('Title must be at least 5 characters.')
+    // wrapper.state().errors.title.should.be('Title must be at least 5 characters.')
   })
 })

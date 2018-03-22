@@ -9,19 +9,18 @@ import { ICourse, IAuthor, createCourseWithId } from '../../models'
 import { courseActions, RootState } from '../../redux'
 import { CourseForm } from './CourseForm'
 
-
-interface StateProps {
+interface IStateProps {
   initialCourse: ICourse,  // Not required when adding a new course
   authors: IAuthor[],
   courseId: string,        // Supplied by react router when adding a new course
   history?: H.History,     // Supplied by react router
 }
-interface DispatchProps {
+interface IDispatchProps {
   actions: typeof courseActions,
 }
-export interface ManageCoursePageProps extends StateProps, DispatchProps { }
+export interface IManageCoursePageProps extends IStateProps, IDispatchProps { }
 
-export interface ManageCoursePageState {
+export interface IManageCoursePageState {
   course: ICourse,
   errors: object,
   saving: boolean,
@@ -29,11 +28,11 @@ export interface ManageCoursePageState {
 
 type NamedTarget = {target: {name: string, value: any}}
 
-export class ManageCoursePage extends React.Component<ManageCoursePageProps, ManageCoursePageState> {
-  constructor(props: ManageCoursePageProps) {
+export class ManageCoursePage extends React.Component<IManageCoursePageProps, IManageCoursePageState> {
+  constructor(props: IManageCoursePageProps) {
     super(props)
 
-    let initialCourse = props.initialCourse || createCourseWithId(this.props.courseId);
+    const initialCourse = props.initialCourse || createCourseWithId(this.props.courseId);
 
     this.state = {
       course: Object.assign({}, initialCourse),
@@ -46,15 +45,15 @@ export class ManageCoursePage extends React.Component<ManageCoursePageProps, Man
     this.saveCourse = this.saveCourse.bind(this)
   }
 
-  componentWillReceiveProps() {
-    if (this.props.courseId != this.state.course.id) {
+  public componentWillReceiveProps() {
+    if (this.props.courseId !== this.state.course.id) {
       this.setState({course: this.props.initialCourse});
     }
   }
 
-  updateCourseState(event: NamedTarget) {
+  public updateCourseState(event: NamedTarget) {
     const field = event.target.name
-    let course = Object.assign({}, this.state.course)
+    const course = Object.assign({}, this.state.course)
 
     // @ts-ignore
     course[field] = event.target.value
@@ -62,26 +61,25 @@ export class ManageCoursePage extends React.Component<ManageCoursePageProps, Man
     return this.setState({course})
   }
 
-  updateCourseAuthor(
+  private updateCourseAuthor(
     event: React.FormEvent<HTMLSelectElement>,
     index: number,
     payload: string)
   {
-    let course = Object.assign({}, this.state.course)
-
+    const course = Object.assign({}, this.state.course)
 
     course.authorId = payload
     return this.setState({course})
   }
 
-  async saveCourse(event: React.FormEvent<HTMLButtonElement>) {
+  private async saveCourse(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault()
 
     try {
       this.setState({saving: true})
       await this.props.actions.saveCourse(this.state.course)
       toastr.success('Course saved!')
-    } catch(error) {
+    } catch (error) {
       toastr.error(error)
     } finally {
       this.setState({saving: false})
@@ -89,7 +87,7 @@ export class ManageCoursePage extends React.Component<ManageCoursePageProps, Man
     }
   }
 
-  render() {
+  public render() {
     return (
       <CourseForm
         course={this.state.course}
@@ -98,21 +96,21 @@ export class ManageCoursePage extends React.Component<ManageCoursePageProps, Man
         onChangeText={this.updateCourseState}
         onChangeAuthor={this.updateCourseAuthor}
         saving={this.state.saving}
-        />
+      />
     )
   }
 }
 
-export interface ManageCoursePageConnected {
-  match: match<ManageCoursePageProps>, // Supplied by react router
+export interface IManageCoursePageConnected {
+  match: match<IManageCoursePageProps>, // Supplied by react router
 
 }
 
-function mapStateToProps(state: RootState, ownProps: ManageCoursePageConnected) {
+function mapStateToProps(state: RootState, ownProps: IManageCoursePageConnected) {
   const courseId = ownProps.match.params.courseId
 
   let course = null
-  for(let c of state.courses) {
+  for (const c of state.courses) {
     if (c.id === courseId) {
       course = c
       break
@@ -122,13 +120,13 @@ function mapStateToProps(state: RootState, ownProps: ManageCoursePageConnected) 
   return {
     initialCourse: course,
     authors: state.authors,
-    courseId: courseId,
+    courseId,
   }
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    actions: bindActionCreators(courseActions, dispatch)
+    actions: bindActionCreators(courseActions, dispatch),
   }
 }
 

@@ -6,18 +6,18 @@ import { Store } from 'redux'
 
 import { App } from './App'
 
-export interface RootProps { store: Store<any> }
+export interface IRootProps { store: Store<any> }
 
 /*
  * This must be a component, not an SFC in order
  * to be hot reloaded properly
  */
-export class Root extends React.Component<RootProps, {}> {
-  render() {
+export class Root extends React.Component<IRootProps, {}> {
+  public render() {
     return (
       <Provider store={this.props.store}>
         <Router>
-          <Route path="/" component={App} />
+          <Route path='/' component={App} />
         </Router>
       </Provider>
     )

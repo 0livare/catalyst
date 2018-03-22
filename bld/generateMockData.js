@@ -5,7 +5,7 @@
  * and rapid page loads due to local, static data.
  */
 
-/* eslint-disable no-console */
+/* tslint:disable:no-console */
 
 import jsf from 'json-schema-faker'
 import fs from 'fs'
@@ -15,10 +15,10 @@ import schema from './mockDataSchema'
 const json = JSON.stringify(jsf(schema), null, 2)
 const path = './src/api/db.json'
 
-fs.writeFile(path, json, function (err) {
+fs.writeFile(path, json, function(err) {
   if (err) {
     return console.log(chalk.red(err))
   } else {
-    console.log(chalk.green("Mock data written to " + path))
+    console.log(chalk.green('Mock data written to ' + path))
   }
 })

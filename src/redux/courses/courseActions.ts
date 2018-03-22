@@ -42,7 +42,6 @@ export function updateCourseSuccess(course: ICourse): UpdateCourseSuccessAction 
   return { type: types.UPDATE_COURSE_SUCCESS, course }
 }
 
-
 /*************************
  * ACTION TYPE UNION
  *************************/
@@ -58,17 +57,17 @@ export type CourseAction =
  * THUNKS
  *************************/
 
-export function loadCourses() : ThunkResult<ICourse[]> {
+export function loadCourses(): ThunkResult<ICourse[]> {
   return async (dispatch, getState) => {
     dispatch(beginAjaxCall())
     const allCourses = await courseApi.getAllCourses()
-    console.log('loaded courses', allCourses)
+    console.log('loaded courses', allCourses) // tslint:disable-line
     dispatch(loadCoursesSuccess(allCourses))
     return allCourses
   }
 }
 
-export function saveCourse(course: ICourse) : ThunkResult<void> {
+export function saveCourse(course: ICourse): ThunkResult<void> {
   return async (dispatch, getState) => {
     try {
       dispatch(beginAjaxCall())
@@ -78,14 +77,14 @@ export function saveCourse(course: ICourse) : ThunkResult<void> {
         : createCourseSuccess(savedCourse)
 
       dispatch(action)
-    } catch(error) {
+    } catch (error) {
       dispatch(ajaxCallError())
       throw error
     }
   }
 }
 
-let courseActions = {
+const courseActions = {
   loadCoursesSuccess,
   createCourseSuccess,
   updateCourseSuccess,

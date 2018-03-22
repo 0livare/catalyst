@@ -16,7 +16,6 @@ export function loadAuthorsSuccess(authors: IAuthor[]): AuthorAction {
   return {type: LOAD_AUTHORS_SUCCESS, authors}
 }
 
-
 /*************************
  * ACTION TYPE UNION
  *************************/
@@ -25,13 +24,11 @@ export type AuthorAction =
   | LoadAuthorsSuccessAction
   | OtherAction
 
-
-
 /*************************
  * THUNKS
  *************************/
 
-export function loadAuthors() : ThunkResult<void> {
+export function loadAuthors(): ThunkResult<void> {
   return async (dispatch, getState) => {
     dispatch(beginAjaxCall())
     const authors = await authorApi.getAllAuthors()

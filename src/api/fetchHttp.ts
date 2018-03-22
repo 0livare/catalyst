@@ -46,5 +46,5 @@ function onSuccess(response: Response) {
 }
 
 function onError(error: any) {
-  console.log(chalk.red(error), error); // eslint-disable-line no-console
+  console.log(chalk.red(error), error); // tslint:disable-line:no-console
 }

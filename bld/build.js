@@ -1,8 +1,8 @@
-/* esline-disable no-console */
-
 import webpack from 'webpack'
 import webpackConfig from '../webpack.config.prod'
 import chalk from 'chalk'
+
+/* tslint:disable:no-console */
 
 process.env.NODE_ENV = 'production'
 
@@ -30,7 +30,6 @@ webpack(webpackConfig).run((err, stats) => {
 
   // If we got this far, the build succeeded
   console.log(chalk.green('Your app has been built for production and written to /dist!'))
-
 
   return 0
 })

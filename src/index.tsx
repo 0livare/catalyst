@@ -1,6 +1,6 @@
 /*eslint-disable import/default */
 import * as React from 'react'
-import * as ReactDOM from "react-dom"
+import * as ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { configureStore } from './redux'
 import { loadCourses, loadAuthors } from './redux'
@@ -24,7 +24,7 @@ ReactDOM.render(
   <AppContainer>
     <Root store={store} />
   </AppContainer>,
-  htmlRoot
+  htmlRoot,
 )
 
 // Hot Module Replacement API
@@ -36,7 +36,7 @@ if (module.hot) {
       <AppContainer>
         <NewRoot store={store} />
       </AppContainer>,
-      htmlRoot
+      htmlRoot,
     );
   });
 }

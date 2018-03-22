@@ -5,7 +5,9 @@ extends:
 linterOptions:
   exclude:
     - "**/*.css"
+    - "**/*.scss"
     - "**/*.html"
+    - "**/*.json"
 
 rules:
   max-line-length:
@@ -17,6 +19,12 @@ rules:
   eofline: false
   ordered-imports: false
   object-literal-sort-keys: false
+  arrow-parens: false
+  jsx-boolean-value: false
+  jsx-no-multiline-js: false
+  member-ordering: false
+  interface-over-type-literal: false
+  one-line: false
 
 jsRules:
   max-line-length:
