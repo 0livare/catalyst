@@ -17,7 +17,10 @@
  *
  * This page on advanced usages of Faker and Chance in json-schema-faker
  * has also prooved very useful.
+ *
  */
+
+ /* tslint:disable */
 
 export default
 {

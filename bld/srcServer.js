@@ -4,7 +4,7 @@ import open from 'open'
 import webpack from 'webpack'
 import config from '../webpack.config.dev'
 
-/* eslint-disable no-console */
+/* tslint:disable:no-console */
 
 const port = 3000
 const app = express()
@@ -15,7 +15,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
 }))
 
-app.use(require("webpack-hot-middleware")(compiler));
+app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../src/index.html'))

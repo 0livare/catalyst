@@ -11,7 +11,6 @@ import {
   ajaxStatusReducer,
 } from './'
 
-
 const rootReducer: Reducer<RootState> = combineReducers({
   courses: courseReducer,
   authors: authorReducer,

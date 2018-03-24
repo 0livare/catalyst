@@ -15,21 +15,21 @@ import { LoadCoursesSuccessAction,
  * initial state.
  */
 export function courseReducer(
-  state=InitialState.courses,
+  state = InitialState.courses,
   action: CourseAction)
 {
-  switch(action.type) {
+  switch (action.type) {
     case types.LOAD_COURSES_SUCCESS:
       return action.courses
     case types.CREATE_COURSE_SUCCESS:
       return [
         ...state,
-        Object.assign({}, action.course)
+        Object.assign({}, action.course),
       ]
     case types.UPDATE_COURSE_SUCCESS:
-      let courseIdUpdated = action.course.id
-      let allOtherCourses = state.filter(course => course.id !== courseIdUpdated)
-      let updatedCourseCopy = Object.assign({}, action.course)
+      const courseIdUpdated = action.course.id
+      const allOtherCourses = state.filter(course => course.id !== courseIdUpdated)
+      const updatedCourseCopy = Object.assign({}, action.course)
       return [...allOtherCourses, updatedCourseCopy]
 
     default:

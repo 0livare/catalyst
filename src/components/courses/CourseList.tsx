@@ -4,23 +4,24 @@ import { Button } from 'react-bootstrap'
 import { ICourse } from '../../models'
 import { CourseListRow } from './CourseListRow'
 
-export interface CourseListProps {
+export interface ICourseListProps {
   courses: ICourse[],
   redirectToAddCoursePage: () => void,
 }
 
-export const CourseList: React.SFC<CourseListProps> = ({ courses, redirectToAddCoursePage }) => {
+export const CourseList: React.SFC<ICourseListProps> = ({ courses, redirectToAddCoursePage }) => {
   return (
     <div>
       <h1>Courses</h1>
       <Button
-        type="submit"
+        type='submit'
         onClick={redirectToAddCoursePage}
-        bsStyle="primary"
-        >Add Course</Button>
+        bsStyle='primary'
+      >
+        Add Course
+      </Button>
 
-
-      <table className="table">
+      <table className='table'>
         <thead>
         <tr>
           <th>&nbsp;</th>
@@ -32,7 +33,7 @@ export const CourseList: React.SFC<CourseListProps> = ({ courses, redirectToAddC
         </thead>
         <tbody>
         {courses.map(course =>
-          <CourseListRow key={course.id} course={course}/>
+          <CourseListRow key={course.id} course={course} />,
         )}
         </tbody>
       </table>

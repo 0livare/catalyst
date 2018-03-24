@@ -4,9 +4,11 @@ import { shallow, mount, render } from 'enzyme'
 import { CourseForm, CourseFormProps } from './CourseForm'
 import { Course } from '../../models'
 
-let authors = ['zach', 'kalidin', 'kvothe']
+/* tslint:disable:no-empty */
 
-function setup(saving: boolean=false) {
+const authors = ['zach', 'kalidin', 'kvothe']
+
+function setup(saving: boolean = false) {
   const props: CourseFormProps = {
     course: Course,
     allAuthors: [...authors.map(a => ({id: a}))],
@@ -41,7 +43,7 @@ describe('CourseForm', () => {
   it('should display all authors', () => {
     const wrapper = setup()
 
-    for(let author of authors) {
+    for (const author of authors) {
       const selector = `[value="${author}"]`
       wrapper.find(selector).should.have.length(1)
     }

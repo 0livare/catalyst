@@ -6,7 +6,7 @@ import * as cs from 'classnames'
 import { ICourse, IAuthor } from '../../models'
 import * as s from './CourseForm.scss'
 
-export interface CourseFormProps {
+export interface ICourseFormProps {
   course: ICourse,
   allAuthors: IAuthor[],
   onSave: (e: React.FormEvent<HTMLButtonElement>) => void,
@@ -18,60 +18,64 @@ export interface CourseFormProps {
   saving: boolean,
 }
 
-export const CourseForm: React.SFC<CourseFormProps> = ({
+export const CourseForm: React.SFC<ICourseFormProps> = ({
   course, allAuthors, onSave,
   onChangeText, onChangeAuthor, saving}) => {
   return (
     <form>
       <h1>Manage Course</h1>
       <TextField
-        name="title"
-        floatingLabelText="Title"
+        name='title'
+        floatingLabelText='Title'
         onChange={onChangeText}
         value={course.title}
         fullWidth
-        />
+      />
 
       <SelectField
-        name="authorId"
-        floatingLabelText="Author"
+        name='authorId'
+        floatingLabelText='Author'
         value={course.authorId}
         onChange={onChangeAuthor}
-        fullWidth>
+        fullWidth
+      >
         <MenuItem
           value={0}
-          id="course-form-authors"
-          primaryText="Select an author" />
+          id='course-form-authors'
+          primaryText='Select an author'
+        />
         {allAuthors.map(author =>
           <MenuItem
             key={author.id}
             value={author.id}
-            primaryText={author.id} />
+            primaryText={author.id}
+          />,
         )}
       </SelectField>
 
       <TextField
-        name="category"
-        floatingLabelText="Category"
+        name='category'
+        floatingLabelText='Category'
         value={course.category}
         onChange={onChangeText}
         fullWidth
-        />
+      />
 
       <TextField
-        name="length"
-        floatingLabelText="Length"
+        name='length'
+        floatingLabelText='Length'
         value={course.length}
         onChange={onChangeText}
         fullWidth
-        />
+      />
 
       <input
-        type="submit"
+        type='submit'
         disabled={saving}
         value={saving ? 'Saving...' : 'Save'}
         className={cs('btn', 'btn-primary', s.submit)}
-        onClick={onSave}/>
+        onClick={onSave}
+      />
     </form>
   )
 }

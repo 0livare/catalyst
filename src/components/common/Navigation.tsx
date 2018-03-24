@@ -7,34 +7,36 @@ import * as cs from 'classnames'
 
 import * as s from './Nav.scss'
 
-export interface NavProps {
+export interface INavProps {
   loading: boolean,
 }
 
-export const Navigation : React.SFC<NavProps> = ({loading}) => {
+export const Navigation: React.SFC<INavProps> = ({loading}) => {
   return (
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
           <NavLink
-            exact to="/">
+            exact
+            to='/'
+          >
               React Starter Kit
           </NavLink>
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <LinkContainer exact to="/" activeClassName={s.active}>
+        <LinkContainer exact to='/' activeClassName={s.active}>
           <NavItem>Home</NavItem>
         </LinkContainer>
-        <LinkContainer to="/courses" activeClassName={s.active}>
+        <LinkContainer to='/courses' activeClassName={s.active}>
           <NavItem>Courses</NavItem>
         </LinkContainer>
-        <LinkContainer to="/about" activeClassName={s.active}>
+        <LinkContainer to='/about' activeClassName={s.active}>
           <NavItem>About</NavItem>
         </LinkContainer>
       </Nav>
 
-      { loading && <LinearProgress mode="indeterminate" /> }
+      {loading && <LinearProgress mode='indeterminate' />}
     </Navbar>
   )
 }

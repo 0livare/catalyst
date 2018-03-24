@@ -6,18 +6,20 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-import { RootState }  from '../redux'
+import { RootState } from '../redux'
 import { Navigation } from './common/Navigation'
-import { HomePage }   from './home/HomePage'
-import { AboutPage }  from './about/AboutPage'
-import CoursesPage    from './courses/CoursesPage'
+import { HomePage } from './home/HomePage'
+import { AboutPage } from './about/AboutPage'
+import CoursesPage from './courses/CoursesPage'
 
-export interface AppProps {
+export interface IAppProps {
   loading: boolean,
 }
 
-class App extends React.Component<AppProps, {}> {
-  render() {
+/* tslint:disable:jsx-no-lambda */
+
+class App extends React.Component<IAppProps, {}> {
+  public render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
        <div>
@@ -27,9 +29,9 @@ class App extends React.Component<AppProps, {}> {
             <Row>
               <Col xs={12}>
                 <Switch>
-                  <Route exact path="/"  component={HomePage} />
-                  <Route path="/about"   component={AboutPage} />
-                  <Route path="/courses" component={CoursesPage} />
+                  <Route exact path='/'  component={HomePage} />
+                  <Route path='/about'   component={AboutPage} />
+                  <Route path='/courses' component={CoursesPage} />
                   <Route component={() => <h3>404 page not found</h3>} />
                 </Switch>
               </Col>

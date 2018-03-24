@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Jumbotron, Button } from 'react-bootstrap'
 
 export class HomePage extends React.Component {
-  render() {
+  public render() {
     return (
       <Jumbotron>
         <h1>This is your home page!</h1>
@@ -11,8 +11,8 @@ export class HomePage extends React.Component {
           through this repo and understand how it was built!
         </p>
         <p>
-          <a href="https://github.com/zposten/react-starter-kit/commits/master">
-            <Button bsStyle="primary">Learn more</Button>
+          <a href='https://github.com/zposten/react-starter-kit/commits/master'>
+            <Button bsStyle='primary'>Learn more</Button>
           </a>
         </p>
       </Jumbotron>

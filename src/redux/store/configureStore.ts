@@ -8,7 +8,7 @@ import { RootState, rootReducer, RootAction } from '../'
 export function configureStore(state: RootState = InitialState) {
   const middleware = applyMiddleware(
     thunk as ThunkMiddleware<RootState, RootAction>,
-    reduxImmutableStateInvariant()
+    reduxImmutableStateInvariant(),
   )
 
   const store = createStore(

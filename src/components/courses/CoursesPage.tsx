@@ -11,29 +11,28 @@ import { CourseAction, RootState, courseActions } from '../../redux'
 import { CourseList } from './CourseList'
 import ManageCoursePage from './ManageCoursePage'
 
-interface StateProps {
+interface IStateProps {
   courses: ICourse[],
-  match: match<CoursePageProps>, // Supplied by react router
+  match: match<ICoursePageProps>, // Supplied by react router
   history: H.History,            // Supplied by react router
 }
-interface DispatchProps {
+interface IDispatchProps {
   actions: typeof courseActions
 }
-export interface CoursePageProps extends StateProps, DispatchProps { }
+export interface ICoursePageProps extends IStateProps, IDispatchProps { }
 
-
-export class CoursesPage extends React.Component<CoursePageProps> {
-  constructor(props: CoursePageProps) {
+export class CoursesPage extends React.Component<ICoursePageProps> {
+  constructor(props: ICoursePageProps) {
     super(props);
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this)
   }
 
-  redirectToAddCoursePage() {
+  private redirectToAddCoursePage() {
     // To be consistent with the schema, the id for this new
     // course should be a guid. But I don't want to add another
     // dependency just for that when we're working with mock
     // data here anyway.
-    let crappyId = Math.floor(Math.random() * 999999999)
+    const crappyId = Math.floor(Math.random() * 999999999)
 
     // 'history' is supplied through the react context
     // by react-router, which basically means that it
@@ -42,32 +41,36 @@ export class CoursesPage extends React.Component<CoursePageProps> {
     this.props.history.push(`/courses/a${crappyId}`)
   }
 
-  render() {
+  /* tslint:disable:no-shadowed-variable */
+  public render() {
     const { courses, match } = this.props
 
-    const courseList =
+    const courseList = (
       <CourseList
         courses={courses}
-        redirectToAddCoursePage={this.redirectToAddCoursePage}/>
+        redirectToAddCoursePage={this.redirectToAddCoursePage}
+      />)
 
+    /* tslint:disable:jsx-no-lambda */
     return (
       <Switch>
         <Route
-          exact path={match.path}
-          render={() => courseList} />
+          exact
+          path={match.path}
+          render={() => courseList}
+        />
         <Route
-          exact path={`${match.path}/:courseId`}
-          component={ManageCoursePage} />
+          exact
+          path={`${match.path}/:courseId`}
+          component={ManageCoursePage}
+        />
       </Switch>
      )
   }
 }
 
-
-
-
 function mapStateToProps(state: RootState) {
-  let courses = [...state.courses]
+  const courses = [...state.courses]
   courses.sort((a, b) => a.title.localeCompare(b.title))
 
   return { courses }
@@ -75,7 +78,7 @@ function mapStateToProps(state: RootState) {
 
 function mapDispatchToProps(dispatch: Dispatch<CourseAction>) {
   return {
-    actions: bindActionCreators(courseActions, dispatch)
+    actions: bindActionCreators(courseActions, dispatch),
   }
 }
 

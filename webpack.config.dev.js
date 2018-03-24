@@ -2,7 +2,6 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack'
 
-
 export default {
   entry: [
     'react-hot-loader/patch',
@@ -13,13 +12,13 @@ export default {
   devtool: 'eval-source-map',
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'src'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -32,15 +31,15 @@ export default {
   ],
   module: {
     rules: [
-      { test: /\.tsx?$/, exclude: /node_modules/, 
+      { test: /\.tsx?$/, exclude: /node_modules/,
         use: [
-          'babel-loader', 
+          'babel-loader',
           'awesome-typescript-loader',
           {loader: 'ifdef-loader', options: {DEBUG: true}},
-        ]
+        ],
       },
       // All output '.ts' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.ts$/, loader: "source-map-loader" },
+      { enforce: 'pre', test: /\.ts$/, loader: 'source-map-loader' },
 
       {test: /\.css$/, use: [
         'style-loader',
@@ -72,7 +71,7 @@ export default {
         'postcss-loader', // 2. Perform any transformations specified in postcss.config.js
         'sass-loader',    // 1. Compile SASS into CSS
       ]},
-    ]
+    ],
   },
   stats: {
     assets: false,
@@ -98,6 +97,6 @@ export default {
     timings: false,
     usedExports: false,
     version: false,
-    warnings: false
+    warnings: false,
   },
 }
