@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { shallow, mount, render } from 'enzyme'
 
-import { CourseForm, CourseFormProps } from './CourseForm'
+import { CourseForm, ICourseFormProps } from './CourseForm'
 import { Course } from '../../models'
 
 /* tslint:disable:no-empty */
@@ -9,7 +9,7 @@ import { Course } from '../../models'
 const authors = ['zach', 'kalidin', 'kvothe']
 
 function setup(saving: boolean = false) {
-  const props: CourseFormProps = {
+  const props: ICourseFormProps = {
     course: Course,
     allAuthors: [...authors.map(a => ({id: a}))],
     onSave: (e) => {},
