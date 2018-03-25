@@ -2,13 +2,14 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import { configureStore } from './redux'
-import { loadCourses, loadAuthors } from './redux'
 import { ThunkAction } from 'redux-thunk'
-import 'babel-core/register'
-import 'babel-polyfill'
 
 import { Root } from './components/Root'
+import { loadCourses, loadAuthors } from './redux'
+import { configureStore } from './redux'
+
+// tslint:disable-next-line
+const registerServiceWorker = require('./registerServiceWorker').default;
 
 const store = configureStore()
 
@@ -26,6 +27,13 @@ ReactDOM.render(
   </AppContainer>,
   htmlRoot,
 )
+
+// Register the service worker to enable offline functionality
+/// #if !DEBUG
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js');
+}
+/// #endif
 
 // Hot Module Replacement API
 // Must be placed directly below the call to react-dom#render
