@@ -82,8 +82,11 @@ export default {
     rules: [
       { test: /\.tsx?$/, exclude: /node_modules/,
         use: [
+          // Transpile down to target JS version
           'babel-loader',
+          // Compile typescript
           'awesome-typescript-loader',
+          // Remove code based on pre-processor directives e.g. #if DEBUG
           {loader: 'ifdef-loader', options: {DEBUG: false}},
         ],
       },
