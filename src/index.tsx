@@ -30,9 +30,7 @@ ReactDOM.render(
 
 // Register the service worker to enable offline functionality
 /// #if !DEBUG
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
-}
+
 /// #endif
 
 // Hot Module Replacement API

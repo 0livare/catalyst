@@ -5,7 +5,7 @@ import WebpackMd5Hash from 'webpack-md5-hash'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import SWPrecacheWebpackPlugin from 'sw-precache-webpack-plugin'
 
-const PUBLIC_PATH = '/'
+const PUBLIC_PATH = 'http://localhost:3000/'
 
 export default {
   devtool: 'source-map',
@@ -71,7 +71,7 @@ export default {
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       cacheId: 'catalyst',
       filename: 'service-worker.js',
-      minify: true,
+      minify: false,
       // For unknown URLs, fallback to the index page
       navigateFallback: PUBLIC_PATH + 'index.html',
       // Don't precache sourcemaps (they're large) and build asset manifest:
