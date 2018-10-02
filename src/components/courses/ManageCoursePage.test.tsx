@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { shallow, mount, render } from 'enzyme'
 
-import { ManageCoursePage, ManageCoursePageProps } from './ManageCoursePage'
+import { ManageCoursePage, IManageCoursePageProps } from './ManageCoursePage'
 import { createCourseWithId } from '../../models'
 import { courseActions } from '../../redux'
 import { mountWithThemeProvider } from '../../utils'
@@ -19,11 +19,14 @@ mockCourseActions.saveCourse = (c) => (d, g) =>  Promise.resolve()
 
 describe ('Manage Course Page', () => {
   it('sets error message when trying to save empty title', () => {
-    const props: ManageCoursePageProps  = {
+    const props: IManageCoursePageProps  = {
       initialCourse: course,
       authors: [...authors.map(a => ({id: a}))],
       courseId: course.id,
       actions: mockCourseActions,
+      history: null,
+      location: null,
+      match: null,
     }
 
     const wrapper = mountWithThemeProvider(<ManageCoursePage {...props}/>)

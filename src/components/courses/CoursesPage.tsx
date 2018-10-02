@@ -13,7 +13,7 @@ import ManageCoursePage from './ManageCoursePage'
 
 interface IStateProps {
   courses: ICourse[],
-  match: match<ICoursePageProps>, // Supplied by react router
+  match: match<any>, // Supplied by react router
   history: H.History,            // Supplied by react router
 }
 interface IDispatchProps {

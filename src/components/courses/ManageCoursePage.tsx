@@ -1,19 +1,18 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import * as H from 'history'
-import { match } from 'react-router'
+import { match, RouteComponentProps } from 'react-router'
 import * as toastr from 'toastr'
 
 import { ICourse, IAuthor, createCourseWithId } from '../../models'
 import { courseActions, RootState } from '../../redux'
 import { CourseForm } from './CourseForm'
 
-interface IStateProps {
+interface IMatchParams { courseId: string }
+interface IStateProps extends RouteComponentProps<IMatchParams> {
   initialCourse: ICourse,  // Not required when adding a new course
   authors: IAuthor[],
   courseId: string,        // Supplied by react router when adding a new course
-  history?: H.History,     // Supplied by react router
 }
 interface IDispatchProps {
   actions: typeof courseActions,
@@ -72,7 +71,7 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
     return this.setState({course})
   }
 
-  private async saveCourse(event: React.FormEvent<HTMLButtonElement>) {
+  private async saveCourse(event: React.MouseEvent<HTMLInputElement>) {
     event.preventDefault()
 
     try {
@@ -101,12 +100,7 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
   }
 }
 
-export interface IManageCoursePageConnected {
-  match: match<IManageCoursePageProps>, // Supplied by react router
-
-}
-
-function mapStateToProps(state: RootState, ownProps: IManageCoursePageConnected) {
+function mapStateToProps(state: RootState, ownProps: IManageCoursePageProps) {
   const courseId = ownProps.match.params.courseId
 
   let course = null

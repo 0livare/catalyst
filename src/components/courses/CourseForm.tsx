@@ -9,7 +9,7 @@ import * as s from './CourseForm.scss'
 export interface ICourseFormProps {
   course: ICourse,
   allAuthors: IAuthor[],
-  onSave: (e: React.FormEvent<HTMLButtonElement>) => void,
+  onSave: (e: React.MouseEvent<HTMLInputElement>) => void,
   onChangeText: (e: any) => void,
   onChangeAuthor: (
     e: React.FormEvent<HTMLSelectElement>,

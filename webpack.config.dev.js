@@ -41,20 +41,6 @@ export default {
       // All output '.ts' files will have any sourcemaps re-processed by 'source-map-loader'.
       { enforce: 'pre', test: /\.ts$/, loader: 'source-map-loader' },
 
-      {test: /\.css$/, use: [
-        'style-loader',
-        {
-          loader: 'typings-for-css-modules-loader',
-          options: {
-            modules: true,
-            namedExport: true,
-            camelCase: true,
-            importLoaders: 1,
-            localIdentName: '[name]__[local]___[hash:base64:5]',
-          },
-        },
-        'postcss-loader',
-      ]},
       {test: /\.scss$/, use: [ // Note that these loaders are applied in reverse order, the last one first
         'style-loader', // 5. Add CSS to DOM by injecting style tag
         // 4. Use CSS modules, generating class names in the specified format
