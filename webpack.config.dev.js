@@ -46,6 +46,8 @@ export default {
         // 4. Use CSS modules, generating class names in the specified format
         // 3. Load the CSS file, resolve imports and urls
         {
+          // See: https://medium.com/@sapegin/css-modules-with-typescript-and-webpack-6b221ebe5f10,
+          //      https://github.com/Quramy/typed-css-modules
           loader: 'typings-for-css-modules-loader',
           options: {
             modules: true,
