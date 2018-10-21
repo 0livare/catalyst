@@ -2,8 +2,7 @@
 
 Catalyst is a React/Redux web application starter kit built in Typescript.  It has best practices built in, making doing the right thing the easy thing!
 
-Linux: [![Build Status](https://travis-ci.org/zposten/Catalyst.svg?branch=master)](https://travis-ci.org/zposten/Catalyst) <br>
-Windows: [![Build status](https://ci.appveyor.com/api/projects/status/eey9n5ji44k00m83/branch/master?svg=true)](https://ci.appveyor.com/project/zposten/catalyst/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/eey9n5ji44k00m83/branch/master?svg=true)](https://ci.appveyor.com/project/zposten/catalyst/branch/master)
 
 
 ## Is Catalyst for you?
