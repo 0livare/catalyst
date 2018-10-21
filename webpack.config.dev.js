@@ -3,10 +3,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack'
 
 export default {
+  mode: 'development',
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    'babel-polyfill',
+    // 'babel-polyfill',
     path.resolve(__dirname, 'src/index.tsx'),
   ],
   devtool: 'eval-source-map',
@@ -35,6 +36,12 @@ export default {
         use: [
           'babel-loader',
           'awesome-typescript-loader',
+          {loader: 'ifdef-loader', options: {DEBUG: true}},
+        ],
+      },
+      { test: /\.jsx?$/, exclude: /node_modules/,
+        use: [
+          'babel-loader',
           {loader: 'ifdef-loader', options: {DEBUG: true}},
         ],
       },

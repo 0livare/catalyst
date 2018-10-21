@@ -4,7 +4,6 @@ import { shallow, mount, render } from 'enzyme'
 import { ManageCoursePage, IManageCoursePageProps } from './ManageCoursePage'
 import { createCourseWithId } from '../../models'
 import { courseActions } from '../../redux'
-import { mountWithThemeProvider } from '../../utils'
 
 const authors = ['zach', 'kelsier', 'vin']
 const course = createCourseWithId('1234')
@@ -29,7 +28,7 @@ describe ('Manage Course Page', () => {
       match: null,
     }
 
-    const wrapper = mountWithThemeProvider(<ManageCoursePage {...props}/>)
+    const wrapper = mount(<ManageCoursePage {...props}/>)
     const saveButton = wrapper.find('input').last()
 
     saveButton.prop('type').should.equal('submit')

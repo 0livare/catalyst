@@ -14,7 +14,7 @@ function setup(saving: boolean = false) {
     allAuthors: [...authors.map(a => ({id: a}))],
     onSave: (e) => {},
     onChangeText: (e) => {},
-    onChangeAuthor: (e, i, p) => {},
+    onChangeAuthor: (e, n) => {},
     saving,
   };
 

@@ -61,13 +61,12 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
   }
 
   private updateCourseAuthor(
-    event: React.FormEvent<HTMLSelectElement>,
-    index: number,
-    payload: string)
+    event: React.ChangeEvent<HTMLSelectElement>,
+    child: React.ReactNode)
   {
     const course = Object.assign({}, this.state.course)
 
-    course.authorId = payload
+    course.authorId = event.target.value
     return this.setState({course})
   }
 

@@ -3,10 +3,8 @@ node_modules/
 # Generated production files
 dist/
 
-.vscode/
-
-# A generated mock file
-src/api/db.json
+# A generated mock db file
+bld/json-server/db.json
 
 # Generated typescript definition files
 *.d.ts
