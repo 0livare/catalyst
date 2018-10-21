@@ -1,0 +1,115 @@
+{
+	// Place your snippets for typescriptreact here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+
+	"ReduxConnectedClass": {
+		"prefix": "rcc",
+		"description": "A redux connected react class",
+		"body": [
+			"import * as React from 'react'",
+			"import {connect} from 'react-redux'",
+			"import {bindActionCreators, Dispatch} from 'redux'",
+			"import { RootState } from '../../../redux';",
+			"//import * as s from './${1:name}Page.scss'",
+			"",
+			"// State that this page gets from redux",
+			"interface IStateProps {",
+			"",
+			"}",
+			"",
+			"// Actions this page can dispatch from props",
+			"interface IDispatchProps {",
+			"",
+			"}",
+			"",
+			"// The props that this page will receive, a combination of the redux state",
+			"// and the redux dispatch props",
+			"export interface I${1:name}PageProps extends IStateProps, IDispatchProps {}",
+			"",
+			"// State that this page manages",
+			"export interface I${1:name}PageState {",
+			"",
+			"}",
+			"",
+			"export class ${1:name}Page extends React.Component<I${1:name}PageProps, I${1:name}PageState> {",
+			"    constructor(props: I${1:name}PageProps) {",
+			"        super(props);",
+			"        this.state = {}",
+			"    }",
+			"",
+			"    public render() {",
+			"        return (",
+			"            <div></div>",
+			"        )",
+			"    }",
+			"}",
+			"",
+			"function mapStateToProps(state: RootState, ownProps: I${1:name}PageProps): IStateProps {",
+			"    return {}",
+			"}",
+			"",
+			"function mapDispatchToProps(dispatch: Dispatch): IDispatchProps {",
+			"    return {}",
+			"}",
+			"",
+			"// Connect the ${1:name} page to the redux store",
+			"const container = connect(mapStateToProps, mapDispatchToProps)(${1:name}Page);",
+			"export {container as default}"
+		]
+	},
+
+	"ReactStatelessFunctionalComponent": {
+		"prefix": "sfc",
+		"description": "A stateless functional component for react",
+		"body": [
+			"import * as React from 'react'",
+			"//import * as s from './${1:name}.scss'",
+			"",
+			"export interface I${1:name}Props {",
+			"",
+			"}",
+			"",
+			"export const ${1:name}: React.SFC<I${1:name}Props> = (props) => {",
+			"    return (",
+			"        <div></div>",
+			"    )",
+			"}"
+		]
+	},
+
+	"BindClasFunction": {
+		"prefix": "bind",
+		"description": "Bind a class function to that class, to avoid 'this' issues",
+		"body": "this.${1:func} = this.${1:func}.bind(this)"
+	},
+
+	"ReactEnzymeTest": {
+		"prefix": "test",
+		"description": "A unit test for a react component using enzyme",
+		"body": [
+			"import * as React from 'react'",
+			"import { shallow, mount, render } from 'enzyme'",
+			"import { mountWithThemeProvider } from '../../../../../utils/testUtil'",
+			"",
+			"import { ${1:name}, I${1:name}Props } from './'",
+			"",
+			"describe ('<${1:name} />', () => {",
+			"  it('should pass', () => {",
+			"    (1 + 1).should.equal(2)",
+			"  })",
+			"})"
+		]
+	}
+}
