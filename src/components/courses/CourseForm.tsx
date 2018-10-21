@@ -1,10 +1,11 @@
 import * as React from 'react'
-import TextField from 'material-ui/TextField'
-import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
+import TextField from '@material-ui/core/TextField'
+import SelectField from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 import * as cs from 'classnames'
 import { ICourse, IAuthor } from '../../models'
 import * as s from './CourseForm.scss'
+import { InputLabel } from '@material-ui/core';
 
 export interface ICourseFormProps {
   course: ICourse,
@@ -12,9 +13,8 @@ export interface ICourseFormProps {
   onSave: (e: React.MouseEvent<HTMLInputElement>) => void,
   onChangeText: (e: any) => void,
   onChangeAuthor: (
-    e: React.FormEvent<HTMLSelectElement>,
-    index: number,
-    payload: string) => void,
+    e: React.ChangeEvent<HTMLSelectElement>,
+    child: React.ReactNode) => void,
   saving: boolean,
 }
 
@@ -26,36 +26,40 @@ export const CourseForm: React.SFC<ICourseFormProps> = ({
       <h1>Manage Course</h1>
       <TextField
         name='title'
-        floatingLabelText='Title'
+        label='Title'
         onChange={onChangeText}
         value={course.title}
         fullWidth
       />
 
+      <InputLabel htmlFor={'author'}>Author</InputLabel>
       <SelectField
         name='authorId'
-        floatingLabelText='Author'
         value={course.authorId}
         onChange={onChangeAuthor}
         fullWidth
+        inputProps={{name: 'author', id: 'author'}}
       >
         <MenuItem
           value={0}
           id='course-form-authors'
-          primaryText='Select an author'
-        />
+        >
+          Select an author
+        </MenuItem>
+
         {allAuthors.map(author =>
           <MenuItem
             key={author.id}
             value={author.id}
-            primaryText={author.id}
-          />,
+          >
+            {author.id}
+          </MenuItem>,
         )}
       </SelectField>
 
       <TextField
         name='category'
-        floatingLabelText='Category'
+        label='Category'
         value={course.category}
         onChange={onChangeText}
         fullWidth
@@ -63,7 +67,7 @@ export const CourseForm: React.SFC<ICourseFormProps> = ({
 
       <TextField
         name='length'
-        floatingLabelText='Length'
+        label='Length'
         value={course.length}
         onChange={onChangeText}
         fullWidth
