@@ -17,7 +17,7 @@ mockCourseActions.saveCourse = (c) => (d, g) =>  Promise.resolve()
 // }
 
 describe ('Manage Course Page', () => {
-  it('sets error message when trying to save empty title', () => {
+  test('sets error message when trying to save empty title', () => {
     const props: IManageCoursePageProps  = {
       initialCourse: course,
       authors: [...authors.map(a => ({id: a}))],
@@ -31,8 +31,7 @@ describe ('Manage Course Page', () => {
     const wrapper = mount(<ManageCoursePage {...props}/>)
     const saveButton = wrapper.find('input').last()
 
-    saveButton.prop('type').should.equal('submit')
-
+    expect(saveButton.prop('type')).toBe('submit')
     saveButton.simulate('click')
     // wrapper.state().errors.title.should.be('Title must be at least 5 characters.')
   })
