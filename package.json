@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JavaScript development environment starter kit",
   "scripts": {
-    "start": "npm-run-all --parallel gen-css-types open:src",
+    "start": "npm-run-all --parallel gen-css-types open:src start-mockapi",
     "open:src": "babel-node bld/srcServer",
     "lint": "tslint --project tsconfig.json --config tslint.yaml --format codeFrame src/**/* bld/**/*",
     "lint:fix": "tslint --project tsconfig.json --config tslint.yaml --fix src/**/* bld/**/*",

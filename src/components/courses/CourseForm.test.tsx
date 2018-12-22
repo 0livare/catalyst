@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { shallow, mount, render } from 'enzyme'
+import { shallow } from 'enzyme'
 
 import { CourseForm, ICourseFormProps } from './CourseForm'
 import { Course } from '../../models'

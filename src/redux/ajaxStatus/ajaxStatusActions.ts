@@ -1,5 +1,3 @@
-import { ThunkResult } from '../'
-import authorApi from '../../api/authorApi'
 import { OtherAction } from '../'
 import { BEGIN_AJAX_CALL, AJAX_CALL_ERROR } from './types'
 

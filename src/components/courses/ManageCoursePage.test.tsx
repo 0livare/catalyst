@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { shallow, mount, render } from 'enzyme'
+import { mount } from 'enzyme'
 
 import { ManageCoursePage, IManageCoursePageProps } from './ManageCoursePage'
 import { createCourseWithId } from '../../models'

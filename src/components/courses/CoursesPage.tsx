@@ -23,7 +23,7 @@ export interface ICoursePageProps extends IStateProps, IDispatchProps { }
 
 export class CoursesPage extends React.Component<ICoursePageProps> {
   constructor(props: ICoursePageProps) {
-    super(props);
+    super(props)
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this)
   }
 

@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { Navbar, NavItem, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import * as cs from 'classnames'
 
 import * as s from './Nav.scss'
 

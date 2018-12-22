@@ -15,7 +15,7 @@ import getBaseUrl from './baseUrl'
 const baseUrl = getBaseUrl()
 
 export function get(url: string) {
-  return fetch(baseUrl + url).then(onSuccess, onError);
+  return fetch(baseUrl + url).then(onSuccess, onError)
 }
 
 export function del(url: string) {
@@ -42,9 +42,9 @@ export function post(url: string, body: any) {
 }
 
 function onSuccess(response: Response) {
-  return response.json();
+  return response.json()
 }
 
 function onError(error: any) {
-  console.log(chalk.red(error), error); // tslint:disable-line:no-console
+  console.log(chalk.red(error), error) // tslint:disable-line:no-console
 }

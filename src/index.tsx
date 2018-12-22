@@ -1,11 +1,8 @@
 import 'babel-polyfill'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
 import { configureStore } from './redux'
 import { loadCourses, loadAuthors } from './redux'
-import { ThunkAction } from 'redux-thunk'
-// import '@babel/register'
 
 import Root from './components/Root'
 
@@ -21,7 +18,7 @@ ReactDOM.render(<Root store={store} />, htmlRoot)
 // Must be placed directly below the call to react-dom#render
 if (module.hot) {
   module.hot.accept('./components/Root', () => {
-    const NewRoot = require('./components/Root').default;
-    ReactDOM.render(<NewRoot store={store} />, htmlRoot);
-  });
+    const NewRoot = require('./components/Root').default
+    ReactDOM.render(<NewRoot store={store} />, htmlRoot)
+  })
 }
