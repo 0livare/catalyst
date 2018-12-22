@@ -6,9 +6,10 @@
     "prestart": "babel-node bld/startMessage",
     "start": "npm-run-all --parallel open:src lint:watch test:watch start-mockapi",
     "open:src": "babel-node bld/srcServer",
-    "eslint": "esw webpack.config.* src bld --color",
-    "lint": "tslint --config ./tslint.yaml --format codeFrame webpack.config.* src/**/* bld/*",
-    "lint:watch": "chokidar \"**/*.js\" \"**/*.ts\" \"**/*.tsx\" --command \"npm run lint -s\" --ignore \"node_modules\" --silent --initial",
+    "lint": "tslint --project tsconfig.json --config tslint.yaml --format codeFrame src/**/* bld/**/*",
+    "lint:fix": "tslint --project tsconfig.json --config tslint.yaml --fix src/**/* bld/**/*",
+    "lint:vscode": "tslint --project tsconfig.json --config tslint.yaml src/**/* bld/**/* -t verbose",
+    "lint:watch": "npm run watch -- --command \"npm run lint\"",
     "security-check": "nsp check",
     "localtunnel": "lt --port 3000 --subdomain posten",
     "share": "npm-run-all --parallel open:src localtunnel",
@@ -21,7 +22,8 @@
     "clean-dist": "rimraf ./dist && mkdir dist",
     "prebuild": "npm-run-all clean-dist lint",
     "build": "babel-node bld/build.js",
-    "postbuild": "babel-node bld/distServer.js"
+    "postbuild": "babel-node bld/distServer.js",
+    "watch": "chokidar \"**/*.js\" \"**/*.ts\" \"**/*.tsx\" --ignore \"node_modules\" --silent --initial"
   },
   "author": "Zach Posten",
   "license": "MIT",
