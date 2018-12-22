@@ -1,37 +1,100 @@
 {
-	// Place your snippets for typescript here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	// "Print to console": {
-	//	 "prefix": "log",
-	//	 "body": [
-	//		 "console.log('$1');",
-	//		 "$2"
-	//	 ],
-	//	 "description": "Log output to console"
-	// }
+  // Place your snippets for typescript here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  //   "prefix": "log",
+  //   "body": [
+  //     "console.log('$1');",
+  //     "$2"
+  //   ],
+  //   "description": "Log output to console"
+  // }
 
-	"Action type": {
-		"prefix": "at",
-		"body": [
-			"export type ${1:name} = 'App/${1:name}'",
-			"export const ${1:name}: ${1:name} = 'App/${1:name}'",
-		],
-		"description": "Create a strongly typed action type"
-	},
+  "Action type": {
+    "prefix": "at",
+    "body": [
+      "export type ${1:name} = 'App/${1:name}'",
+      "export const ${1:name}: ${1:name} = 'App/${1:name}'"
+    ],
+    "description": "Create a strongly typed action type"
+  },
 
-	"Create action and action creator": {
-		"prefix": "action",
-		"body": [
-			"export type ${1/(.*)/${1:/capitalize}/}Action = {",
-				"    type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g},",
-				"}",
-				"",
-				"export function ${1}(): ${1/(.*)/${1:/capitalize}/}Action {",
-				"    return { type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g} }",
-				"}",
-		]
-	},
+  "Create action and action creator": {
+    "prefix": "action",
+    "body": [
+      "export type ${1/(.*)/${1:/capitalize}/}Action = {",
+      "  type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g},",
+      "}",
+      "",
+      "export function ${1}(): ${1/(.*)/${1:/capitalize}/}Action {",
+      "  return { type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g} }",
+      "}"
+    ]
+  },
+
+  "Begin, Success, Failure actions and creators": {
+    "prefix": "actions",
+    "body": [
+      "export type ${1/(.*)/${1:/capitalize}/}BeginAction = {",
+      "  type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g}_BEGIN,",
+      "}",
+      "",
+      "export function ${1}Begin(): ${1/(.*)/${1:/capitalize}/}BeginAction {",
+      "  return { type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g}_BEGIN }",
+      "}",
+      "",
+      "export type ${1/(.*)/${1:/capitalize}/}SuccessAction = {",
+      "  type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g}_SUCCESS,",
+      "  ${2:varName}: ${3:varType},",
+      "}",
+      "",
+      "export function ${1}Success(${2:varName}: ${3:varType}): ${1/(.*)/${1:/capitalize}/}SuccessAction {",
+      "  return {",
+      "    type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g}_SUCCESS,",
+      "    ${2:varName},",
+      "  }",
+      "}",
+      "",
+      "export type ${1/(.*)/${1:/capitalize}/}FailureAction = {",
+      "  type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g}_FAILURE,",
+      "}",
+      "",
+      "export function ${1}Failure(): ${1/(.*)/${1:/capitalize}/}FailureAction {",
+      "  return { type: types.${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g}_FAILURE }",
+      "}",
+      "",
+      "//",
+      ""
+    ]
+  },
+
+  "ConsoleLog": {
+    "prefix": "clg",
+    "description": "shortcut for console.log()",
+    "body": "console.log($1)"
+  },
+
+  "Thunk": {
+    "prefix": "thunkk",
+    "description": "A redux thunk to fetch data from a server, using NMS utility method to avoid repetition",
+    "body": [
+      "export function $1($2): ThunkResult<$3> {",
+        "  return executeThunk({",
+        "    begin: $1Begin,",
+        "    api: () => $4,",
+        "    success: $1Success,",
+        "    fail: $1Failure,",
+        "  })",
+        "}"
+    ]
+  },
+
+  "ImportFrom": {
+    "prefix": "imf",
+    "description": "Import a module from a dependency",
+    "body": "import { $2 } from '$1'"
+  }
 }

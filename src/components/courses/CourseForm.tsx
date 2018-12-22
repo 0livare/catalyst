@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import * as cs from 'classnames'
 import { ICourse, IAuthor } from '../../models'
 import * as s from './CourseForm.scss'
-import { InputLabel } from '@material-ui/core';
+import { InputLabel } from '@material-ui/core'
 
 export interface ICourseFormProps {
   course: ICourse,

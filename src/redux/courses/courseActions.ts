@@ -21,7 +21,7 @@ import {
 export type LoadCoursesSuccessAction = {
   type: LOAD_COURSES_SUCCESS,
   courses: ICourse[],
-};
+}
 export function loadCoursesSuccess(courses: ICourse[]): LoadCoursesSuccessAction {
   return { type: types.LOAD_COURSES_SUCCESS, courses }
 }
@@ -51,7 +51,6 @@ export type CourseAction =
   | CreateCourseSuccessAction
   | UpdateCourseSuccessAction
   | OtherAction
-  ;
 
 /*************************
  * THUNKS

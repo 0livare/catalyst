@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { match, RouteComponentProps } from 'react-router'
+import { RouteComponentProps } from 'react-router'
 import * as toastr from 'toastr'
 
 import { ICourse, IAuthor, createCourseWithId } from '../../models'
@@ -31,7 +31,7 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
   constructor(props: IManageCoursePageProps) {
     super(props)
 
-    const initialCourse = props.initialCourse || createCourseWithId(this.props.courseId);
+    const initialCourse = props.initialCourse || createCourseWithId(this.props.courseId)
 
     this.state = {
       course: Object.assign({}, initialCourse),
@@ -46,7 +46,7 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
 
   public componentWillReceiveProps() {
     if (this.props.courseId !== this.state.course.id) {
-      this.setState({course: this.props.initialCourse});
+      this.setState({course: this.props.initialCourse})
     }
   }
 

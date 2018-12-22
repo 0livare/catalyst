@@ -1,15 +1,21 @@
 import { createStore, applyMiddleware } from 'redux'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
-import thunk, { ThunkAction, ThunkMiddleware } from 'redux-thunk'
+import thunk, { ThunkMiddleware } from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { InitialState } from '../initialState'
-import { RootState, rootReducer, RootAction } from '../'
+import { RootState, rootReducer, RootAction, InitialState } from '../'
 
 export function configureStore(state: RootState = InitialState) {
-  const middleware = applyMiddleware(
+  let middleware = applyMiddleware(
     thunk as ThunkMiddleware<RootState, RootAction>,
-    reduxImmutableStateInvariant(),
+    /// #if DEBUG
+    reduxImmutableStateInvariant(), // For development only! Remove for production
+    /// #endif
   )
+
+  /// #if DEBUG
+  middleware = composeWithDevTools(middleware) as any
+  /// #endif
 
   const store = createStore(
     rootReducer,
@@ -19,8 +25,8 @@ export function configureStore(state: RootState = InitialState) {
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../rootReducer', () => {
-      const nextReducer = require('../rootReducer').rootReducer; // eslint-disable-line global-require
-      store.replaceReducer(nextReducer);
+      const nextReducer = require('../rootReducer').rootReducer // eslint-disable-line global-require
+      store.replaceReducer(nextReducer)
     })
   }
 

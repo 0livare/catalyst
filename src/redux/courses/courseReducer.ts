@@ -1,10 +1,6 @@
 import * as types from './types'
 import { InitialState } from '../initialState'
 import { CourseAction } from '../'
-import { ICourse } from '../../models'
-import { LoadCoursesSuccessAction,
-         CreateCourseSuccessAction,
-         UpdateCourseSuccessAction } from './courseActions'
 
 /*
  * It's important to note that each reducer only handles

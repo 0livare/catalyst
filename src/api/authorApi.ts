@@ -1,4 +1,3 @@
-import { get } from './fetchHttp'
 import { IAuthor, ICourse } from '../models'
 import courseApi from './courseApi'
 

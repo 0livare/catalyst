@@ -8,6 +8,10 @@ linterOptions:
     - "**/*.scss"
     - "**/*.html"
     - "**/*.json"
+    - "**/*.scss.d.ts"
+    - "**/__snapshots__/*"
+
+defaultSeverity: "warning"
 
 rules:
   max-line-length:
@@ -15,7 +19,9 @@ rules:
   quotemark:
     - true
     - "single"
-  semicolon: false
+  semicolon:
+    - true
+    - "never"
   eofline: false
   ordered-imports: false
   object-literal-sort-keys: false
@@ -25,7 +31,12 @@ rules:
   member-ordering: false
   interface-over-type-literal: false
   one-line: false
+  curly: false
   jsx-no-lambda: false
+  no-var-requires: false
+  typedef-whitespace: false
+  prefer-const: false
+  no-unused-variable: true
 
 jsRules:
   max-line-length:
@@ -39,3 +50,4 @@ jsRules:
   eofline: false
   ordered-imports: false
   object-literal-sort-keys: false
+  curly: false

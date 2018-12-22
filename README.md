@@ -2,17 +2,17 @@
 
 Catalyst is a React/Redux web application starter kit built in Typescript.  It has best practices built in, making doing the right thing the easy thing!
 
-Linux: [![Build Status](https://travis-ci.org/zposten/Catalyst.svg?branch=master)](https://travis-ci.org/zposten/Catalyst) <br>
-Windows: [![Build status](https://ci.appveyor.com/api/projects/status/eey9n5ji44k00m83/branch/master?svg=true)](https://ci.appveyor.com/project/zposten/catalyst/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/eey9n5ji44k00m83/branch/master?svg=true)](https://ci.appveyor.com/project/zposten/catalyst/branch/master)
+[![Dependency Status](https://david-dm.org/zposten/catalyst.svg?style=flat-square)](https://david-dm.org/zposten/catalyst)
 
 
 ## Is Catalyst for you?
 
 So you're building a web app:
   - Do you want to use React?
-    - [React][react] is a component based library for building user interfaces.  
+    - [React][react] is a component based library for building user interfaces.
     - It's implementation of a virtual DOM makes it _fast_ and its introduction of JSX makes your code much easier to read and debug!
-  - Is it going to be a large project, maintained by multiple developers?  
+  - Is it going to be a large project, maintained by multiple developers?
     - [Typescript][typescript] takes much of the mystery out of JavaScript, leaving you with declarative, scalable code.
   - Is it going to be data intensive?
     - [Redux's][redux] unidirectional dataflow helps you write applications that behave consistently.  It also provides a great developer experience, such as [live code editing combined with a time traveling debugger][redux-devtools].
@@ -27,8 +27,8 @@ If you answered yes to these four questions, Catalyst is for you.
 ```bash
 $ git clone https://github.com/zposten/Catalyst.git
 $ cd Catalyst
-$ npm install
-$ npm start
+$ yarn install
+$ yarn start
 ```
 
 ## Library choices
@@ -42,23 +42,19 @@ There are many, many choices to make when establishing a JS project, this is one
 - Bundler: [Webpack][webpack]
   - Module format: ES2015+
 - Transpiler: [Babel][babel]
-- Automation tool: npm scripts
+- Automation tool: yarn run scripts
 - Styles
   - [CSS modules][css-modules]
   - [SCSS][scss]
   - [PostCSS][post-css]
     - Autoprefixer
-- Linter: [ESLint][es-lint]
-- Test framework: [Mocha][mocha]
-  - [React test utils][react-test-utils]
+- Linter: [TSLint][ts-lint]
+- Test framework: [Jest][jest]
   - [Enzyme][enzyme] - wraps React test utils for a better api
-  - Assertion library: [Chai][chai]
-    - Assertion syntax: Should
-  - Test helper library: [JSDOM][jsdom]
   - Test placment: Alongside classes
   - Where to run tests: In memory
   - When to run tests: Every time you save
-- CI Servers: [Travis][travis] and [AppVeyor][appveyor]
+- CI Servers: [AppVeyor][appveyor]
 - HTTP Requests: [Fetch][fetch]
 - Mock API: [json-server], [JSON Schema Faker][json-schema-faker]
 - URL Navigation: [React Router 4][react-router]
@@ -76,13 +72,9 @@ There are many, many choices to make when establishing a JS project, this is one
 [css-modules]: https://github.com/css-modules/css-modules
 [scss]: http://sass-lang.com/documentation/file.SCSS_FOR_SASS_USERS.html
 [post-css]: https://github.com/postcss/postcss
-[es-lint]: https://eslint.org/
-[mocha]: https://mochajs.org/
-[react-test-utils]: https://reactjs.org/docs/test-utils.html
+[ts-lint]: https://palantir.github.io/tslint/
+[jest]: https://jestjs.io/
 [enzyme]: https://github.com/airbnb/enzyme
-[chai]: http://chaijs.com/
-[jsdom]: https://github.com/jsdom/jsdom
-[travis]: https://travis-ci.org/
 [appveyor]: https://appveyor.com
 [fetch]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 [json-server]: https://github.com/typicode/json-server

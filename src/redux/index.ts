@@ -8,10 +8,9 @@ export * from './rootState'
 export * from './initialState'
 export * from './rootAction'
 
-export type OtherAction = { type: '' };
-export const OtherAction: OtherAction = { type: '' };
+export type OtherAction = { type: '' }
+export const OtherAction: OtherAction = { type: '' }
 
-import { Action, ActionCreator } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from './rootState'
 import { RootAction } from './rootAction'

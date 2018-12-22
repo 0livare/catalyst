@@ -1,8 +1,6 @@
 import {
   combineReducers,
-  Reducer, Dispatch,
-  Store,
-  Action,
+  Reducer,
 } from 'redux'
 import {
   RootState,

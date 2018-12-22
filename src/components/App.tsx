@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'

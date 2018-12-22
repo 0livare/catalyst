@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { shallow, mount, render } from 'enzyme'
+import { shallow } from 'enzyme'
 
 import { CourseForm, ICourseFormProps } from './CourseForm'
 import { Course } from '../../models'
@@ -16,36 +16,38 @@ function setup(saving: boolean = false) {
     onChangeText: (e) => {},
     onChangeAuthor: (e, n) => {},
     saving,
-  };
+  }
 
-  return shallow(<CourseForm {...props} />);
+  return shallow(<CourseForm {...props} />)
 }
 
 describe('CourseForm', () => {
-  it('renders form and h1', () => {
+  test('renders form and h1', () => {
     const wrapper = setup()
-    wrapper.find('form').should.have.lengthOf(1)
-    wrapper.find('h1').text().should.equal('Manage Course')
+    expect(wrapper.find('form')).toHaveLength(1)
+    expect(wrapper.find('h1').text()).toBe('Manage Course')
   })
 
   describe('Save button', () => {
-    it('is labeled "Save" when not saving', () => {
+    test('is labeled "Save" when not saving', () => {
       const wrapper = setup(false)
-      wrapper.find('input').props().value.should.equal('Save')
+      let val = wrapper.find('input').props().value
+      expect(val).toBe('Save')
     })
 
-    it('is labeled "Saving..." when saving', () => {
+    test('is labeled "Saving..." when saving', () => {
       const wrapper = setup(true)
-      wrapper.find('input').props().value.should.equal('Saving...')
+      let val = wrapper.find('input').props().value
+      expect(val).toBe('Saving...')
     })
   })
 
-  it('should display all authors', () => {
+  test('should display all authors', () => {
     const wrapper = setup()
 
     for (const author of authors) {
       const selector = `[value="${author}"]`
-      wrapper.find(selector).should.have.length(1)
+      expect(wrapper.find(selector)).toHaveLength(1)
     }
   })
 })
