@@ -27,8 +27,8 @@ If you answered yes to these four questions, Catalyst is for you.
 ```bash
 $ git clone https://github.com/zposten/Catalyst.git
 $ cd Catalyst
-$ npm install
-$ npm start
+$ yarn install
+$ yarn start
 ```
 
 ## Library choices
