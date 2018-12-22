@@ -1,115 +1,258 @@
 {
-	// Place your snippets for typescriptreact here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	// "Print to console": {
-	// 	"prefix": "log",
-	// 	"body": [
-	// 		"console.log('$1');",
-	// 		"$2"
-	// 	],
-	// 	"description": "Log output to console"
-	// }
+  // Place your snippets for typescriptreact here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  //   "prefix": "log",
+  //   "body": [
+  //     "console.log('$1');",
+  //     "$2"
+  //   ],
+  //   "description": "Log output to console"
+  // }
 
 
-	"ReduxConnectedClass": {
-		"prefix": "rcc",
-		"description": "A redux connected react class",
-		"body": [
-			"import * as React from 'react'",
-			"import {connect} from 'react-redux'",
-			"import {bindActionCreators, Dispatch} from 'redux'",
-			"import { RootState } from '../../../redux';",
-			"//import * as s from './${1:name}Page.scss'",
-			"",
-			"// State that this page gets from redux",
-			"interface IStateProps {",
-			"",
-			"}",
-			"",
-			"// Actions this page can dispatch from props",
-			"interface IDispatchProps {",
-			"",
-			"}",
-			"",
-			"// The props that this page will receive, a combination of the redux state",
-			"// and the redux dispatch props",
-			"export interface I${1:name}PageProps extends IStateProps, IDispatchProps {}",
-			"",
-			"// State that this page manages",
-			"export interface I${1:name}PageState {",
-			"",
-			"}",
-			"",
-			"export class ${1:name}Page extends React.Component<I${1:name}PageProps, I${1:name}PageState> {",
-			"    constructor(props: I${1:name}PageProps) {",
-			"        super(props);",
-			"        this.state = {}",
-			"    }",
-			"",
-			"    public render() {",
-			"        return (",
-			"            <div></div>",
-			"        )",
-			"    }",
-			"}",
-			"",
-			"function mapStateToProps(state: RootState, ownProps: I${1:name}PageProps): IStateProps {",
-			"    return {}",
-			"}",
-			"",
-			"function mapDispatchToProps(dispatch: Dispatch): IDispatchProps {",
-			"    return {}",
-			"}",
-			"",
-			"// Connect the ${1:name} page to the redux store",
-			"const container = connect(mapStateToProps, mapDispatchToProps)(${1:name}Page);",
-			"export {container as default}"
-		]
-	},
+  "ReduxConnectedClass": {
+    "prefix": "rcc",
+    "description": "A redux connected react class",
+    "body": [
+      "import * as React from 'react'",
+      "import {connect} from 'react-redux'",
+      "import { RootState } from 'src/redux'",
+      "import * as s from './$1.scss'",
+      "",
+      "// The props that this page will receive, a combination of the redux state",
+      "// and the redux dispatch props",
+      "export type I$1Props =",
+      "  & ReturnType<typeof mapStateToProps>",
+      "  & ReturnType<typeof createDispatchProps>",
+      "",
+      "// State that this page manages",
+      "export type IState = {}",
+      "",
+      "export class $1 extends React.Component<I$1Props, IState> {",
+      "  constructor(props: I$1Props) {",
+      "    super(props)",
+      "    this.state = {}",
+      "  }",
+      "",
+      "  public render(): React.ReactElement<any> {",
+      "    return (",
+      "      <div></div>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "function mapStateToProps(state: RootState, ownProps: any) {",
+      "  return {}",
+      "}",
+      "",
+      "function createDispatchProps() {",
+      "  return {}",
+      "}",
+      "",
+      "// Connect the $1 page to the redux store",
+      "const container = connect(mapStateToProps, createDispatchProps())($1)",
+      "export {container as default}"
+    ]
+  },
 
-	"ReactStatelessFunctionalComponent": {
-		"prefix": "sfc",
-		"description": "A stateless functional component for react",
-		"body": [
-			"import * as React from 'react'",
-			"//import * as s from './${1:name}.scss'",
-			"",
-			"export interface I${1:name}Props {",
-			"",
-			"}",
-			"",
-			"export const ${1:name}: React.SFC<I${1:name}Props> = (props) => {",
-			"    return (",
-			"        <div></div>",
-			"    )",
-			"}"
-		]
-	},
+  "ReactComponentClass": {
+    "prefix": "rc",
+    "description": "A non redux connected component for react",
+    "body": [
+      "import * as React from 'react'",
+      "//import * as s from './${1:name}.scss'",
+      "",
+      "export type I${1:name}Props = {}",
+      "",
+      "type IState = {}",
+      "",
+      "export class ${1:name} extends React.Component<I${1:name}Props, IState> {",
+      "  constructor(props: I${1:name}Props) {",
+      "    super(props)",
+      "    this.state = {}",
+      "  }",
+      "",
+      "  public render(): React.ReactElement<any> {",
+      "    return (",
+      "      <div></div>",
+      "    )",
+      "  }",
+      "}"
+    ]
+  },
 
-	"BindClasFunction": {
-		"prefix": "bind",
-		"description": "Bind a class function to that class, to avoid 'this' issues",
-		"body": "this.${1:func} = this.${1:func}.bind(this)"
-	},
+  "ReactStatelessFunctionalComponent": {
+    "prefix": "sfc",
+    "description": "A stateless functional component for react",
+    "body": [
+      "import * as React from 'react'",
+      "//import * as s from './${1:name}.scss'",
+      "",
+      "export type I${1:name}Props = {}",
+      "",
+      "export const ${1:name}: React.SFC<I${1:name}Props> = (props) => {",
+      "  return (",
+      "    <div></div>",
+      "  )",
+      "}"
+    ]
+  },
 
-	"ReactEnzymeTest": {
-		"prefix": "test",
-		"description": "A unit test for a react component using enzyme",
-		"body": [
-			"import * as React from 'react'",
-			"import { shallow, mount, render } from 'enzyme'",
-			"import { mountWithThemeProvider } from '../../../../../utils/testUtil'",
-			"",
-			"import { ${1:name}, I${1:name}Props } from './'",
-			"",
-			"describe ('<${1:name} />', () => {",
-			"  it('should pass', () => {",
-			"    (1 + 1).should.equal(2)",
-			"  })",
-			"})"
-		]
-	}
+  "BindClasFunction": {
+    "prefix": "bind",
+    "description": "Bind a class function to that class, to avoid 'this' issues",
+    "body": "this.${1:func} = this.${1:func}.bind(this)"
+  },
+
+  "ReactEnzymeTest": {
+    "prefix": "testt",
+    "description": "A unit test for a react component using enzyme",
+    "body": [
+      "import * as React from 'react'",
+      "import { shallow, mount, render } from 'enzyme'",
+      "",
+      "import { $1, I$1Props } from './$1'",
+      "import { ShallowWrapperType } from 'src/util'",
+      "",
+      "describe('<$1 />', () => {",
+      "  let props: I$1Props",
+      "  let wrapper: ShallowWrapperType",
+      "",
+      "  beforeAll(() => {",
+      "    props = {",
+      "      $0",
+      "    }",
+      "    wrapper = shallow(<$1 {...props} />)",
+      "  })",
+      "})"
+    ]
+  },
+
+  "JestSingleTest": {
+    "prefix": "itt",
+    "description": "A single unit test for jest",
+    "body": [
+      "test('$1', () => {",
+      "  $0",
+      "})"
+    ]
+  },
+
+  "ReactPureComponent": {
+    "prefix": "puree",
+    "description": "A react pure component",
+    "body": [
+      "import * as React from 'react'",
+      "// import * as s from './$1.scss'",
+      "",
+      "export type I$1Props = {}",
+      "",
+      "type IState = {}",
+      "",
+      "export class $1 extends React.PureComponent<I$1Props, IState> {",
+      "  constructor(props: I$1Props) {",
+      "    super(props)",
+      "    this.state = {}",
+      "  }",
+      "",
+      "  public render(): React.ReactElement<any> {",
+      "    return (",
+      "      <div>$0</div>",
+      "    )",
+      "  }",
+      "}"
+    ]
+  },
+
+  "PropFromState": {
+    "prefix": "sp",
+    "description": "A JSX prop of the same name taken from this.state",
+    "body": "${1:name}={this.state.${1:name}}"
+  },
+
+  "PropFromProps": {
+    "prefix": "pp",
+    "description": "A JSX prop of the same name taken from this.props",
+    "body": "${1:name}={this.props.${1:name}}"
+  },
+
+  "HandlerFromThis": {
+    "prefix": "pt",
+    "description": "A JSX prop of the same name taken from this.props",
+    "body": "on$1={this.handle$1}"
+  },
+
+  "ConsoleLog": {
+    "prefix": "clg",
+    "description": "shortcut for console.log()",
+    "body": "console.log($1)"
+  },
+
+  "ImportFrom": {
+    "prefix": "imf",
+    "description": "Import a module from a dependency",
+    "body": "import { $2 } from '$1'"
+  },
+
+  "componentDidMount": {
+    "prefix": "cdm",
+    "body": [
+      "public componentDidMount() {",
+      "  $0",
+      "}"
+    ]
+  },
+
+  "componentDidUpdate": {
+    "prefix": "cdu",
+    "body": [
+      "public componentDidUpdate(",
+      "  prevProps: I$1Props,",
+      "  prevState: IState,",
+      "  snapshot: any)",
+      "{",
+      "  $0",
+      "}"
+    ]
+  },
+
+  "componentWillUnmount": {
+    "prefix": "cwu",
+    "body": [
+      "public componentWillUnmount() {",
+      "  $0",
+      "}"
+    ]
+  },
+
+  "shouldComponentUpdate": {
+    "prefix": "scu",
+    "body": [
+      "public shouldComponentUpdate(nextProps: I$1Props, nextState: I$1State) {",
+      "  $0",
+      "}"
+    ]
+  },
+
+  "getDerivedStateFromProps": {
+    "prefix": "gdsfp",
+    "body": [
+      "public static getDerivedStateFromProps(props: I$1Props, state: I$1State) {",
+      "  $0",
+      "}"
+    ]
+  },
+
+  "getSnapshotBeforeUpdate": {
+    "prefix": "gsbu",
+    "body": [
+      "public getSnapshotBeforeUpdate(prevProps: I$1Props, prevState: I$1State) {",
+      "  $0",
+      "}"
+    ]
+  }
 }
