@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
-import { ICourse } from '../../models'
+import { ICourse } from 'src/models'
 
 export interface ICourseListRowProps {
   course: ICourse,

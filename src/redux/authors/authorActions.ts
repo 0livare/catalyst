@@ -3,7 +3,7 @@ import authorApi from '../../api/authorApi'
 import { LOAD_AUTHORS_SUCCESS } from './types'
 import { IAuthor } from '../../models'
 import { OtherAction, beginAjaxCall } from '../'
-import { createThunk } from 'src/util/reduxUtil';
+import { createThunk } from 'src/util/reduxUtil'
 
 /*************************
  * ACTION TYPES/CREATORS

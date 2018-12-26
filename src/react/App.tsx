@@ -5,10 +5,10 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
 import { RootState } from '../redux'
-import { Navigation } from './common/Navigation'
-import { HomePage } from './home/HomePage'
-import { AboutPage } from './about/AboutPage'
-import CoursesPage from './courses/CoursesPage'
+import { Navigation } from './components/Navigation'
+import { HomePage } from './sections/home/HomePage'
+import { AboutPage } from './sections/about/AboutPage'
+import CoursesPage from './sections/courses/CoursesPage'
 
 export interface IAppProps {
   loading: boolean,

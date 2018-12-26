@@ -2,8 +2,7 @@ import * as React from 'react'
 import { mount } from 'enzyme'
 
 import { ManageCoursePage, IManageCoursePageProps } from './ManageCoursePage'
-import { createCourseWithId, ICourse } from '../../models'
-import { courseActions } from '../../redux'
+import { createCourseWithId, ICourse } from 'src/models'
 
 const authors = ['zach', 'kelsier', 'vin']
 const course = createCourseWithId('1234')

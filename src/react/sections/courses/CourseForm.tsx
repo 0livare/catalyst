@@ -2,10 +2,11 @@ import * as React from 'react'
 import TextField from '@material-ui/core/TextField'
 import SelectField from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import * as cs from 'classnames'
-import { ICourse, IAuthor } from '../../models'
-import * as s from './CourseForm.scss'
 import { InputLabel } from '@material-ui/core'
+import * as cs from 'classnames'
+
+import * as s from './CourseForm.scss'
+import { ICourse, IAuthor } from 'src/models'
 
 export interface ICourseFormProps {
   course: ICourse,
@@ -35,7 +36,6 @@ export const CourseForm: React.SFC<ICourseFormProps> = ({
       <InputLabel htmlFor={'author'}>Author</InputLabel>
       <SelectField
         name='authorId'
-        value={course.authorId}
         onChange={onChangeAuthor}
         fullWidth
         inputProps={{name: 'author', id: 'author'}}

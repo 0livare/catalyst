@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Button } from 'react-bootstrap'
 
-import { ICourse } from '../../models'
+import { ICourse } from 'src/models'
 import { CourseListRow } from './CourseListRow'
 
 export interface ICourseListProps {

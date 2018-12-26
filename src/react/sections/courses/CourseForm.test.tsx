@@ -2,7 +2,7 @@ import * as React from 'react'
 import { shallow } from 'enzyme'
 
 import { CourseForm, ICourseFormProps } from './CourseForm'
-import { Course } from '../../models'
+import { Course } from 'src/models'
 
 /* tslint:disable:no-empty */
 

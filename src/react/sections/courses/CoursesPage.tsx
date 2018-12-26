@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Route, Switch, RouteComponentProps } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
-import {  RootState, courseActions, RootDispatch } from '../../redux'
+import {  RootState, RootDispatch, loadCourses, saveCourse } from 'src/redux'
 import { CourseList } from './CourseList'
 import ManageCoursePage from './ManageCoursePage'
 import { bindActionCreator } from 'src/util/reduxUtil'
@@ -74,8 +74,8 @@ function mapDispatchToProps(dispatch: RootDispatch) {
   // static typing of this method, whereas using Redux.bindActionCreators
   // does not.
   return {actions: {
-    loadCourses: bindActionCreator(courseActions.loadCourses, dispatch),
-    saveCourse: bindActionCreator(courseActions.saveCourse, dispatch),
+    loadCourses: bindActionCreator(loadCourses, dispatch),
+    saveCourse: bindActionCreator(saveCourse, dispatch),
   }}
 }
 
