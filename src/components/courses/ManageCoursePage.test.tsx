@@ -2,19 +2,16 @@ import * as React from 'react'
 import { mount } from 'enzyme'
 
 import { ManageCoursePage, IManageCoursePageProps } from './ManageCoursePage'
-import { createCourseWithId } from '../../models'
+import { createCourseWithId, ICourse } from '../../models'
 import { courseActions } from '../../redux'
 
 const authors = ['zach', 'kelsier', 'vin']
 const course = createCourseWithId('1234')
 
-const mockCourseActions: typeof courseActions = Object.assign({}, courseActions)
-mockCourseActions.saveCourse = (c) => (d, g) =>  Promise.resolve()
-
-// let mockCourseActions: typeof courseActions = {
-//   ...courseActions,
-//   saveCourse: (c) => (d, g) =>  Promise.resolve(),
-// }
+let mockCourseActions = {
+  saveCourse: (c: ICourse) => Promise.resolve(c),
+  loadCourses: () => Promise.resolve([] as ICourse[]),
+}
 
 describe ('Manage Course Page', () => {
   test('sets error message when trying to save empty title', () => {

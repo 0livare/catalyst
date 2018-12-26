@@ -32,7 +32,7 @@ export const CourseList: React.SFC<ICourseListProps> = ({ courses, redirectToAdd
         </tr>
         </thead>
         <tbody>
-        {courses.map(course =>
+        {courses && courses.map(course =>
           <CourseListRow key={course.id} course={course} />,
         )}
         </tbody>

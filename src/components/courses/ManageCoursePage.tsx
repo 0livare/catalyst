@@ -1,23 +1,23 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
-import { RouteComponentProps } from 'react-router'
 import * as toastr from 'toastr'
 
-import { ICourse, IAuthor, createCourseWithId } from '../../models'
-import { courseActions, RootState } from '../../redux'
+import { ICourse, IAuthor, createCourseWithId } from 'src/models'
+import { RootState, RootDispatch, loadCourses, saveCourse } from 'src/redux'
 import { CourseForm } from './CourseForm'
+import { bindActionCreator } from 'src/util/reduxUtil'
+import { IReactRouterProps } from 'src/util/reactRouterUtil'
 
 interface IMatchParams { courseId: string }
-interface IStateProps extends RouteComponentProps<IMatchParams> {
-  initialCourse: ICourse,  // Not required when adding a new course
-  authors: IAuthor[],
-  courseId: string,        // Supplied by react router when adding a new course
-}
-interface IDispatchProps {
-  actions: typeof courseActions,
-}
-export interface IManageCoursePageProps extends IStateProps, IDispatchProps { }
+
+export type IManageCoursePageProps =
+  & IReactRouterProps<IMatchParams>
+  & ReturnType<typeof mapStateToProps>
+  & ReturnType<typeof mapDispatchToProps>
+  & {
+    initialCourse?: ICourse,  // Not required when adding a new course
+    authors: IAuthor[],
+  }
 
 export interface IManageCoursePageState {
   course: ICourse,
@@ -79,6 +79,7 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
       toastr.success('Course saved!')
     } catch (error) {
       toastr.error(error)
+      console.error(error)
     } finally {
       this.setState({saving: false})
       this.props.history.goBack()
@@ -99,7 +100,7 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
   }
 }
 
-function mapStateToProps(state: RootState, ownProps: IManageCoursePageProps) {
+function mapStateToProps(state: RootState, ownProps: any) {
   const courseId = ownProps.match.params.courseId
 
   let course = null
@@ -117,10 +118,14 @@ function mapStateToProps(state: RootState, ownProps: IManageCoursePageProps) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators(courseActions, dispatch),
-  }
+function mapDispatchToProps(dispatch: RootDispatch) {
+  // Binding action creators individually results in correct
+  // static typing of this method, whereas using Redux.bindActionCreators
+  // does not.
+  return {actions: {
+    loadCourses: bindActionCreator(loadCourses, dispatch),
+    saveCourse: bindActionCreator(saveCourse, dispatch),
+  }}
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)

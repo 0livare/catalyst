@@ -10,3 +10,9 @@ export type RootState = {
   courses: ICourse[],
   ajaxCallsInProgress: number,
 }
+
+export const InitialState: RootState = {
+  authors: [],
+  courses: [],
+  ajaxCallsInProgress: 0,
+}

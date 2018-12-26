@@ -1,13 +1,11 @@
 import * as types from './types'
-import { InitialState } from '../initialState'
-import {
-  AjaxStatusAction,
-} from '../'
+import { InitialState } from '../rootState'
+import { AjaxStatusAction } from '../'
 
 /*
  * This reducer establishes a convention: That after every
  * asynchronous call to the API, a FOO_BAR_SUCCESS action will
- * be dispatched.  That is to say a success whos type has a
+ * be dispatched.  That is to say a success whose type has a
  * suffix of '_SUCCESS'.
  *
  * This convention allows us to manage the number of AJAX calls
