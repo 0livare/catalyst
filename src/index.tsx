@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 import {configureStore} from './redux'
 import {loadCourses, loadAuthors} from './redux'
 
-import Root from './react/Root'
+import Root from './react/layout/Root'
 
 const store = configureStore()
 store.dispatch(loadCourses())
@@ -17,8 +17,8 @@ ReactDOM.render(<Root store={store} />, htmlRoot)
 // Hot Module Replacement API
 // Must be placed directly below the call to react-dom#render
 if (module.hot) {
-  module.hot.accept('./react/Root', () => {
-    const NewRoot = require('./react/Root').default
+  module.hot.accept('./react/layout/Root', () => {
+    const NewRoot = require('./react/layout/Root').default
     ReactDOM.render(<NewRoot store={store} />, htmlRoot)
   })
 }

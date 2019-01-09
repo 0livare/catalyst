@@ -1,0 +1,21 @@
+$primary: #2196F3;
+$primary-light: #64B5F6;
+$primary-dark: #1565C0;
+
+$neutral-cool: #B1B3B3;
+$neutral-cool-light:   rgba($neutral-cool, 0.35);
+$neutral-cool-lighter: rgba($neutral-cool, 0.15);
+
+$neutral-warm: #796E65;
+
+// The :export directive is magic sauce for webpack,
+// allowing these colors to be used in JS as well as SCSS
+:export {
+  primary: $primary;
+  primaryLight: $primary-light;
+  primaryDark: $primary-dark;
+  neutral: $neutral-cool;
+  neutralLight: $neutral-cool-light;
+  neutralLighter: $neutral-cool-lighter;
+  neutralWarm: $neutral-warm;
+}

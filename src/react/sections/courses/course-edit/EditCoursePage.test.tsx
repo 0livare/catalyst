@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {mount} from 'enzyme'
 
-import {ManageCoursePage, IManageCoursePageProps} from './EditCoursePage'
+import {EditCoursePage, IEditCoursePageProps} from './EditCoursePage'
 import {createCourseWithId, ICourse} from 'src/models'
 
 const authors = ['zach', 'kelsier', 'vin']
@@ -14,7 +14,7 @@ let mockCourseActions = {
 
 describe ('Manage Course Page', () => {
   it('sets error message when trying to save empty title', () => {
-    const props: IManageCoursePageProps  = {
+    const props: IEditCoursePageProps  = {
       initialCourse: course,
       authors: [...authors.map(a => ({id: a}))],
       courseId: course.id,
@@ -22,9 +22,13 @@ describe ('Manage Course Page', () => {
       history: null,
       location: null,
       match: null,
+      isSubmitted: false,
+      error: null,
+      redirectPath: null,
+      submit: () => {/*do nothing*/},
     }
 
-    const wrapper = mount(<ManageCoursePage {...props}/>)
+    const wrapper = mount(<EditCoursePage {...props}/>)
     const saveButton = wrapper.find('input').last()
 
     expect(saveButton.prop('type')).toBe('submit')

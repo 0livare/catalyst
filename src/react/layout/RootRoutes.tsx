@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import {HomePage} from './sections/home/HomePage'
-import {AboutPage} from './sections/about/AboutPage'
-import {CoursePage} from './sections/courses'
+import {HomePage} from 'src/react/sections/home/HomePage'
+import {AboutPage} from 'src/react/sections/about/AboutPage'
+import {CoursePage} from 'src/react/sections/courses'
 import {FourOhFourPage} from 'src/react/components/FourOhFourPage'
 
 export const RootRoutes: React.SFC<{}> = () => {
