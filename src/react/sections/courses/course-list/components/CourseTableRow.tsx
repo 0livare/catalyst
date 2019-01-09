@@ -3,11 +3,11 @@ import {Link} from 'react-router-dom'
 
 import {ICourse} from 'src/models'
 
-export interface ICourseListRowProps {
+export interface ICourseTableRowProps {
   course: ICourse,
 }
 
-export const CourseListRow: React.SFC<ICourseListRowProps> = ({course}) => {
+export const CourseTableRow: React.SFC<ICourseTableRowProps> = ({course}) => {
   return (
     <tr>
       <td><a target='_blank'>Watch</a></td>

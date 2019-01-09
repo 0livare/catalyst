@@ -4,7 +4,7 @@ import {Navbar, NavItem, Nav} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
-import * as s from './Nav.scss'
+import * as s from './Navigation.scss'
 import {Typography} from '@material-ui/core'
 
 export interface INavProps {

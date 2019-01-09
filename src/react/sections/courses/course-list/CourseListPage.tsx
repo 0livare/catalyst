@@ -1,10 +1,12 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 
+import * as s from './CourseListPage.scss'
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
-import {CourseList} from './components/CourseList'
+import {CourseTable} from './components/CourseTable'
 import {bindActionCreator} from 'src/util/reduxUtil'
 import {IReactRouterProps} from 'src/util/reactRouterUtil'
+import {Button, Typography} from '@material-ui/core'
 
 export type ICourseListPageProps =
   & ReturnType<typeof mapStateToProps>
@@ -28,10 +30,19 @@ export class CourseListPage extends React.Component<ICourseListPageProps> {
 
   public render() {
     return (
-      <CourseList
-        courses={this.props.courses}
-        onAddCourse={this.redirectToAddCourseListPage}
-      />
+      <div>
+        <div className={s.titleRow}>
+          <Typography variant='h2'>Courses</Typography>
+          <Button
+            onClick={this.redirectToAddCourseListPage}
+            color='primary'
+            variant='contained'
+          >
+            + Add Course
+          </Button>
+        </div>
+        <CourseTable courses={this.props.courses}/>
+      </div>
     )
   }
 }
