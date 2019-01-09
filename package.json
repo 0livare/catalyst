@@ -86,7 +86,6 @@
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.3",
     "style-loader": "0.13.1",
-    "toastr": "^2.1.4",
     "typescript": "^2.7.2",
     "typings-for-css-modules-loader": "^1.7.0",
     "webpack": "^4.20.2",

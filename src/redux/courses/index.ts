@@ -1,3 +1,4 @@
-export * from './courseActions'
+export * from './actions'
 export * from './types'
-export * from './courseReducer'
+export * from './reducer'
+export * from './state'

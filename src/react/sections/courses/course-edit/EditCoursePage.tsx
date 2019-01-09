@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import * as toastr from 'toastr'
 
 import {ICourse, IAuthor, createCourseWithId} from 'src/models'
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
 import {CourseForm} from './components/CourseForm'
 import {bindActionCreator} from 'src/util/reduxUtil'
 import {IReactRouterProps} from 'src/util/reactRouterUtil'
+import {connectSubmitForm, InjectedSubmitFormProps, GO_BACK_URL} from 'src/react/components/connectSubmitForm'
 
 interface IMatchParams { courseId: string }
 
@@ -14,6 +14,7 @@ export type IEditCoursePageProps =
   & IReactRouterProps<IMatchParams>
   & ReturnType<typeof mapStateToProps>
   & ReturnType<typeof mapDispatchToProps>
+  & InjectedSubmitFormProps<ICourse>
   & {
     initialCourse?: ICourse,  // Not required when adding a new course
     authors: IAuthor[],
@@ -64,17 +65,10 @@ export class EditCoursePage extends React.Component<IEditCoursePageProps, IEditC
   private saveCourse = async (event: React.MouseEvent<HTMLInputElement>) => {
     event.preventDefault()
 
-    try {
-      this.setState({saving: true})
-      await this.props.actions.saveCourse(this.state.course)
-      toastr.success('Course saved!')
-    } catch (error) {
-      toastr.error(error)
-      console.error(error)
-    } finally {
-      this.setState({saving: false})
-      this.props.history.goBack()
-    }
+    this.props.submit(
+      GO_BACK_URL,
+      this.props.actions.saveCourse(this.state.course),
+    )
   }
 
   public render() {
@@ -101,7 +95,7 @@ function mapStateToProps(state: RootState, ownProps: any) {
   const courseId = ownProps.match.params.courseId
 
   let course = null
-  for (const c of state.courses) {
+  for (const c of state.courseState.courses) {
     if (c.id === courseId) {
       course = c
       break
@@ -126,4 +120,6 @@ function mapDispatchToProps(dispatch: RootDispatch) {
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(EditCoursePage)
-export {container as default}
+const submit = connectSubmitForm()(container)
+
+export {submit as default}

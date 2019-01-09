@@ -7,7 +7,7 @@ import {
   beginAjaxCall,
   ajaxCallError,
   RootThunkAction,
-} from '../'
+} from '..'
 import {createThunk} from 'src/util/reduxUtil'
 
 /*************************

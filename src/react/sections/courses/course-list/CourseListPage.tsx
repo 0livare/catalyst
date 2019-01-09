@@ -37,11 +37,13 @@ export class CourseListPage extends React.Component<ICourseListPageProps> {
 }
 
 function mapStateToProps(state: RootState) {
-  if (!state.courses) return {}
+  let courses = state.courseState.courses
+  if (!courses) return {}
 
-  const courses = [...state.courses]
-  courses.sort((a, b) => a.title.localeCompare(b.title))
-  return {courses}
+  const copiedCourses = [...courses]
+  copiedCourses.sort((a, b) => a.title.localeCompare(b.title))
+
+  return {courses: copiedCourses}
 }
 
 function mapDispatchToProps(dispatch: RootDispatch) {

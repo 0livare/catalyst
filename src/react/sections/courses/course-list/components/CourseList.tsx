@@ -21,15 +21,15 @@ export const CourseList: React.SFC<ICourseListProps> = (props) => {
         Add Course
       </Button>
 
-      <table className='table'>
+      <table className='table' style={{fontSize: '1.6rem'}}>
         <thead>
-        <tr>
-          <th>&nbsp;</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Category</th>
-          <th>Length</th>
-        </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Length</th>
+          </tr>
         </thead>
         <tbody>
         {
