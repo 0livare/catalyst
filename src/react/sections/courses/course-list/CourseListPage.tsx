@@ -1,10 +1,8 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {Route, Switch} from 'react-router-dom'
 
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
 import {CourseList} from './components/CourseList'
-import EditCoursePage from '../course-edit/EditCoursePage'
 import {bindActionCreator} from 'src/util/reduxUtil'
 import {IReactRouterProps} from 'src/util/reactRouterUtil'
 
@@ -28,29 +26,13 @@ export class CourseListPage extends React.Component<ICourseListPageProps> {
     this.props.history.push(`/courses/${crappyId}`)
   }
 
-  /* tslint:disable:no-shadowed-variable */
   public render() {
-    const {courses, match} = this.props
-
     return (
-      <Switch>
-        <Route
-          exact
-          path={match.path}
-          render={() => (
-            <CourseList
-              courses={courses}
-              onAddCourse={this.redirectToAddCourseListPage}
-            />
-          )}
-        />
-        <Route
-          exact
-          path={`${match.path}/:courseId`}
-          component={EditCoursePage}
-        />
-      </Switch>
-     )
+      <CourseList
+        courses={this.props.courses}
+        onAddCourse={this.redirectToAddCourseListPage}
+      />
+    )
   }
 }
 

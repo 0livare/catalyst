@@ -19,7 +19,7 @@ export const Navigation: React.SFC<INavProps> = ({loading}) => {
             exact
             to='/'
           >
-              React Starter Kit
+              Catalyst
           </NavLink>
         </Navbar.Brand>
       </Navbar.Header>

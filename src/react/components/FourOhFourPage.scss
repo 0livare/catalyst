@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.helperText {
+  width: 70%;
+  margin-top: -60px;
+  opacity: 0.9;
+}

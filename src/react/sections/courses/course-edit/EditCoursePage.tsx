@@ -41,7 +41,7 @@ export class EditCoursePage extends React.Component<IEditCoursePageProps, IEditC
     }
   }
 
-  public updateCourseState(event: NamedTarget) {
+  public updateCourseState = (event: NamedTarget) => {
     const field = event.target.name
     const course = Object.assign({}, this.state.course)
 
@@ -51,17 +51,17 @@ export class EditCoursePage extends React.Component<IEditCoursePageProps, IEditC
     return this.setState({course})
   }
 
-  private updateCourseAuthor(
+  private updateCourseAuthor = (
     event: React.ChangeEvent<HTMLSelectElement>,
-    child: React.ReactNode)
-  {
+    child: React.ReactNode,
+  ) => {
     const course = Object.assign({}, this.state.course)
 
     course.authorId = event.target.value
     return this.setState({course})
   }
 
-  private async saveCourse(event: React.MouseEvent<HTMLInputElement>) {
+  private saveCourse = async (event: React.MouseEvent<HTMLInputElement>) => {
     event.preventDefault()
 
     try {
