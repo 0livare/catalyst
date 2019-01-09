@@ -82,7 +82,7 @@
     "description": "A redux thunk to fetch data from a server, using NMS utility method to avoid repetition",
     "body": [
       "export function $1($2): ThunkResult<$3> {",
-        "  return executeThunk({",
+        "  return createThunk({",
         "    begin: $1Begin,",
         "    api: () => $4,",
         "    success: $1Success,",
