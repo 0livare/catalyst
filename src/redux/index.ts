@@ -1,6 +1,7 @@
 export * from './authors'
 export * from './courses'
 export * from './ajaxStatus'
+export * from './notifications'
 export * from './store/configureStore'
 
 export * from './rootReducer'

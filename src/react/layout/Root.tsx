@@ -6,6 +6,8 @@ import {hot} from 'react-hot-loader'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import {App} from './App'
+import {SnackbarProvider} from './Snackbar/SnackbarProvider'
+import SnackbarNotifier from './Snackbar/SnackbarNotifier'
 
 export interface IRootProps { store: Store<any> }
 
@@ -19,9 +21,14 @@ class Root extends React.Component<IRootProps, {}> {
       <>
         <CssBaseline />
         <Provider store={this.props.store}>
-          <Router>
-            <Route path='/' component={App} />
-          </Router>
+          <SnackbarProvider>
+            <React.Fragment>
+              <SnackbarNotifier />
+              <Router>
+                <Route path='/' component={App} />
+              </Router>
+            </React.Fragment>
+          </SnackbarProvider>
         </Provider>
       </>
     )
