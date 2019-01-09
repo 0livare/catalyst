@@ -13,7 +13,7 @@ let mockCourseActions = {
 }
 
 describe ('Manage Course Page', () => {
-  test('sets error message when trying to save empty title', () => {
+  it('sets error message when trying to save empty title', () => {
     const props: IManageCoursePageProps  = {
       initialCourse: course,
       authors: [...authors.map(a => ({id: a}))],

@@ -27,19 +27,19 @@ describe('connectSubmitForm HOC', () => {
     wrappedComponent = wrapper.childAt(0)
   })
 
-  test('passes correct initial props to wrapped component', () => {
+  it('passes correct initial props to wrapped component', () => {
     expect(wrappedComponent.prop('isSubmitted')).toBe(false)
     expect(wrappedComponent.prop('error')).toBeFalsy()
     expect(wrappedComponent.prop('submit')).toBeTruthy()
   })
 
-  test('updates isSubmitted upon calling submit()', async () => {
+  it('updates isSubmitted upon calling submit()', async () => {
     expect(getProps().isSubmitted).toBe(false)
     await submit(Promise.resolve())
     expect(getProps().isSubmitted).toBe(true)
   })
 
-  test('updates isSubmitted and sends error upon failed submit()', async () => {
+  it('updates isSubmitted and sends error upon failed submit()', async () => {
     expect(getProps().isSubmitted).toBe(false)
 
     await submit(Promise.reject())
@@ -48,18 +48,18 @@ describe('connectSubmitForm HOC', () => {
     expect(getProps().error).toBeTruthy()
   })
 
-  test('redirects on successful submit', async () => {
+  it('redirects on successful submit', async () => {
     await submit(Promise.resolve())
     expect(redirect).toHaveBeenCalledTimes(1)
     expect(redirect).toHaveBeenLastCalledWith('/zach')
   })
 
-  test('does not redirect on failed submit', async () => {
+  it('does not redirect on failed submit', async () => {
     await submit(Promise.reject())
     expect(redirect).toHaveBeenCalledTimes(0)
   })
 
-  test('awaits the passed promise before redirecting', (done) => {
+  it('awaits the passed promise before redirecting', (done) => {
     expect(getProps().isSubmitted).toBe(false)
 
     submit(new Promise((resolve) => {

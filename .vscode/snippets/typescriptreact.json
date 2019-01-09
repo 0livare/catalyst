@@ -137,7 +137,7 @@
     "prefix": "itt",
     "description": "A single unit test for jest",
     "body": [
-      "test('$1', () => {",
+      "it('$1', () => {",
       "  $0",
       "})"
     ]
