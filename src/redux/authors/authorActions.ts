@@ -1,8 +1,9 @@
-import { ThunkResult } from '../'
+import {RootThunkAction} from '../'
 import authorApi from '../../api/authorApi'
-import { LOAD_AUTHORS_SUCCESS } from './types'
-import { IAuthor } from '../../models'
-import { OtherAction, beginAjaxCall } from '../'
+import {LOAD_AUTHORS_SUCCESS} from './types'
+import {IAuthor} from '../../models'
+import {OtherAction, beginAjaxCall} from '../'
+import {createThunk} from 'src/util/reduxUtil'
 
 /*************************
  * ACTION TYPES/CREATORS
@@ -28,10 +29,10 @@ export type AuthorAction =
  * THUNKS
  *************************/
 
-export function loadAuthors(): ThunkResult<void> {
-  return async (dispatch, getState) => {
-    dispatch(beginAjaxCall())
-    const authors = await authorApi.getAllAuthors()
-    dispatch(loadAuthorsSuccess(authors))
-  }
+export function loadAuthors(): RootThunkAction<Promise<IAuthor[]>> {
+  return createThunk({
+    begin: beginAjaxCall,
+    api: authorApi.getAllAuthors,
+    success: loadAuthorsSuccess,
+  })
 }

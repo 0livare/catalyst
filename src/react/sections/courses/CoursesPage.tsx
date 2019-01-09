@@ -1,25 +1,17 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
-import { bindActionCreators } from 'redux'
-import { Route, Switch } from 'react-router-dom'
-import * as H from 'history'
-import { match } from 'react-router'
+import {connect} from 'react-redux'
+import {Route, Switch} from 'react-router-dom'
 
-import { ICourse } from '../../models'
-import { CourseAction, RootState, courseActions } from '../../redux'
-import { CourseList } from './CourseList'
+import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
+import {CourseList} from './CourseList'
 import ManageCoursePage from './ManageCoursePage'
+import {bindActionCreator} from 'src/util/reduxUtil'
+import {IReactRouterProps} from 'src/util/reactRouterUtil'
 
-interface IStateProps {
-  courses: ICourse[],
-  match: match<any>, // Supplied by react router
-  history: H.History,            // Supplied by react router
-}
-interface IDispatchProps {
-  actions: typeof courseActions
-}
-export interface ICoursePageProps extends IStateProps, IDispatchProps { }
+export type ICoursePageProps =
+  & ReturnType<typeof mapStateToProps>
+  & ReturnType<typeof mapDispatchToProps>
+  & IReactRouterProps<any>
 
 export class CoursesPage extends React.Component<ICoursePageProps> {
   constructor(props: ICoursePageProps) {
@@ -43,7 +35,7 @@ export class CoursesPage extends React.Component<ICoursePageProps> {
 
   /* tslint:disable:no-shadowed-variable */
   public render() {
-    const { courses, match } = this.props
+    const {courses, match} = this.props
 
     const courseList = (
       <CourseList
@@ -70,17 +62,22 @@ export class CoursesPage extends React.Component<ICoursePageProps> {
 }
 
 function mapStateToProps(state: RootState) {
+  if (!state.courses) return {}
+
   const courses = [...state.courses]
   courses.sort((a, b) => a.title.localeCompare(b.title))
-
-  return { courses }
+  return {courses}
 }
 
-function mapDispatchToProps(dispatch: Dispatch<CourseAction>) {
-  return {
-    actions: bindActionCreators(courseActions, dispatch),
-  }
+function mapDispatchToProps(dispatch: RootDispatch) {
+  // Binding action creators individually results in correct
+  // static typing of this method, whereas using Redux.bindActionCreators
+  // does not.
+  return {actions: {
+    loadCourses: bindActionCreator(loadCourses, dispatch),
+    saveCourse: bindActionCreator(saveCourse, dispatch),
+  }}
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
-export { container as default }
+export {container as default}

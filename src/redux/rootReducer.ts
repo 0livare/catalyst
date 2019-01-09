@@ -15,4 +15,4 @@ const rootReducer: Reducer<RootState> = combineReducers({
   ajaxCallsInProgress: ajaxStatusReducer,
 })
 
-export { rootReducer }
+export {rootReducer}

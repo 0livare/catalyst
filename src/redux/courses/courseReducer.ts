@@ -1,6 +1,7 @@
 import * as types from './types'
-import { InitialState } from '../initialState'
-import { CourseAction } from '../'
+import {InitialState} from '../rootState'
+import {CourseAction} from '../'
+import {ICourse} from 'src/models'
 
 /*
  * It's important to note that each reducer only handles
@@ -11,7 +12,7 @@ import { CourseAction } from '../'
  * initial state.
  */
 export function courseReducer(
-  state = InitialState.courses,
+  state: ICourse[] = InitialState.courses,
   action: CourseAction)
 {
   switch (action.type) {
@@ -20,13 +21,17 @@ export function courseReducer(
     case types.CREATE_COURSE_SUCCESS:
       return [
         ...state,
-        Object.assign({}, action.course),
+        {...action.course},
       ]
     case types.UPDATE_COURSE_SUCCESS:
+      if (!action.course) return state
+
       const courseIdUpdated = action.course.id
       const allOtherCourses = state.filter(course => course.id !== courseIdUpdated)
-      const updatedCourseCopy = Object.assign({}, action.course)
-      return [...allOtherCourses, updatedCourseCopy]
+      return [
+        ...allOtherCourses,
+        {...action.course},
+      ]
 
     default:
       return state

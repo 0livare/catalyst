@@ -1,15 +1,15 @@
 import * as React from 'react'
-import { Button } from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 
-import { ICourse } from '../../models'
-import { CourseListRow } from './CourseListRow'
+import {ICourse} from 'src/models'
+import {CourseListRow} from './CourseListRow'
 
 export interface ICourseListProps {
   courses: ICourse[],
   redirectToAddCoursePage: () => void,
 }
 
-export const CourseList: React.SFC<ICourseListProps> = ({ courses, redirectToAddCoursePage }) => {
+export const CourseList: React.SFC<ICourseListProps> = ({courses, redirectToAddCoursePage}) => {
   return (
     <div>
       <h1>Courses</h1>
@@ -32,7 +32,7 @@ export const CourseList: React.SFC<ICourseListProps> = ({ courses, redirectToAdd
         </tr>
         </thead>
         <tbody>
-        {courses.map(course =>
+        {courses && courses.map(course =>
           <CourseListRow key={course.id} course={course} />,
         )}
         </tbody>

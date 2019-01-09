@@ -1,14 +1,14 @@
 import * as React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
-import { Grid, Row, Col } from 'react-bootstrap'
-import { connect } from 'react-redux'
+import {Grid, Row, Col} from 'react-bootstrap'
+import {connect} from 'react-redux'
 
-import { RootState } from '../redux'
-import { Navigation } from './common/Navigation'
-import { HomePage } from './home/HomePage'
-import { AboutPage } from './about/AboutPage'
-import CoursesPage from './courses/CoursesPage'
+import {RootState} from '../redux'
+import {Navigation} from './components/Navigation'
+import {HomePage} from './sections/home/HomePage'
+import {AboutPage} from './sections/about/AboutPage'
+import CoursesPage from './sections/courses/CoursesPage'
 
 export interface IAppProps {
   loading: boolean,
@@ -47,7 +47,7 @@ class MasterPage extends React.Component<IAppProps, {}> {
 }
 
 function mapStateToProps(state: RootState) {
-  return { loading: state.ajaxCallsInProgress > 0 }
+  return {loading: state.ajaxCallsInProgress > 0}
 }
 const container = connect(mapStateToProps, null)(MasterPage)
-export { container as App }
+export {container as App}

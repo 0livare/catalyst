@@ -14,6 +14,9 @@ export default {
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    alias: {
+      'src': path.resolve(__dirname, './src'),
+    },
   },
   target: 'web',
   output: {

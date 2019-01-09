@@ -1,45 +1,41 @@
 import * as types from './types'
-import { ICourse } from '../../models'
+import {ICourse} from '../../models'
 import courseApi from '../../api/courseApi'
 
 import {
-  LOAD_COURSES_SUCCESS,
-  CREATE_COURSE_SUCCESS,
-  UPDATE_COURSE_SUCCESS,
-} from './types'
-import {
   OtherAction,
-  ThunkResult,
   beginAjaxCall,
   ajaxCallError,
+  RootThunkAction,
 } from '../'
+import {createThunk} from 'src/util/reduxUtil'
 
 /*************************
  * ACTION TYPES/CREATORS
  *************************/
 
 export type LoadCoursesSuccessAction = {
-  type: LOAD_COURSES_SUCCESS,
+  type: types.LOAD_COURSES_SUCCESS,
   courses: ICourse[],
 }
 export function loadCoursesSuccess(courses: ICourse[]): LoadCoursesSuccessAction {
-  return { type: types.LOAD_COURSES_SUCCESS, courses }
+  return {type: types.LOAD_COURSES_SUCCESS, courses}
 }
 
 export type CreateCourseSuccessAction = {
-  type: CREATE_COURSE_SUCCESS,
+  type: types.CREATE_COURSE_SUCCESS,
   course: ICourse,
 }
 export function createCourseSuccess(course: ICourse): CreateCourseSuccessAction {
-  return { type: types.CREATE_COURSE_SUCCESS, course }
+  return {type: types.CREATE_COURSE_SUCCESS, course}
 }
 
 export type UpdateCourseSuccessAction = {
-  type: UPDATE_COURSE_SUCCESS,
+  type: types.UPDATE_COURSE_SUCCESS,
   course: ICourse,
 }
 export function updateCourseSuccess(course: ICourse): UpdateCourseSuccessAction {
-  return { type: types.UPDATE_COURSE_SUCCESS, course }
+  return {type: types.UPDATE_COURSE_SUCCESS, course}
 }
 
 /*************************
@@ -56,38 +52,25 @@ export type CourseAction =
  * THUNKS
  *************************/
 
-export function loadCourses(): ThunkResult<ICourse[]> {
-  return async (dispatch, getState) => {
-    dispatch(beginAjaxCall())
-    const allCourses = await courseApi.getAllCourses()
-    console.log('loaded courses', allCourses) // tslint:disable-line
-    dispatch(loadCoursesSuccess(allCourses))
-    return allCourses
-  }
+export function loadCourses(): RootThunkAction<Promise<ICourse[]>> {
+  return createThunk({
+    begin: beginAjaxCall,
+    api: courseApi.getAllCourses,
+    success: loadCoursesSuccess,
+    fail: ajaxCallError,
+  })
 }
 
-export function saveCourse(course: ICourse): ThunkResult<void> {
-  return async (dispatch, getState) => {
-    try {
-      dispatch(beginAjaxCall())
-      const savedCourse = await courseApi.saveCourse(course)
+export function saveCourse(course: ICourse): RootThunkAction<Promise<ICourse>> {
+  return createThunk({
+    begin: beginAjaxCall,
+    api: () => courseApi.saveCourse(course),
+    success: (c: ICourse) => {
       const action = course.id
-        ? updateCourseSuccess(savedCourse)
-        : createCourseSuccess(savedCourse)
-
-      dispatch(action)
-    } catch (error) {
-      dispatch(ajaxCallError())
-      throw error
-    }
-  }
+        ? updateCourseSuccess
+        : createCourseSuccess
+      return action(c)
+    },
+    fail: ajaxCallError,
+  })
 }
-
-const courseActions = {
-  loadCoursesSuccess,
-  createCourseSuccess,
-  updateCourseSuccess,
-  loadCourses,
-  saveCourse,
-}
-export { courseActions }

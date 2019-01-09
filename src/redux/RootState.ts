@@ -1,4 +1,4 @@
-import { ICourse, IAuthor } from '../models'
+import {ICourse, IAuthor} from '../models'
 
 /*
  * The interface exported from this file depicts the overall structure
@@ -9,4 +9,10 @@ export type RootState = {
   authors: IAuthor[],
   courses: ICourse[],
   ajaxCallsInProgress: number,
+}
+
+export const InitialState: RootState = {
+  authors: [],
+  courses: [],
+  ajaxCallsInProgress: 0,
 }

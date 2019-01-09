@@ -1,4 +1,4 @@
-import { IAuthor, ICourse } from '../models'
+import {IAuthor, ICourse} from '../models'
 import courseApi from './courseApi'
 
 class AuthorApi {

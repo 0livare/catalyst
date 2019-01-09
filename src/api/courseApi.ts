@@ -1,5 +1,5 @@
-import { get, post } from './fetchHttp'
-import { ICourse } from '../models'
+import {get, post} from './fetchHttp'
+import {ICourse} from '../models'
 
 class CourseApi {
   public getAllCourses(): Promise<ICourse[]> {
