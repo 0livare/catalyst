@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {mount} from 'enzyme'
 
-import {ManageCoursePage, IManageCoursePageProps} from './ManageCoursePage'
+import {ManageCoursePage, IManageCoursePageProps} from './EditCoursePage'
 import {createCourseWithId, ICourse} from 'src/models'
 
 const authors = ['zach', 'kelsier', 'vin']

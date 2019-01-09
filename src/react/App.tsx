@@ -8,7 +8,7 @@ import {RootState} from '../redux'
 import {Navigation} from './components/Navigation'
 import {HomePage} from './sections/home/HomePage'
 import {AboutPage} from './sections/about/AboutPage'
-import CoursesPage from './sections/courses/CoursesPage'
+import CoursesPage from './sections/courses/course-list/CourseListPage'
 
 export interface IAppProps {
   loading: boolean,

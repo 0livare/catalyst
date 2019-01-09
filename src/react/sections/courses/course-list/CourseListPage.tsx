@@ -3,23 +3,18 @@ import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router-dom'
 
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
-import {CourseList} from './CourseList'
-import ManageCoursePage from './ManageCoursePage'
+import {CourseList} from './components/CourseList'
+import EditCoursePage from '../course-edit/EditCoursePage'
 import {bindActionCreator} from 'src/util/reduxUtil'
 import {IReactRouterProps} from 'src/util/reactRouterUtil'
 
-export type ICoursePageProps =
+export type ICourseListPageProps =
   & ReturnType<typeof mapStateToProps>
   & ReturnType<typeof mapDispatchToProps>
   & IReactRouterProps<any>
 
-export class CoursesPage extends React.Component<ICoursePageProps> {
-  constructor(props: ICoursePageProps) {
-    super(props)
-    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this)
-  }
-
-  private redirectToAddCoursePage() {
+export class CourseListPage extends React.Component<ICourseListPageProps> {
+  private redirectToAddCourseListPage = () => {
     // To be consistent with the schema, the id for this new
     // course should be a guid. But I don't want to add another
     // dependency just for that when we're working with mock
@@ -30,31 +25,29 @@ export class CoursesPage extends React.Component<ICoursePageProps> {
     // by react-router, which basically means that it
     // will automatically be in the props of every
     // component
-    this.props.history.push(`/courses/a${crappyId}`)
+    this.props.history.push(`/courses/${crappyId}`)
   }
 
   /* tslint:disable:no-shadowed-variable */
   public render() {
     const {courses, match} = this.props
 
-    const courseList = (
-      <CourseList
-        courses={courses}
-        redirectToAddCoursePage={this.redirectToAddCoursePage}
-      />)
-
-    /* tslint:disable:jsx-no-lambda */
     return (
       <Switch>
         <Route
           exact
           path={match.path}
-          render={() => courseList}
+          render={() => (
+            <CourseList
+              courses={courses}
+              onAddCourse={this.redirectToAddCourseListPage}
+            />
+          )}
         />
         <Route
           exact
           path={`${match.path}/:courseId`}
-          component={ManageCoursePage}
+          component={EditCoursePage}
         />
       </Switch>
      )
@@ -79,5 +72,5 @@ function mapDispatchToProps(dispatch: RootDispatch) {
   }}
 }
 
-const container = connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
+const container = connect(mapStateToProps, mapDispatchToProps)(CourseListPage)
 export {container as default}

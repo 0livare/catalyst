@@ -4,13 +4,13 @@ import * as toastr from 'toastr'
 
 import {ICourse, IAuthor, createCourseWithId} from 'src/models'
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
-import {CourseForm} from './CourseForm'
+import {CourseForm} from './components/CourseForm'
 import {bindActionCreator} from 'src/util/reduxUtil'
 import {IReactRouterProps} from 'src/util/reactRouterUtil'
 
 interface IMatchParams { courseId: string }
 
-export type IManageCoursePageProps =
+export type IEditCoursePageProps =
   & IReactRouterProps<IMatchParams>
   & ReturnType<typeof mapStateToProps>
   & ReturnType<typeof mapDispatchToProps>
@@ -19,7 +19,7 @@ export type IManageCoursePageProps =
     authors: IAuthor[],
   }
 
-export interface IManageCoursePageState {
+export interface IEditCoursePageState {
   course: ICourse,
   errors: object,
   saving: boolean,
@@ -27,8 +27,8 @@ export interface IManageCoursePageState {
 
 type NamedTarget = {target: {name: string, value: any}}
 
-export class ManageCoursePage extends React.Component<IManageCoursePageProps, IManageCoursePageState> {
-  constructor(props: IManageCoursePageProps) {
+export class EditCoursePage extends React.Component<IEditCoursePageProps, IEditCoursePageState> {
+  constructor(props: IEditCoursePageProps) {
     super(props)
 
     const initialCourse = props.initialCourse || createCourseWithId(this.props.courseId)
@@ -128,5 +128,5 @@ function mapDispatchToProps(dispatch: RootDispatch) {
   }}
 }
 
-const container = connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)
+const container = connect(mapStateToProps, mapDispatchToProps)(EditCoursePage)
 export {container as default}

@@ -6,16 +6,16 @@ import {CourseListRow} from './CourseListRow'
 
 export interface ICourseListProps {
   courses: ICourse[],
-  redirectToAddCoursePage: () => void,
+  onAddCourse: () => void,
 }
 
-export const CourseList: React.SFC<ICourseListProps> = ({courses, redirectToAddCoursePage}) => {
+export const CourseList: React.SFC<ICourseListProps> = (props) => {
   return (
     <div>
       <h1>Courses</h1>
       <Button
         type='submit'
-        onClick={redirectToAddCoursePage}
+        onClick={props.onAddCourse}
         bsStyle='primary'
       >
         Add Course
@@ -32,9 +32,11 @@ export const CourseList: React.SFC<ICourseListProps> = ({courses, redirectToAddC
         </tr>
         </thead>
         <tbody>
-        {courses && courses.map(course =>
-          <CourseListRow key={course.id} course={course} />,
-        )}
+        {
+          props.courses && props.courses.map(course =>
+            <CourseListRow key={course.id} course={course} />,
+          )
+        }
         </tbody>
       </table>
     </div>
