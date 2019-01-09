@@ -1,8 +1,8 @@
 import 'babel-polyfill'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { configureStore } from './redux'
-import { loadCourses, loadAuthors } from './redux'
+import {configureStore} from './redux'
+import {loadCourses, loadAuthors} from './redux'
 
 import Root from './react/Root'
 

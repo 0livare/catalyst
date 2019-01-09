@@ -1,7 +1,7 @@
 import * as types from './types'
-import { InitialState } from '../rootState'
-import { CourseAction } from '../'
-import { ICourse } from 'src/models'
+import {InitialState} from '../rootState'
+import {CourseAction} from '../'
+import {ICourse} from 'src/models'
 
 /*
  * It's important to note that each reducer only handles

@@ -1,5 +1,5 @@
 import * as types from './types'
-import { ICourse } from '../../models'
+import {ICourse} from '../../models'
 import courseApi from '../../api/courseApi'
 
 import {
@@ -8,7 +8,7 @@ import {
   ajaxCallError,
   RootThunkAction,
 } from '../'
-import { createThunk } from 'src/util/reduxUtil'
+import {createThunk} from 'src/util/reduxUtil'
 
 /*************************
  * ACTION TYPES/CREATORS
@@ -19,7 +19,7 @@ export type LoadCoursesSuccessAction = {
   courses: ICourse[],
 }
 export function loadCoursesSuccess(courses: ICourse[]): LoadCoursesSuccessAction {
-  return { type: types.LOAD_COURSES_SUCCESS, courses }
+  return {type: types.LOAD_COURSES_SUCCESS, courses}
 }
 
 export type CreateCourseSuccessAction = {
@@ -27,7 +27,7 @@ export type CreateCourseSuccessAction = {
   course: ICourse,
 }
 export function createCourseSuccess(course: ICourse): CreateCourseSuccessAction {
-  return { type: types.CREATE_COURSE_SUCCESS, course }
+  return {type: types.CREATE_COURSE_SUCCESS, course}
 }
 
 export type UpdateCourseSuccessAction = {
@@ -35,7 +35,7 @@ export type UpdateCourseSuccessAction = {
   course: ICourse,
 }
 export function updateCourseSuccess(course: ICourse): UpdateCourseSuccessAction {
-  return { type: types.UPDATE_COURSE_SUCCESS, course }
+  return {type: types.UPDATE_COURSE_SUCCESS, course}
 }
 
 /*************************

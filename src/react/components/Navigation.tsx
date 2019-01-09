@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
-import { Navbar, NavItem, Nav } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import {NavLink} from 'react-router-dom'
+import {Navbar, NavItem, Nav} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 import * as s from './Nav.scss'

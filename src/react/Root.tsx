@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Provider } from 'react-redux'
-import { HashRouter as Router, Route } from 'react-router-dom'
-import { Store } from 'redux'
-import { hot } from 'react-hot-loader'
+import {Provider} from 'react-redux'
+import {HashRouter as Router, Route} from 'react-router-dom'
+import {Store} from 'redux'
+import {hot} from 'react-hot-loader'
 
-import { App } from './App'
+import {App} from './App'
 
 export interface IRootProps { store: Store<any> }
 

@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Route, Switch} from 'react-router-dom'
 
-import {  RootState, RootDispatch, loadCourses, saveCourse } from 'src/redux'
-import { CourseList } from './CourseList'
+import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
+import {CourseList} from './CourseList'
 import ManageCoursePage from './ManageCoursePage'
-import { bindActionCreator } from 'src/util/reduxUtil'
-import { IReactRouterProps } from 'src/util/reactRouterUtil'
+import {bindActionCreator} from 'src/util/reduxUtil'
+import {IReactRouterProps} from 'src/util/reactRouterUtil'
 
 export type ICoursePageProps =
   & ReturnType<typeof mapStateToProps>
@@ -35,7 +35,7 @@ export class CoursesPage extends React.Component<ICoursePageProps> {
 
   /* tslint:disable:no-shadowed-variable */
   public render() {
-    const { courses, match } = this.props
+    const {courses, match} = this.props
 
     const courseList = (
       <CourseList
@@ -66,7 +66,7 @@ function mapStateToProps(state: RootState) {
 
   const courses = [...state.courses]
   courses.sort((a, b) => a.title.localeCompare(b.title))
-  return { courses }
+  return {courses}
 }
 
 function mapDispatchToProps(dispatch: RootDispatch) {
@@ -80,4 +80,4 @@ function mapDispatchToProps(dispatch: RootDispatch) {
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
-export { container as default }
+export {container as default}

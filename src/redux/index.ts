@@ -8,11 +8,11 @@ export * from './rootState'
 export * from './rootAction'
 
 export type OtherAction = { type: '' }
-export const OtherAction: OtherAction = { type: '' }
+export const OtherAction: OtherAction = {type: ''}
 
-import { ThunkAction, ThunkDispatch } from 'redux-thunk'
-import { RootState } from './rootState'
-import { RootAction } from './rootAction'
+import {ThunkAction, ThunkDispatch} from 'redux-thunk'
+import {RootState} from './rootState'
+import {RootAction} from './rootAction'
 
 /**
  * A thunk is an asynchronous action, which takes the form of a function that is

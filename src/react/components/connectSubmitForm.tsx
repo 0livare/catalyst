@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IReactRouterProps } from 'src/util/reactRouterUtil'
+import {IReactRouterProps} from 'src/util/reactRouterUtil'
 
 /** The state that this HOC maintains */
 type IComposedSubmitFormState = {

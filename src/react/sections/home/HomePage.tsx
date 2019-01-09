@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Jumbotron, Button } from 'react-bootstrap'
+import {Jumbotron, Button} from 'react-bootstrap'
 
 export class HomePage extends React.Component {
   public render() {

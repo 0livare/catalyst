@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import * as toastr from 'toastr'
 
-import { ICourse, IAuthor, createCourseWithId } from 'src/models'
-import { RootState, RootDispatch, loadCourses, saveCourse } from 'src/redux'
-import { CourseForm } from './CourseForm'
-import { bindActionCreator } from 'src/util/reduxUtil'
-import { IReactRouterProps } from 'src/util/reactRouterUtil'
+import {ICourse, IAuthor, createCourseWithId} from 'src/models'
+import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
+import {CourseForm} from './CourseForm'
+import {bindActionCreator} from 'src/util/reduxUtil'
+import {IReactRouterProps} from 'src/util/reactRouterUtil'
 
 interface IMatchParams { courseId: string }
 
@@ -129,4 +129,4 @@ function mapDispatchToProps(dispatch: RootDispatch) {
 }
 
 const container = connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)
-export { container as default }
+export {container as default}

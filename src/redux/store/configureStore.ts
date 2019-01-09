@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware } from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
-import thunk, { ThunkMiddleware } from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk, {ThunkMiddleware} from 'redux-thunk'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
-import { RootState, rootReducer, RootAction, InitialState } from '../'
+import {RootState, rootReducer, RootAction, InitialState} from '../'
 
 export function configureStore(state: RootState = InitialState) {
   let middleware = applyMiddleware(

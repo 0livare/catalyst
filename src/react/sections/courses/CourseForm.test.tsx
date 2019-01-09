@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { shallow } from 'enzyme'
+import {shallow} from 'enzyme'
 
-import { CourseForm, ICourseFormProps } from './CourseForm'
-import { Course } from 'src/models'
+import {CourseForm, ICourseFormProps} from './CourseForm'
+import {Course} from 'src/models'
 
 /* tslint:disable:no-empty */
 

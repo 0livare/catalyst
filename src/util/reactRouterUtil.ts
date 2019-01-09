@@ -1,5 +1,5 @@
 import * as H from 'history'
-import { match, StaticContext } from 'react-router'
+import {match, StaticContext} from 'react-router'
 
 // Props supplied automatically by react router
 // Stolen and converted to type from @types/react-router
