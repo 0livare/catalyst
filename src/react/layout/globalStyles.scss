@@ -1,0 +1,40 @@
+@import "../../util/colors";
+
+@mixin defaultFont() {
+    $defaultBrowserFontSize: 16;
+
+    // This is done to allow for easy math when setting font sizes in rem units,
+    // while also respecting the browsers set font size by using a percentage.
+    // Assuming the default browser font size of 16px, a font size of 13px can be
+    // achieved with 1.3rem, a font size of 18px with 1.8rem...get it? =)
+    // But as I said, this will still scale with the browsers font size.
+    font-size: percentage(10 / $defaultBrowserFontSize);
+
+    @media only screen and (max-width: 800px) {
+        font-size: percentage(8 / $defaultBrowserFontSize);
+    }
+}
+
+:global(html) {
+    @include defaultFont();
+}
+
+:global(body) {
+    background: $neutral-cool-lighter;
+    @include defaultFont();
+}
+
+// Override the bootstrap styles
+
+:global(.btn-primary) {
+    background: $primary;
+}
+
+:global(a) {
+    color: $primary-light;
+}
+
+
+:global(*) {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}

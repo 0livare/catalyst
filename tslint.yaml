@@ -57,3 +57,5 @@ jsRules:
 
 rulesDirectory:
     - "node_modules/tslint-eslint-rules/dist/rules"
+
+autoFixOnSave: true

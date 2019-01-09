@@ -1,25 +1,20 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {Route, Switch} from 'react-router-dom'
 
+import * as s from './CourseListPage.scss'
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
-import {CourseList} from './CourseList'
-import ManageCoursePage from './ManageCoursePage'
+import {CourseTable} from './components/CourseTable'
 import {bindActionCreator} from 'src/util/reduxUtil'
 import {IReactRouterProps} from 'src/util/reactRouterUtil'
+import {Button, Typography} from '@material-ui/core'
 
-export type ICoursePageProps =
+export type ICourseListPageProps =
   & ReturnType<typeof mapStateToProps>
   & ReturnType<typeof mapDispatchToProps>
   & IReactRouterProps<any>
 
-export class CoursesPage extends React.Component<ICoursePageProps> {
-  constructor(props: ICoursePageProps) {
-    super(props)
-    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this)
-  }
-
-  private redirectToAddCoursePage() {
+export class CourseListPage extends React.Component<ICourseListPageProps> {
+  private redirectToAddCourseListPage = () => {
     // To be consistent with the schema, the id for this new
     // course should be a guid. But I don't want to add another
     // dependency just for that when we're working with mock
@@ -30,43 +25,36 @@ export class CoursesPage extends React.Component<ICoursePageProps> {
     // by react-router, which basically means that it
     // will automatically be in the props of every
     // component
-    this.props.history.push(`/courses/a${crappyId}`)
+    this.props.history.push(`/courses/${crappyId}`)
   }
 
-  /* tslint:disable:no-shadowed-variable */
   public render() {
-    const {courses, match} = this.props
-
-    const courseList = (
-      <CourseList
-        courses={courses}
-        redirectToAddCoursePage={this.redirectToAddCoursePage}
-      />)
-
-    /* tslint:disable:jsx-no-lambda */
     return (
-      <Switch>
-        <Route
-          exact
-          path={match.path}
-          render={() => courseList}
-        />
-        <Route
-          exact
-          path={`${match.path}/:courseId`}
-          component={ManageCoursePage}
-        />
-      </Switch>
-     )
+      <div>
+        <div className={s.titleRow}>
+          <Typography variant='h2'>Courses</Typography>
+          <Button
+            onClick={this.redirectToAddCourseListPage}
+            color='primary'
+            variant='contained'
+          >
+            + Add Course
+          </Button>
+        </div>
+        <CourseTable courses={this.props.courses}/>
+      </div>
+    )
   }
 }
 
 function mapStateToProps(state: RootState) {
-  if (!state.courses) return {}
+  let courses = state.courseState.courses
+  if (!courses) return {}
 
-  const courses = [...state.courses]
-  courses.sort((a, b) => a.title.localeCompare(b.title))
-  return {courses}
+  const copiedCourses = [...courses]
+  copiedCourses.sort((a, b) => a.title.localeCompare(b.title))
+
+  return {courses: copiedCourses}
 }
 
 function mapDispatchToProps(dispatch: RootDispatch) {
@@ -79,5 +67,5 @@ function mapDispatchToProps(dispatch: RootDispatch) {
   }}
 }
 
-const container = connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
+const container = connect(mapStateToProps, mapDispatchToProps)(CourseListPage)
 export {container as default}

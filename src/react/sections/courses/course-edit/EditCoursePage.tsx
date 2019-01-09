@@ -1,25 +1,26 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import * as toastr from 'toastr'
 
 import {ICourse, IAuthor, createCourseWithId} from 'src/models'
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
-import {CourseForm} from './CourseForm'
+import {CourseForm} from './components/CourseForm'
 import {bindActionCreator} from 'src/util/reduxUtil'
 import {IReactRouterProps} from 'src/util/reactRouterUtil'
+import {connectSubmitForm, InjectedSubmitFormProps, GO_BACK_URL} from 'src/react/components/connectSubmitForm'
 
 interface IMatchParams { courseId: string }
 
-export type IManageCoursePageProps =
+export type IEditCoursePageProps =
   & IReactRouterProps<IMatchParams>
   & ReturnType<typeof mapStateToProps>
   & ReturnType<typeof mapDispatchToProps>
+  & InjectedSubmitFormProps<ICourse>
   & {
     initialCourse?: ICourse,  // Not required when adding a new course
     authors: IAuthor[],
   }
 
-export interface IManageCoursePageState {
+export interface IEditCoursePageState {
   course: ICourse,
   errors: object,
   saving: boolean,
@@ -27,30 +28,21 @@ export interface IManageCoursePageState {
 
 type NamedTarget = {target: {name: string, value: any}}
 
-export class ManageCoursePage extends React.Component<IManageCoursePageProps, IManageCoursePageState> {
-  constructor(props: IManageCoursePageProps) {
+export class EditCoursePage extends React.Component<IEditCoursePageProps, IEditCoursePageState> {
+  constructor(props: IEditCoursePageProps) {
     super(props)
 
-    const initialCourse = props.initialCourse || createCourseWithId(this.props.courseId)
+    const initialCourse = props.initialCourse
+      || createCourseWithId(this.props.courseId)
 
     this.state = {
       course: Object.assign({}, initialCourse),
       errors: {},
       saving: false,
     }
-
-    this.updateCourseState = this.updateCourseState.bind(this)
-    this.updateCourseAuthor = this.updateCourseAuthor.bind(this)
-    this.saveCourse = this.saveCourse.bind(this)
   }
 
-  public componentWillReceiveProps() {
-    if (this.props.courseId !== this.state.course.id) {
-      this.setState({course: this.props.initialCourse})
-    }
-  }
-
-  public updateCourseState(event: NamedTarget) {
+  public updateCourseState = (event: NamedTarget) => {
     const field = event.target.name
     const course = Object.assign({}, this.state.course)
 
@@ -60,30 +52,23 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
     return this.setState({course})
   }
 
-  private updateCourseAuthor(
+  private updateCourseAuthor = (
     event: React.ChangeEvent<HTMLSelectElement>,
-    child: React.ReactNode)
-  {
+    child: React.ReactNode,
+  ) => {
     const course = Object.assign({}, this.state.course)
 
     course.authorId = event.target.value
     return this.setState({course})
   }
 
-  private async saveCourse(event: React.MouseEvent<HTMLInputElement>) {
+  private saveCourse = async (event: React.MouseEvent<HTMLInputElement>) => {
     event.preventDefault()
 
-    try {
-      this.setState({saving: true})
-      await this.props.actions.saveCourse(this.state.course)
-      toastr.success('Course saved!')
-    } catch (error) {
-      toastr.error(error)
-      console.error(error)
-    } finally {
-      this.setState({saving: false})
-      this.props.history.goBack()
-    }
+    this.props.submit(
+      GO_BACK_URL,
+      this.props.actions.saveCourse(this.state.course),
+    )
   }
 
   public render() {
@@ -98,13 +83,19 @@ export class ManageCoursePage extends React.Component<IManageCoursePageProps, IM
       />
     )
   }
+
+  public componentDidUpdate() {
+    if (this.props.courseId !== this.state.course.id) {
+      this.setState({course: this.props.initialCourse})
+    }
+  }
 }
 
 function mapStateToProps(state: RootState, ownProps: any) {
   const courseId = ownProps.match.params.courseId
 
   let course = null
-  for (const c of state.courses) {
+  for (const c of state.courseState.courses) {
     if (c.id === courseId) {
       course = c
       break
@@ -128,5 +119,7 @@ function mapDispatchToProps(dispatch: RootDispatch) {
   }}
 }
 
-const container = connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage)
-export {container as default}
+const container = connect(mapStateToProps, mapDispatchToProps)(EditCoursePage)
+const submit = connectSubmitForm()(container)
+
+export {submit as default}

@@ -4,7 +4,8 @@ import {Navbar, NavItem, Nav} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
-import * as s from './Nav.scss'
+import * as s from './Navigation.scss'
+import {Typography} from '@material-ui/core'
 
 export interface INavProps {
   loading: boolean,
@@ -19,19 +20,21 @@ export const Navigation: React.SFC<INavProps> = ({loading}) => {
             exact
             to='/'
           >
-              React Starter Kit
+            <Typography variant='h5'>
+              Catalyst
+            </Typography>
           </NavLink>
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
         <LinkContainer exact to='/' activeClassName={s.active}>
-          <NavItem>Home</NavItem>
+          <NavItem><Typography variant='body1'>Home</Typography></NavItem>
         </LinkContainer>
         <LinkContainer to='/courses' activeClassName={s.active}>
-          <NavItem>Courses</NavItem>
+          <NavItem><Typography variant='body1'>Courses</Typography></NavItem>
         </LinkContainer>
         <LinkContainer to='/about' activeClassName={s.active}>
-          <NavItem>About</NavItem>
+          <NavItem><Typography variant='body1'>About</Typography></NavItem>
         </LinkContainer>
       </Nav>
 
