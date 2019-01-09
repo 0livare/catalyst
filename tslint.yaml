@@ -37,6 +37,9 @@ rules:
   typedef-whitespace: false
   prefer-const: false
   no-unused-variable: true
+  object-curly-spacing:
+    - true
+    - "never"
 
 jsRules:
   max-line-length:
@@ -51,3 +54,6 @@ jsRules:
   ordered-imports: false
   object-literal-sort-keys: false
   curly: false
+
+rulesDirectory:
+    - "node_modules/tslint-eslint-rules/dist/rules"
