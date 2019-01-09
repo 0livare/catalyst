@@ -31,22 +31,13 @@ export class EditCoursePage extends React.Component<IEditCoursePageProps, IEditC
   constructor(props: IEditCoursePageProps) {
     super(props)
 
-    const initialCourse = props.initialCourse || createCourseWithId(this.props.courseId)
+    const initialCourse = props.initialCourse
+      || createCourseWithId(this.props.courseId)
 
     this.state = {
       course: Object.assign({}, initialCourse),
       errors: {},
       saving: false,
-    }
-
-    this.updateCourseState = this.updateCourseState.bind(this)
-    this.updateCourseAuthor = this.updateCourseAuthor.bind(this)
-    this.saveCourse = this.saveCourse.bind(this)
-  }
-
-  public componentWillReceiveProps() {
-    if (this.props.courseId !== this.state.course.id) {
-      this.setState({course: this.props.initialCourse})
     }
   }
 
@@ -97,6 +88,12 @@ export class EditCoursePage extends React.Component<IEditCoursePageProps, IEditC
         saving={this.state.saving}
       />
     )
+  }
+
+  public componentDidUpdate() {
+    if (this.props.courseId !== this.state.course.id) {
+      this.setState({course: this.props.initialCourse})
+    }
   }
 }
 
