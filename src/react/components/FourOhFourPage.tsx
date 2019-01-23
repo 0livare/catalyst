@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as s from './FourOhFourPage.scss'
 
 const BackLink = (props: {children: any}) => (
-  <a href='javascript:history.back()'>{...props.children}</a>
+  <a href='javascript:history.back()'>{props.children}</a>
 )
 
 export const FourOhFourPage = () => {

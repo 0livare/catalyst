@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import SelectField from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import {InputLabel} from '@material-ui/core'
-import * as cs from 'classnames'
+import cs from 'classnames'
 
 import * as s from './CourseForm.scss'
 import {ICourse, IAuthor} from 'src/models'

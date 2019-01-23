@@ -1,4 +1,3 @@
-import 'babel-polyfill'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import {configureStore} from './redux'
@@ -17,8 +16,8 @@ ReactDOM.render(<Root store={store} />, htmlRoot)
 // Hot Module Replacement API
 // Must be placed directly below the call to react-dom#render
 if (module.hot) {
-  module.hot.accept('./react/layout/Root', () => {
-    const NewRoot = require('./react/layout/Root').default
+  module.hot.accept('src/react/layout/Root', () => {
+    const NewRoot = require('src/react/layout/Root').default
     ReactDOM.render(<NewRoot store={store} />, htmlRoot)
   })
 }

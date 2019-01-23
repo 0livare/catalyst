@@ -7,7 +7,6 @@ export default {
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    // 'babel-polyfill',
     path.resolve(__dirname, 'src/index.tsx'),
   ],
   devtool: 'eval-source-map',
@@ -38,7 +37,6 @@ export default {
       { test: /\.tsx?$/, exclude: /node_modules/,
         use: [
           'babel-loader',
-          'awesome-typescript-loader',
           {loader: 'ifdef-loader', options: {DEBUG: true}},
         ],
       },
