@@ -4,11 +4,11 @@ import webpack from 'webpack'
 
 export default {
   mode: 'development',
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
-    path.resolve(__dirname, 'src/index.tsx'),
-  ],
+  entry: {
+    hot: 'react-hot-loader/patch',
+    hotClient: 'webpack-hot-middleware/client',
+    catalyst: path.resolve(__dirname, 'src/index.tsx'),
+  },
   devtool: 'eval-source-map',
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.

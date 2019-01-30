@@ -13,7 +13,7 @@ import chalk from 'chalk'
 import schema from './mockDataSchema'
 
 const json = JSON.stringify(jsf(schema), null, 2)
-const path = './src/api/db.json'
+const path = './bld/json-server/db.json'
 
 fs.writeFile(path, json, function(err) {
   if (err) {
