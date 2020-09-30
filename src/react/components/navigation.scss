@@ -1,0 +1,21 @@
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: blue;
+  height: 50px;
+  color: white;
+
+  a {
+    color: white;
+  }
+}
+
+.active {
+  background: #b8b8b8;
+
+  * {
+    color: white !important;
+  }
+}
