@@ -1,19 +1,19 @@
 export * from './authors'
 export * from './courses'
-export * from './ajaxStatus'
+export * from './ajax-status'
 export * from './notifications'
-export * from './store/configureStore'
+export * from './store'
 
-export * from './rootReducer'
-export * from './rootState'
-export * from './rootAction'
+export * from './root-reducer'
+export * from './root-state'
+export * from './root-action'
 
 export type OtherAction = { type: '' }
 export const OtherAction: OtherAction = {type: ''}
 
 import {ThunkAction, ThunkDispatch} from 'redux-thunk'
-import {RootState} from './rootState'
-import {RootAction} from './rootAction'
+import {RootState} from './root-state'
+import {RootAction} from './root-action'
 
 /**
  * A thunk is an asynchronous action, which takes the form of a function that is

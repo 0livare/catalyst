@@ -2,7 +2,7 @@ import {
   CourseAction,
   AuthorAction,
   AjaxStatusAction,
-} from './'
+} from '.'
 
 export type RootAction =
   | AuthorAction

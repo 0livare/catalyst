@@ -1,4 +1,4 @@
-import {get, post} from './fetchHttp'
+import {get, post} from './fetch-http'
 import {ICourse} from '../models'
 
 class CourseApi {

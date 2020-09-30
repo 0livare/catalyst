@@ -1,7 +1,7 @@
 import * as types from './types'
-import {InitialState} from '../rootState'
+import {InitialState} from '../root-state'
 import {NotificationAction} from './actions'
-import {createNotification} from 'src/models/INotification'
+import {createNotification} from 'src/models/i-notification'
 
 export function notificationReducer(
   state = InitialState.notifications,

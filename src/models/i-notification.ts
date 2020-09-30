@@ -1,4 +1,4 @@
-import {OptionsObject, VariantType} from 'notistack'
+import {OptionsObject, VariantType} from 'src/react/layout/snackbar/node_modules/notistack'
 
 export type INotification = {
   key: number,

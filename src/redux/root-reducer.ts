@@ -1,11 +1,11 @@
 import {Reducer} from 'redux'
-import {RootState, InitialState, RootAction} from './'
+import {RootState, InitialState, RootAction} from '.'
 import {
   courseReducer,
   authorReducer,
   ajaxStatusReducer,
   notificationReducer,
-} from './'
+} from '.'
 
 const rootReducer: Reducer<RootState> = (state = InitialState, action) => {
   // Reducers that manipulate the entire Redux state

@@ -1,4 +1,4 @@
-import {OtherAction} from '../'
+import {OtherAction} from '..'
 import {BEGIN_AJAX_CALL, AJAX_CALL_ERROR} from './types'
 
 /*************************

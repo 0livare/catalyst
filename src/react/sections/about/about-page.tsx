@@ -1,5 +1,5 @@
-import * as React from 'react'
-import {Typography} from '@material-ui/core'
+import * as React from 'src/react/layout/snackbar/node_modules/react'
+import {Typography} from 'src/react/layout/snackbar/node_modules/@material-ui/core'
 
 import * as s from './AboutPage.scss'
 

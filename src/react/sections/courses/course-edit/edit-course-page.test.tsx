@@ -1,7 +1,7 @@
-import * as React from 'react'
+import * as React from 'src/react/layout/snackbar/node_modules/react'
 import {mount} from 'enzyme'
 
-import {EditCoursePage, IEditCoursePageProps} from './EditCoursePage'
+import {EditCoursePage, IEditCoursePageProps} from './edit-course-page'
 import {createCourseWithId, ICourse} from 'src/models'
 
 const authors = ['zach', 'kelsier', 'vin']

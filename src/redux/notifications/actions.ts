@@ -1,5 +1,5 @@
 import * as types from './types'
-import {OptionsObject} from 'notistack'
+import {OptionsObject} from 'src/react/layout/snackbar/node_modules/notistack'
 import {OtherAction} from '..'
 
 export type EnqueueSnackbarAction = {

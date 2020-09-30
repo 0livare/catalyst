@@ -1,5 +1,5 @@
 import {IAuthor, ICourse} from '../models'
-import courseApi from './courseApi'
+import courseApi from './course-api'
 
 class AuthorApi {
   public getAllAuthors(): Promise<IAuthor[]> {

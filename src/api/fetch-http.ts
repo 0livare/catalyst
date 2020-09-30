@@ -10,7 +10,7 @@
  */
 import 'whatwg-fetch'
 import chalk from 'chalk'
-import getBaseUrl from './baseUrl'
+import getBaseUrl from './base-url'
 
 const baseUrl = getBaseUrl()
 

@@ -1,5 +1,5 @@
 import {RootThunkAction} from '../'
-import authorApi from '../../api/authorApi'
+import authorApi from '../../api/author-api'
 import {LOAD_AUTHORS_SUCCESS} from './types'
 import {IAuthor} from '../../models'
 import {OtherAction, beginAjaxCall} from '../'

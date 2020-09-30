@@ -1,7 +1,7 @@
-import * as React from 'react'
+import * as React from 'src/react/layout/snackbar/node_modules/react'
 
 import {ICourse} from 'src/models'
-import {CourseTableRow} from './CourseTableRow'
+import {CourseTableRow} from './course-table-row'
 
 export interface ICourseTableProps {
   courses: ICourse[],

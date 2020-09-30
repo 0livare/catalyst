@@ -1,5 +1,5 @@
 import '@babel/polyfill'
-import * as React from 'react'
+import * as React from 'src/react/layout/snackbar/node_modules/react'
 import * as ReactDOM from 'react-dom'
 import {configureStore} from './redux'
 import {loadCourses, loadAuthors} from './redux'

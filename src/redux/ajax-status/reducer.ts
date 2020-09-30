@@ -1,6 +1,6 @@
 import * as types from './types'
-import {InitialState} from '../rootState'
-import {AjaxStatusAction} from '../'
+import {InitialState} from '../root-state'
+import {AjaxStatusAction} from '..'
 
 /*
  * This reducer establishes a convention: That after every

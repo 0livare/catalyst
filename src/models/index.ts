@@ -1,3 +1,3 @@
-export * from './Author'
-export * from './Course'
-export * from './INotification'
+export * from './author'
+export * from './course'
+export * from './i-notification'

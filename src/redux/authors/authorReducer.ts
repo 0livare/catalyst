@@ -1,5 +1,5 @@
 import * as types from './types'
-import {InitialState} from '../rootState'
+import {InitialState} from '../root-state'
 import {AuthorAction} from '../'
 
 export function authorReducer(state = InitialState.authors, action: AuthorAction) {

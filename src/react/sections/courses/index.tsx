@@ -1,9 +1,9 @@
-import * as React from 'react'
+import * as React from 'src/react/layout/snackbar/node_modules/react'
 import {Switch, Route} from 'react-router'
 
-import CourseListPage from './course-list/CourseListPage'
-import EditCoursePage from './course-edit/EditCoursePage'
-import {FourOhFourPage} from 'src/react/components/FourOhFourPage'
+import CourseListPage from './course-list/course-list-page'
+import EditCoursePage from './course-edit/edit-course-page'
+import {FourOhFourPage} from 'src/react/components/four-oh-four-page'
 
 export const CoursePage: React.SFC<{}> = () => {
   return (

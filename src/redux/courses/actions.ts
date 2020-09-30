@@ -1,6 +1,6 @@
 import * as types from './types'
 import {ICourse} from '../../models'
-import courseApi from '../../api/courseApi'
+import courseApi from '../../api/course-api'
 
 import {
   OtherAction,
