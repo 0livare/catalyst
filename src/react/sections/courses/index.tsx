@@ -1,4 +1,4 @@
-import * as React from 'src/react/layout/snackbar/node_modules/react'
+import * as React from 'react'
 import {Switch, Route} from 'react-router'
 
 import CourseListPage from './course-list/course-list-page'

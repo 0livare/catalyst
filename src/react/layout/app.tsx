@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import './globalStyles.scss'
 import {RootState} from 'src/redux'
 import {Navigation} from 'src/react/components/navigation'
-import {RootRoutes} from './RootRoutes'
+import {RootRoutes} from './root-routes'
 
 const colors = require('src/util/colors.scss')
 

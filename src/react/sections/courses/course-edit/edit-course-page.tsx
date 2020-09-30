@@ -1,5 +1,5 @@
-import * as React from 'src/react/layout/snackbar/node_modules/react'
-import {connect} from 'src/react/layout/snackbar/node_modules/react-redux'
+import * as React from 'react'
+import {connect} from 'react-redux'
 
 import {ICourse, IAuthor, createCourseWithId} from 'src/models'
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'

@@ -18,7 +18,7 @@ export type IState = {
   displayedNotificationKeys: number[],
 }
 
-export class SnackbarNotifier extends React.Component<ISnackbarNotifierProps, IState> {
+class SnackbarNotifier extends React.Component<ISnackbarNotifierProps, IState> {
   constructor(props: ISnackbarNotifierProps) {
     super(props)
     this.state = {
@@ -76,5 +76,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
 // Connect the CreateAssignment page to the redux store
 const container = connect(mapStateToProps, mapDispatchToProps)(SnackbarNotifier)
 const snacks = withSnackbar(container)
-
-export {snacks as default}
+export {snacks as SnackbarNotifier}

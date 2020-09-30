@@ -3,9 +3,9 @@ import {NavLink} from 'react-router-dom'
 import {Navbar, NavItem, Nav} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import {Typography} from '@material-ui/core'
 
 import * as s from './Navigation.scss'
-import {Typography} from '@material-ui/core'
 
 export interface INavProps {
   loading: boolean,

@@ -1,12 +1,12 @@
-import * as React from 'src/react/layout/snackbar/node_modules/react'
-import {connect} from 'src/react/layout/snackbar/node_modules/react-redux'
+import * as React from 'react'
+import {connect} from 'react-redux'
 
 import * as s from './CourseListPage.scss'
 import {RootState, RootDispatch, loadCourses, saveCourse} from 'src/redux'
 import {CourseTable} from './components/course-table'
 import {bindActionCreator} from 'src/util/reduxUtil'
 import {IReactRouterProps} from 'src/util/reactRouterUtil'
-import {Button, Typography} from 'src/react/layout/snackbar/node_modules/@material-ui/core'
+import {Button, Typography} from '@material-ui/core'
 
 export type ICourseListPageProps =
   & ReturnType<typeof mapStateToProps>

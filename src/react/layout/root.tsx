@@ -6,8 +6,8 @@ import {hot} from 'react-hot-loader'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import {App} from './app'
-import {SnackbarProvider} from './Snackbar/SnackbarProvider'
-import SnackbarNotifier from './Snackbar/SnackbarNotifier'
+import {SnackbarProvider, SnackbarNotifier} from './snackbar'
+
 
 export interface IRootProps { store: Store<any> }
 

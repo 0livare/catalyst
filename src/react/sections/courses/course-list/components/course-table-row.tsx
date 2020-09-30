@@ -1,4 +1,4 @@
-import * as React from 'src/react/layout/snackbar/node_modules/react'
+import * as React from 'react'
 import {Link} from 'react-router-dom'
 
 import {ICourse} from 'src/models'

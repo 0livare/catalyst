@@ -1,8 +1,8 @@
-import * as React from 'src/react/layout/snackbar/node_modules/react'
+import * as React from 'react'
 import TextField from '@material-ui/core/TextField'
 import SelectField from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import {InputLabel} from 'src/react/layout/snackbar/node_modules/@material-ui/core'
+import {InputLabel} from '@material-ui/core'
 import cs from 'classnames'
 
 import * as s from './CourseForm.scss'
